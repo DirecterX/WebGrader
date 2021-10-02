@@ -19,7 +19,7 @@
     <main class="form-signin">
         <form>
         <!-- Image Logo -->
-        <img class="mb-3" src="../Pic/Login-Logo.png" alt="" width="513" height="138" style="margin-left:-60px;">
+        <img class="mb-2" src="../Pic/Login-Logo.png" alt="" width="100%" height="100%" >
     
 
         <!-- Login Form Begin -->
