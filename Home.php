@@ -53,9 +53,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
         <!-- **********************************\*Use this for generate with PHP******************************************-->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card" style="background-color:#FFFFFF;">
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
-                <div class="card-body">
+                <div class="card-body" >
                 
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
