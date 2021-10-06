@@ -1,3 +1,10 @@
+<?php
+    ob_start();
+    session_start();
+    if($_SESSION==NULL){
+        header("location:../WebGrader/Login/Login.php");
+    }
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -10,75 +17,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>Blank Page</title>
 
   <style>
-      .container{
-        font-family: 'Kanit', sans-serif;
-
-      }
       .cardlink{
           color:black;
-        
   
       }
       .cardlink:hover{
-          color:#292928;
+          color:#FF8540;
       }
-      .cardborder {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border-bottom-width: 20px;
-
+      .cardborder{
+        border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352 ;
       }
-
-
-      /*card 2 Notification*/ 
-    .card2 {
-     background-color:#EDEDED; 
-     border:0.5px solid black; 
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border-bottom-left-radius: 15px;
-     border-bottom-right-radius: 15px;
-              }
-    
-    .col {
-        padding-top: 2%;
-    }
-
-
   </style>    
 
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
   
-  <!-- link font google kanit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
-   
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
-
-<body class="hold-transition layout-top-nav " >
+<body class="hold-transition layout-top-nav">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include "template/navbar.php"; ?>
+  <?php include "template/navbar.php";?>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper bg-white">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
-          <div class="col" >
-            <h1 class="m-0 font-weight-bold"> แจ้งเตือน <i class="fa fa-bell"></i></h1>
+        <div class="row mb-2">
+          <div class="col">
+            <h1 class="m-0"> Notification <i class="fa fa-bell"></i></h1>
           </div><!-- /.col -->         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -91,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
         <!-- **********************************\*Use this for generate with PHP******************************************-->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="background-color:#D3FFA9; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+            <div class="card cardborder" style="background-color:#FFFFFF;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body" >
                 
@@ -99,9 +72,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <p class="card-text">
                         <div class="row">
-                            <div class="col" style="text-align:center; font-size:62px;">
-                            
-                            <i class="fi fi-rr-comment-check"></i> <!-- Icon -->
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-check fa-6x"></i>  <!-- Icon -->
 
                             </div>
                         </div>
@@ -122,10 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- **********************************************************************************************************-->  
           </div>
           <!-- /.col-sm-6 -->
-
-        
-          <div class="col-sm-6 col-md-4 col-lg-3 ">
-            <div class="card2" >
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
@@ -144,14 +114,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>               
                     </p>
 
-                    <a href="#" class="card-link" styles="color:red;">- <?php echo "Assingment 2" ?></a> <!-- Assignment -->
+                    <a href="#" class="card-link">- <?php echo "Assingment 2" ?></a> <!-- Assignment -->
                 </div>
             </div>
             <!-- /.card -->     
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card2">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
@@ -177,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card2" >
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class Name -->
                     
@@ -203,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card2">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class name -->
 
@@ -237,7 +207,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container">
                 <div class="row mb-2">
                     <div class="col">
-                        <h1 class="m-0 font-weight-bold" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">ห้องเรียนของฉัน <i class="fa fa-book"></i></h1>
+                        <h1 class="m-0"> My Classroom <i class="fa fa-book"></i></h1>
                     </div><!-- /.col -->         
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -247,7 +217,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
 
             <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+            <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body">
                 
@@ -284,10 +254,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.col-sm-6 -->
             <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="filter: grayscale(100%);border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-
-            
-            <div class="card-body">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">
+                <div class="card-body">
                     <p class="card-text">
                             <div class="row">
                                 <div class="col" style="text-align:center;">
@@ -309,7 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "เรียนจบแล้ว" ?></h6>  <!-- Status class -->
+                            <h6>สถานะ : <?php echo "กำลังเรียนอยู่" ?></h6>  <!-- Status class -->
                         
                         </div>
                     </div>
