@@ -6,16 +6,7 @@
     
     <title>Top navbar</title>
      
-    <style>
-        
-        li.nav-item:hover {
-           border-radius: 10px ;
-           background:#FEC352;
-           transition: 0.5s;
-           box-shadow: -5px 5px #FF8540;
-       }
-
-   </style>
+   
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-static/">
     
@@ -31,16 +22,16 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    
+    <style>
+        
+         li.nav-item:hover {
+            border-radius: 10px ;
+            background:#FEC352;
+            transition: 0.5s;
+            box-shadow: -5px 5px #FF8540;
+        }
 
-    
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-
+    </style>
   </head>
 
 
@@ -48,7 +39,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md  navbar-light font-weight-bold ">
+  <nav class="main-header navbar navbar-expand-md  navbar-light font-weight-bold bg-white">
     <div class="container">
       
 
@@ -96,7 +87,7 @@
     
 <!--  User Menu -->   
         <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Name User</a>
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Show Name </a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
               <li><a href="#" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
               <li><a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
@@ -112,23 +103,5 @@
   <!-- /.navbar -->
 
   
-
- 
-
-
-  
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-</body>
 </html>
