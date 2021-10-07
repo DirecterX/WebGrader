@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Class</title>
+  <title>Blank Page</title>
 
   <style>
       .container{
@@ -32,20 +32,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
 
 
-      /*card 2 Notification*/ 
-    .card2 {
-     background-color:#EDEDED; 
-     border:0.5px solid black; 
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border-bottom-left-radius: 15px;
-     border-bottom-right-radius: 15px;
-              }
-    
-    .col {
-        padding-top: 2%;
-    }
-    
   </style>    
 
   
@@ -53,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link href='https://css.gg/add-r.css' rel='stylesheet'>
   
   <!-- link font google kanit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,29 +54,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include "template/navbar.php"; ?>
+  <div class="sticky-top"> <?php include "template/navbar.php"; ?></div>
   <!-- /.navbar -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper bg-white">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container">
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
-          <div class="col" >
-            <h1 class="m-0 font-weight-bold"> ห้องเรียนของฉัน <i class="fa fa-bell"></i></h1>
-          </div><!-- /.col -->         
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
       <div class="container">
-        <div class="row">
+       <div class="content-wrapper bg-white">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+
+      <div class="container">
+        
+        <!--start card-->
+
+        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+          <div class="col mt-2" >
     
-          <div class="col-sm-6 col-md-4 col-lg-3">
+            <h1 class="m-0 fw-bolder">ห้องเรียนของฉัน<i class="fa fa-book ml-2"></i></i></h1>
+
+          </div><!-- /.col -->         
+        </div><!-- /.row -->
+         
+        <div class="row m-2">
+
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body">
@@ -122,15 +110,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 </a>
             </div>
-      </div>
-
-
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
+            <!-- /.card -->
+            <!--***************************************************************************************-->
+            </div>
+            <!-- /.col-sm-6 -->
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card" style="filter: grayscale(100%);border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-
-            
-            <div class="card-body">
+            <div class="card-body ">
                     <p class="card-text">
                             <div class="row">
                                 <div class="col" style="text-align:center;">
@@ -161,44 +147,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.card -->     
             </div>
 
-
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #363D36;">
-
-            
-            <div class="card-body">
+            <!-- addclass -->
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+            <a href="#" id="add_class"> 
+                <div class="card-body">
                     <p class="card-text">
                             <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-plus fa-6x"></i>  <!-- Icon -->
+                                <div class="col style="text-align:center;">
+                                <h1><i class="gg-add-r"></i></h1>  <!-- Icon -->
                                 </div>
                             </div>
                     </p>
-                    <div class="row">
-                        <div class="col" style="text-align:center;">
-                        <a href="#" style="color: #292929" ><h4>เพิ่มห้องเรียน</h4> </a>
+                 <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h4>เพิ่มห้องเรียน</h4>  <!-- Class Name -->
                         
                         </div>
                     </div>
                     
-                  
-                    </div>
+        
                 </div>
+            </a>
             </div>
             <!-- /.card -->     
             </div>
 
-       
-        
-    
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
+
+</div><!-- /.container-fluid -->
+
+      </div><!-- /container-->
+    </div> <!-- /content-header-->
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
