@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="form-group">
 					<label for="changepassword">รหัสผ่านผู้ใช้งาน</label>
-					<input type="password" class="form-control mb-3" id="eMail" placeholder="กรอกรหัสผ่านเดิม"">
+					<input type="password" class="form-control mb-3" id="eMail" placeholder="กรอกรหัสผ่านเดิม">
                     <input type="password" class="form-control" id="eMail" placeholder="รหัสผ่านใหม่">
 				</div>
 
