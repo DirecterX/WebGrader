@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- addclass -->
             <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-            <a href="#" id="add_class"> 
+            <a href="AddClass.php" id="add_class"> 
                 <div class="card-body">
                     <p class="card-text">
                             <div class="row">
