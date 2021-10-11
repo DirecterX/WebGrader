@@ -75,7 +75,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
-				<div class="form-group">
+			<form action="/action_page.php " method="get"> <!-- ใส่ตรงนี้ -->	
+      <div class="form-group" >
 					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo "630xxxxx" ?></h4></label>
 				</div>
 
@@ -115,7 +116,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-right">
 					<button  onclick="document.location='Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
-					<button type="button" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal" >บันทึก</button>
+          <!-- แก้ตรง formaction -->
+					<button type="button" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal" formaction="/action_page2.php">บันทึก</button> 
+          
                          
                     <!-- Modal save -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
