@@ -80,20 +80,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</div>
 
                 <div class="form-group">
-					<label for="fullName">ชื่อผู้ใช้งาน</label>
-					<input type="text" class="form-control" id="fullName" placeholder="<?php echo "นายคงดี ดีจริงๆ" ?> ">
+					<label for="fullName">ชื่อ</label>
+					<input type="text" class="form-control" id="fullName" placeholder="<?php echo "ชื่อ" ?> ">
 				</div>
+
+        <div class="form-group">
+					<label for="fullName">นามสกุล</label>
+					<input type="text" class="form-control" id="lastName" placeholder="<?php echo "นามสกุล" ?> ">
+				</div>
+        
 
                 <div class="form-group">
 					<label for="eMail">อีเมล</label>
 					<input type="email" class="form-control" id="eMail" placeholder="<?php echo "Name Student@kmitl.ac.th" ?>">
 				</div>
 
-                <div class="form-group">
+        <div class="form-group">
 					<label for="changepassword">รหัสผ่านผู้ใช้งาน</label>
-					<input type="password" class="form-control mb-3" id="eMail" placeholder="กรอกรหัสผ่านเดิม"">
+<<<<<<< HEAD
+
+					<input type="password" class="form-control mb-3" id="password1" placeholder="กรอกรหัสผ่านเดิม"">
+          <input type="password" class="form-control mb-3" id="password2" placeholder="รหัสผ่านใหม่">
+          <input type="password" class="form-control " id="password2" placeholder="ยืนยันรหัสผ่านใหม่">
+        </div>
+
+=======
+					<input type="password" class="form-control mb-3" id="eMail" placeholder="กรอกรหัสผ่านเดิม">
                     <input type="password" class="form-control" id="eMail" placeholder="รหัสผ่านใหม่">
 				</div>
+>>>>>>> fa52d80e3b3fcaca38673957547d52df8a1e6abf
 
 			</div>	
 		</div>
