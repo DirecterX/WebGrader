@@ -103,6 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <input type="password" class="form-control " id="password2" placeholder="ยืนยันรหัสผ่านใหม่">
         </div>
 
+			
 
 			</div>	
 		</div>
