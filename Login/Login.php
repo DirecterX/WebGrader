@@ -1,9 +1,16 @@
 <?php
+<<<<<<< Updated upstream
 ob_start();
 session_start(); 
  if($_SESSION!=NULL){
   header("location:../Home.php");
  }
+=======
+include('../connect.php');
+if(isset($_SESSION['success'])):
+  header("location:../Home.php");
+endif
+>>>>>>> Stashed changes
 ?>
 
 <!doctype html>
@@ -26,6 +33,7 @@ session_start();
     
     <main class="form-signin">
         <form action = "login_process.php" method="POST">
+        
         <!-- Image Logo -->
         <img class="mb-2" src="../Pic/Login-Logo.png" alt="" width="100%" height="100%" >
     
@@ -47,8 +55,21 @@ session_start();
 
         <!-- Login Buttom -->
         <button class="w-100 btn btn-lg btn-primary lgn-btn" type="submit" name="login" value="login"><b>เข้าสู่ระบบ</b></button>
-        
+        <?php include('../error.php'); ?>
+        <?php if(isset($_SESSION['error'])) :?>
+          <div>
+            <h3>
+              <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+              ?>
+            </h3>
+          </div>
+        <?php endif ?>
         </form>
+        
+
+
     </main>
   
   </body>

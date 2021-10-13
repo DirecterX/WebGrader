@@ -44,7 +44,7 @@
             <a href="Home.php" class="nav-link">Home</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Class</a> <!-- Add link here -->
+            <a href="../../WebGrader/Class.php" class="nav-link">Class</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Assignment</a> <!-- Add link here -->
@@ -76,8 +76,13 @@
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Name User</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+<<<<<<< Updated upstream
               <li><a href="#" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
               <li><a href="../WebGrader/Edit_User/Edit_User.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
+=======
+              <li><a href="../../WebGrader/Class.php" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
+              <li><a href="../../WebGrader/Edit_User/EditProfile.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
+>>>>>>> Stashed changes
               <li class="dropdown-divider"></li>
               <li class="dropdown-item">
                 <a href="../WebGrader/Login/logout_process.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
