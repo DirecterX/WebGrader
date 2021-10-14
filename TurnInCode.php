@@ -40,6 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         margin-top: 1rem;
         }
 
+       
+
   </style>
 
   
@@ -177,17 +179,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             for ($i = 1; $i <= 2; $i++) {                             
                         ?>
                         <label for="Testcase<?php echo $i; ?>_Output_ex" style="margin-top: 10px;">Test Case<?php echo $i; ?></label> 
-                        <div class="row" >
+                        <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $i; ?>_Output_ex" rows="7" placeholder="Example Output"></textarea>                               
+                                    <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $i; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="TRUE"></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
                                 </div>
                             </div> 
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $i; ?>_Output" rows="7" placeholder="Output from student"></textarea> 
+                                    <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $i; ?>_Output" rows="7" placeholder="Output from student" disabled="TRUE"></textarea> 
                                     <!-- ID Example = Testcase1_Output -->
                                 </div>                    
                             </div> 
