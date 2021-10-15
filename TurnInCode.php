@@ -118,8 +118,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="Comment_Teacher">Comment form Teacher</label>
                                     <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
                                     <label for="Comment">Comment</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
-                                    <button type="button" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;">Send Comment</button>  
+                                    <form action="#">
+                                        <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
+                                        <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                    </form>
                                 </div>                    
                             </div> 
                         </div>
@@ -131,6 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <form action="#">
                                         <span id="file-chosen">No file chosen</span>
                                         <input type="file" id="Assignment_File" name="Assignment_File" hidden>
+                                        <input type="text" id="NoOfTestCase" name="NoOfTestCase" value="<?php echo "NumberTestCase"; ?>" hidden>       
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
                                     </form>
