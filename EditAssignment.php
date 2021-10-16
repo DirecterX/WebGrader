@@ -90,8 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="form-group">
                                
                                     <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> ">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> "></textarea>
+                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> " value="<?php echo "ชื่องาน" ?>">
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> "><?php echo "รายละเอียดงาน" ?></textarea>
                                 </div>
 
                                 
@@ -103,9 +103,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label>
-                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
+                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " value="<?php echo "1" ?>">
                                                 <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
+                                                <input type="date" class="form-control" id="Assignment_Point" value="<?php echo "2021-10-22" ?>"> <!-- Format Date = yyyy-mm-dd -->
 
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="file" id="Assignment_File" name="Assignment_File" hidden>
-                                        <span id="file-chosen">No file chosen</span>
+                                        <span id="file-chosen"><?php echo "File Name" ?></span> <!--- File Name -->
                                                
                                         
                                     </div>
@@ -128,35 +128,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                             </div>
                         </div>
-
+                        <!---------------------------------  PHP CODE Looping Check Number of TestCase Here ---------------------------------->
+                        <?php  
+                            for ($i = 1; $i <= 2; $i++) {                             
+                        ?>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group" id="TestCase_Form">
-                                        <label class="badge bg-warning" for="Test1_input">TestCase1</label>
+                                        <label class="badge bg-warning" for="Test<?php echo $i ; ?>_input">TestCase<?php echo $i ; ?></label>
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-6 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase1_input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                            <textarea  class="form-control" id="Testcase<?php echo $i; ?>_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?>"><?php echo "Input TestCase".$i; ?></textarea>
+                                            <!--  ExampleID = Testcase1_Input -->
                                         </div>
                                         <div class="col-md-6 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase1_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?> " disabled></textarea>
+                                            <textarea  class="form-control" id="Testcase<?php echo $i ; ?>_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled><?php echo "Output TestCase".$i; ?></textarea>
+                                            <!--  ExampleID = Testcase1_Output -->
                                         </div>
                                     </div>
-
                                 </div>             
-
                             </div>
-
                         </div>
-                        <!-- Add Button -->
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-right">
-                                    <button onclick="CreateTastCase()" type="button" id="AddTestCase" name="AddTestCase" class="btn btn-warning" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">+</button>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        <?php  
+                              }
+                        ?>
+                        <!---------------------------------------------------------------------------------------------------------------------->
+                    
+                        
                     
 
 
@@ -211,65 +210,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 
-<script>
-    var count = 2;
-function CreateTastCase() {
-   
-    if(count <=5){
-        //Create Label 
-        var CreateLabel = document.createElement("label");
-        CreateLabel.setAttribute("for","Testcase"+ count +"_input");
-        CreateLabel.setAttribute("class","badge bg-warning");
-        CreateLabel.setAttribute("style","margin-top:10px;");
-        CreateLabel.innerHTML="TestCase"+count;
-        
-        // Create Row
-        var CreateRow = document.createElement("div");
-            CreateRow.setAttribute("class","row");
-            CreateRow.setAttribute("id","Testcase"+count);
-        // Create Column
-        var CreateCol1 = document.createElement("div");
-            CreateCol1.setAttribute("class","col-md-6 col-sm-12");
-        // Create TestCase Input    
-        var CreateTestInput = document.createElement("textarea");
-            CreateTestInput.setAttribute("class","form-control");
-            CreateTestInput.setAttribute("id","Testcase"+count+"_Input");
-            CreateTestInput.setAttribute("Name","Testcase"+count+"_Input");
-            CreateTestInput.setAttribute("rows","5");
-            CreateTestInput.setAttribute("placeholder","Input");
-
-        // Create Column
-        var CreateCol2 = document.createElement("div");
-            CreateCol2.setAttribute("class","col-md-6 col-sm-12");
-        // Create TestCase Output    
-        var CreateTestOutput = document.createElement("textarea");
-            CreateTestOutput.setAttribute("class","form-control");
-            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
-            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
-            CreateTestOutput.setAttribute("rows","5");
-            CreateTestOutput.setAttribute("placeholder","Output");
-            CreateTestOutput.setAttribute("disabled","");
-
-
-        ++count;
-        // Append Column To Row
-        CreateRow.appendChild(CreateCol1);
-        CreateRow.appendChild(CreateCol2);  
-        // Append Textarea To Col
-        CreateCol1.appendChild(CreateTestInput);  
-        CreateCol2.appendChild(CreateTestOutput);  
-      
-        document.getElementById("TestCase_Form").appendChild(CreateLabel);
-        document.getElementById("TestCase_Form").appendChild(CreateRow);
-        
-    }
-  
-
-  
-}
-
-
-</script>
 <!-- Upload file button Script -->
 <script>
     const actualBtn = document.getElementById('Assignment_File');
