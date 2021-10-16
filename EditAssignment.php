@@ -135,8 +135,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <label class="badge bg-warning" for="Test1_input">TestCase1</label>
                                         
                                     <div class="row" id="Testcase1">
-                                        <div class="col-md-12 col-sm-12">    
+                                        <div class="col-md-6 col-sm-12">    
                                             <textarea  class="form-control" id="Testcase1_input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">    
+                                            <textarea  class="form-control" id="Testcase1_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?> " disabled></textarea>
                                         </div>
                                     </div>
 
@@ -226,7 +229,7 @@ function CreateTastCase() {
             CreateRow.setAttribute("id","Testcase"+count);
         // Create Column
         var CreateCol1 = document.createElement("div");
-            CreateCol1.setAttribute("class","col-md-12 col-sm-12");
+            CreateCol1.setAttribute("class","col-md-6 col-sm-12");
         // Create TestCase Input    
         var CreateTestInput = document.createElement("textarea");
             CreateTestInput.setAttribute("class","form-control");
@@ -235,13 +238,26 @@ function CreateTastCase() {
             CreateTestInput.setAttribute("rows","5");
             CreateTestInput.setAttribute("placeholder","Input");
 
+        // Create Column
+        var CreateCol2 = document.createElement("div");
+            CreateCol2.setAttribute("class","col-md-6 col-sm-12");
+        // Create TestCase Output    
+        var CreateTestOutput = document.createElement("textarea");
+            CreateTestOutput.setAttribute("class","form-control");
+            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("rows","5");
+            CreateTestOutput.setAttribute("placeholder","Output");
+            CreateTestOutput.setAttribute("disabled","");
+
 
         ++count;
         // Append Column To Row
         CreateRow.appendChild(CreateCol1);
-        
+        CreateRow.appendChild(CreateCol2);  
         // Append Textarea To Col
         CreateCol1.appendChild(CreateTestInput);  
+        CreateCol2.appendChild(CreateTestOutput);  
       
         document.getElementById("TestCase_Form").appendChild(CreateLabel);
         document.getElementById("TestCase_Form").appendChild(CreateRow);
