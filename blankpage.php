@@ -1,3 +1,10 @@
+<?php
+ob_start();
+session_start(); 
+if($_SESSION==NULL){
+  header("location:../../WebGrader/Home.php");
+ }
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from

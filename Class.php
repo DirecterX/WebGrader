@@ -1,6 +1,6 @@
 <?php
     include('connect.php');
-    if(!isset($_SESSION['User_Username'])):
+    if(!isset($_SESSION['Username'])):
      header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Class</title>
+  <title>Blank Page</title>
 
   <style>
       .container{
@@ -38,20 +38,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
 
 
-      /*card 2 Notification*/ 
-    .card2 {
-     background-color:#EDEDED; 
-     border:0.5px solid black; 
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border-bottom-left-radius: 15px;
-     border-bottom-right-radius: 15px;
-              }
-    
-    .col {
-        padding-top: 2%;
-    }
-    
   </style>    
 
   
@@ -59,6 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link href='https://css.gg/add-r.css' rel='stylesheet'>
   
   <!-- link font google kanit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,61 +60,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include "template/navbar.php"; ?>
+  <div class="sticky-top"> <?php include "template/navbar.php"; ?></div>
   <!-- /.navbar -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper bg-white">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container">
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
-          <div class="col" >
-            <h1 class="m-0 font-weight-bold"> ห้องเรียนของฉัน <i class="fa fa-bell"></i></h1>
-          </div><!-- /.col -->         
-        </div><!-- /.row -->
-<<<<<<< Updated upstream
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
       <div class="container">
-        <div class="row">
+       <div class="content-wrapper bg-white">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+
+      <div class="container">
+        
+        <!--start card-->
+
+        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+          <div class="col mt-2" >
     
-          <div class="col-sm-6 col-md-4 col-lg-3">
-=======
+            <h1 class="m-0 fw-bolder">ห้องเรียนของฉัน<i class="fa fa-book ml-2"></i></i></h1>
+
+          </div><!-- /.col -->         
+        </div><!-- /.row -->
          
         <div class="row m-2">
         <?php
-                $classes = explode(',',$_SESSION['Course_ID']);
+                $uid = $_SESSION["User_ID"];
+                $course_status = 'Wait to open';
+                $show_class = "SELECT * FROM course_role WHERE User_ID = '".$uid."' ORDER BY Role DESC";
+                $show_class_q = mysqli_query($con,$show_class);
+                while($row = mysqli_fetch_array($show_class_q)){
+                    $Course_ID = $row["Course_ID"];
+                    $show_course = "SELECT * FROM course WHERE Course_ID = '".$Course_ID."'";
+                    $show_course_q = mysqli_query($con,$show_course);
+                    $show_course_result = mysqli_fetch_array($show_course_q);
+                    $Course_Name = $show_course_result['Name'];
+                    $Course_Schoolyear = $show_course_result['Schoolyear'];
+                    $Course_Sem = $show_course_result['Semester'];
 
-                foreach($classes as $class){
-                    //echo $class."\n"; 
-                    $sql = "SELECT * FROM course WHERE Course_ID = '".$class."'";
-                    mysqli_query($con,$sql) or die(mysqli_error());
+                    $show_owner = "SELECT * FROM course_role WHERE Course_ID = '".$Course_ID."' AND Role = 'Owner'";     
+                    $show_owner_q = mysqli_query($con,$show_owner);
+                    $show_owner_result = mysqli_fetch_array($show_owner_q);
+                    $owner_ID = $show_owner_result['User_ID'];
+
+                    
+                    $sql = "SELECT * FROM user WHERE User_ID = '".$owner_ID."'";
                     $sqlq2 = mysqli_query($con,$sql);
                     $result = mysqli_fetch_array($sqlq2);
                     if (mysqli_num_rows($sqlq2)==1) {
-                        $course_name = $result["Course_Name"];
-                        $course_owener = $result["User_ID"];
-                        $course_status = $result["Course_Status"];
-                        //echo $course_name."\n".$course_owener."\n".$course_status;    
+                        $course_owener_show = $result['Firstname']." ".$result['Surname'];
                     }
 
-                    $sql = "SELECT * FROM user WHERE User_Username = '".$course_owener."'";
-                    $sqlq2 = mysqli_query($con,$sql);
-                    $result = mysqli_fetch_array($sqlq2);
-                    if (mysqli_num_rows($sqlq2)==1) {
-                        $course_owener_show = $result['User_Name'].$result['User_Surname'];
 
+                    echo '<div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">';
+                    $Course_Start_date = $show_course_result['Start_date'];
+                    $Course_End_date = $show_course_result['End_date'];
+                    $toDay = date('Y-m-d');
+                    $toDay; 
+                    if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
+                        $course_status = 'Open';
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">';
+                    }elseif($Course_End_date <= $toDay ){
+                        $course_status = "Close";
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #A3A3A3;">';
+                    }else{
+                        //wait to open
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8B73;">';
                     }
-                    //echo $course_owener_show;
+                                    
+
+                    
+
+
+
+                          
             ?>
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
->>>>>>> Stashed changes
-            <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+            
+            
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body">
                 
@@ -140,118 +147,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </p>
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h4><?php echo $course_name ?></h4>  <!-- Class Name -->
+                            <h4><?php echo $Course_Name ?></h4>  <!-- Class Name -->
                         
                         </div>
                     </div>
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo $course_owener ?></h6>  <!-- Instructor Name -->
+                            <h6>ผู้สอน : <?php echo $course_owener_show ?></h6>  <!-- Instructor Name -->
                         
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php 
-                            if($course_status == 'open'){
-                                echo "กำลังเรียนอยู่";
-                            }else{
-                                echo "ปิดแล้ว";
-                            }
-                             ?></h6>  <!-- Status class -->
+                            <h6>ภาคเรียน/ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h6>  <!-- Code lang -->
+                        
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h6>ภาษา : Python </h6>  <!-- Code lang -->
+                        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h6>สถานะ : <?php echo $course_status ?> </h6>  <!-- Status class -->
                         
                         </div>
                     </div>
                 </div>
                 </a>
             </div>
-<<<<<<< Updated upstream
-      </div>
-
-
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="filter: grayscale(100%);border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-
-            
-            <div class="card-body">
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-user fa-6x"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo "Java class" ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo "Name" ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "เรียนจบแล้ว" ?></h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.card -->     
-            </div>
-=======
            
             <!-- /.card -->
             <!--***************************************************************************************-->
             </div> 
             <?php }?>
             <!-- /.col-sm-6 -->
-            
->>>>>>> Stashed changes
 
 
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #363D36;">
 
-            
-            <div class="card-body">
+
+
+
+
+
+            <!-- addclass -->
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+            <a href="AddClass.php" id="add_class"> 
+                <div class="card-body">
                     <p class="card-text">
                             <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-plus fa-6x"></i>  <!-- Icon -->
+                                <div class="col style="text-align:center;">
+                                <h1><i class="gg-add-r"></i></h1>  <!-- Icon -->
                                 </div>
                             </div>
                     </p>
-                    <div class="row">
-                        <div class="col" style="text-align:center;">
-                        <a href="#" style="color: #292929" ><h4>เพิ่มห้องเรียน</h4> </a>
+                 <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h4>เพิ่มห้องเรียน</h4>  <!-- Class Name -->
                         
                         </div>
                     </div>
                     
-                  
-                    </div>
+        
                 </div>
+            </a>
             </div>
             <!-- /.card -->     
             </div>
 
-       
-        
-    
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
+
+</div><!-- /.container-fluid -->
+
+      </div><!-- /container-->
+    </div> <!-- /content-header-->
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->

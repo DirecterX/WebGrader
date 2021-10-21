@@ -1,16 +1,12 @@
 <?php
-<<<<<<< Updated upstream
-ob_start();
-session_start(); 
- if($_SESSION!=NULL){
-  header("location:../Home.php");
- }
-=======
 include('../connect.php');
-if(isset($_SESSION['success'])):
+if(isset($_SESSION["User_Authority"])):
+  if($_SESSION["User_Authority"]=='admin'){
+    header("location:../Home_admin.php");
+  }
   header("location:../Home.php");
 endif
->>>>>>> Stashed changes
+
 ?>
 
 <!doctype html>
@@ -40,12 +36,12 @@ endif
 
         <!-- Login Form Begin -->
         <div class="form-floating" >
-        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="User_ID">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="Username">
         <label for="floatingInput">Username</label>
         </div>
         <br>
         <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="User_Pass">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password">
         <label for="floatingPassword">Password</label>
         </div>
         <!-- Login Form End -->
@@ -57,8 +53,9 @@ endif
         <button class="w-100 btn btn-lg btn-primary lgn-btn" type="submit" name="login" value="login"><b>เข้าสู่ระบบ</b></button>
         <?php include('../error.php'); ?>
         <?php if(isset($_SESSION['error'])) :?>
-          <div>
+          <div style="color:red">
             <h3>
+              <br>
               <?php
                 echo $_SESSION['error'];
                 unset($_SESSION['error']);
@@ -68,8 +65,6 @@ endif
         <?php endif ?>
         </form>
         
-
-
     </main>
   
   </body>

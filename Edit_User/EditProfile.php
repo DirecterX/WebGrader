@@ -1,6 +1,6 @@
 <?php
     include('../connect.php');
-    if(($_SESSION['User_Username'])==NULL):
+    if(($_SESSION['Username'])==NULL):
      header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
@@ -79,27 +79,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<h1 class="mb-2 text-dark">การตั้งค่า</h1>
 			</div>
 
+
+
+      <?php
+                 $uid = $_SESSION["User_ID"];
+                 $show_user_info = "SELECT * FROM user WHERE User_ID='".$uid."' ";
+                 $show_user_info_q = mysqli_query($con,$show_user_info);
+                 $result = mysqli_fetch_array($show_user_info_q);
+                 if (mysqli_num_rows($show_user_info_q)!=0) {
+                    $u_Name = $result["Firstname"];
+                    $u_Sname = $result["Surname"];
+                    $u_Email = $result["Email"]; 
+                 }else{ 
+                    
+                 }
+                  
+      ?>
+
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
 			<form action="edit_user_process.php" method="POST"> <!-- ใส่ตรงนี้ -->	
       <div class="form-group" >
-					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["User_Username"] ?></h4></label>
+					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["Username"] ?></h4></label>
 				</div>
 
                 <div class="form-group">
 					<label for="fullName">ชื่อ</label>
-					<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $_SESSION["User_Name"] ?> ">
+					<input type="text" class="form-control" id="fname" name="fname" value="<?php echo $u_Name; ?> ">
 				</div>
 
         <div class="form-group">
 					<label for="fullName">นามสกุล</label>
-					<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $_SESSION["User_Surname"] ?> ">
+					<input type="text" class="form-control" id="sname" name="sname" value="<?php echo $u_Sname; ?> ">
 				</div>
         
 
                 <div class="form-group">
 					<label for="eMail">อีเมล</label>
-					<input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION["Email"] ?>">
+					<input type="email" class="form-control" id="email" name="email" value="<?php echo $u_Email; ?>">
 				</div>
 
         <div class="form-group">
@@ -116,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</div>
 		<?php include('../error.php'); ?>
         <?php if(isset($_SESSION['error'])) :?>
-          <div>
+          <div style="color:red">
             <h5>
               <?php
                 echo $_SESSION['error'];
@@ -131,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-right">
-					<button  onclick="document.location='Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
+					<button  onclick="document.location='../Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
           <!-- แก้ตรง formaction -->
 					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
           
