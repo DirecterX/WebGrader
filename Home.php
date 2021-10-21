@@ -1,3 +1,13 @@
+<?php
+    include('connect.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:../../WebGrader/Login/Login.php");
+    endif;
+    if($_SESSION["Is_admin"]){
+        header("location:Home_admin.php");
+    }
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -12,9 +22,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <style>
       .cardlink{
           color:black;
+  
       }
       .cardlink:hover{
           color:#FF8540;
+      }
+      .cardborder{
+        border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352 ;
       }
   </style>    
 
@@ -30,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include "template/navbar.php"; ?>
+  <?php include "template/navbar.php";?>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -53,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row">
         <!-- **********************************\*Use this for generate with PHP******************************************-->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card" style="background-color:#FFFFFF;">
+            <div class="card cardborder" style="background-color:#FFFFFF;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body" >
                 
@@ -84,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
@@ -110,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
@@ -136,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class Name -->
                     
@@ -162,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <!-- /.col-sm-6 -->
           <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
                 <div class="card-body">
                     <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class name -->
 
@@ -203,10 +217,62 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         
         <!-- ******************************Use this for generate with PHP*******************************-->
-        <div class="row">
+        
 
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
+        <div class="row m-2">
+        <?php
+                $uid = $_SESSION["User_ID"];
+                $course_status = 'Wait to open';
+                $show_class = "SELECT * FROM course_role WHERE User_ID = '".$uid."' ORDER BY Role DESC";
+                $show_class_q = mysqli_query($con,$show_class);
+                while($row = mysqli_fetch_array($show_class_q)){
+                    $Course_ID = $row["Course_ID"];
+                    $show_course = "SELECT * FROM course WHERE Course_ID = '".$Course_ID."'";
+                    $show_course_q = mysqli_query($con,$show_course);
+                    $show_course_result = mysqli_fetch_array($show_course_q);
+                    $Course_Name = $show_course_result['Name'];
+                    $Course_Schoolyear = $show_course_result['Schoolyear'];
+                    $Course_Sem = $show_course_result['Semester'];
+
+                    $show_owner = "SELECT * FROM course_role WHERE Course_ID = '".$Course_ID."' AND Role = 'Owner'";     
+                    $show_owner_q = mysqli_query($con,$show_owner);
+                    $show_owner_result = mysqli_fetch_array($show_owner_q);
+                    $owner_ID = $show_owner_result['User_ID'];
+
+                    
+                    $sql = "SELECT * FROM user WHERE User_ID = '".$owner_ID."'";
+                    $sqlq2 = mysqli_query($con,$sql);
+                    $result = mysqli_fetch_array($sqlq2);
+                    if (mysqli_num_rows($sqlq2)==1) {
+                        $course_owener_show = $result['Firstname']." ".$result['Surname'];
+                    }
+
+
+                    echo '<div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">';
+                    $Course_Start_date = $show_course_result['Start_date'];
+                    $Course_End_date = $show_course_result['End_date'];
+                    $toDay = date('Y-m-d');
+                    $toDay; 
+                    if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
+                        $course_status = 'Open';
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">';
+                    }elseif($Course_End_date <= $toDay ){
+                        $course_status = "Close";
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #A3A3A3;">';
+                    }else{
+                        //wait to open
+                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8B73;">';
+                    }
+                                    
+
+                    
+
+
+
+                          
+            ?>
+            
+            
                 <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body">
                 
@@ -219,61 +285,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </p>
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h4><?php echo "Python class" ?></h4>  <!-- Class Name -->
+                            <h4><?php echo $Course_Name ?></h4>  <!-- Class Name -->
                         
                         </div>
                     </div>
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo "Name" ?></h6>  <!-- Instructor Name -->
+                            <h6>ผู้สอน : <?php echo $course_owener_show ?></h6>  <!-- Instructor Name -->
                         
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "กำลังเรียนอยู่" ?></h6>  <!-- Status class -->
+                            <h6>ภาคเรียน/ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h6>  <!-- Code lang -->
+                        
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h6>ภาษา : Python </h6>  <!-- Code lang -->
+                        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h6>สถานะ : <?php echo $course_status ?> </h6>  <!-- Status class -->
                         
                         </div>
                     </div>
                 </div>
                 </a>
             </div>
+           
             <!-- /.card -->
             <!--***************************************************************************************-->
-            </div>
+            </div> 
+            <?php }?>
             <!-- /.col-sm-6 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-user fa-6x"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo "Java class" ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo "Name" ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "กำลังเรียนอยู่" ?></h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
             </div>
-            <!-- /.card -->     
-            </div>
+        </div>
+   
+            
         
     
       </div><!-- /.container-fluid -->
