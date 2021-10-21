@@ -1,5 +1,5 @@
 <?php
-    include('../connect.php');
+    include('../config.php');
     if(($_SESSION['Username'])==NULL):
      header("location:../../WebGrader/Login/Login.php");
     endif
@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <?php
                  $uid = $_SESSION["User_ID"];
                  $show_user_info = "SELECT * FROM user WHERE User_ID='".$uid."' ";
-                 $show_user_info_q = mysqli_query($con,$show_user_info);
+                 $show_user_info_q = mysqli_query($connect,$show_user_info);
                  $result = mysqli_fetch_array($show_user_info_q);
                  if (mysqli_num_rows($show_user_info_q)!=0) {
                     $u_Name = $result["Firstname"];

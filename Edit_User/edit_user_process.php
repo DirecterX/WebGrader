@@ -1,5 +1,5 @@
 <?php
-    include ("../connect.php");
+    include ("../config.php");
 	$uid = $_SESSION['User_ID'];
     $fname = $_POST['fname'];
     $sname = $_POST['sname'];

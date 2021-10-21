@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 <?php
-    include('connect.php');
+    include('config.php');
     if(!isset($_SESSION['Username'])):
      header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
+=======
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -84,7 +87,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
               
       <!-- Coding Here -->
+<<<<<<< HEAD
       <form action="add_class_process.php" method="POST">
+=======
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
         <div class="row">
             <div class="col">
                 <div class="card h-100 w-50 " >
@@ -94,10 +100,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <i class="fas fa-plus fa-3x"></i> 
                             </div> 
                             <div class="col-10">
+<<<<<<< HEAD
                                 
                                 <div class="form-group">
                                     <label for="AddClassroom">เพิ่มห้องเรียน</label>
                                     <input type="text" class="form-control" id="AddClassroom" name="Addclass_ID" placeholder="<?php echo "ใส่รหัสห้องเรียน" ?> ">
+=======
+                                <div class="form-group">
+                                    <label for="AddClassroom">เพิ่มห้องเรียน</label>
+                                    <input type="text" class="form-control" id="AddClassroom" placeholder="<?php echo "ใส่รหัสห้องเรียน" ?> ">
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
                                 </div>                    
                             </div> 
                         </div>
@@ -105,13 +117,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row ">
                             <div class="col" style="align-items: center;">
                                 <div class="text-center">
+<<<<<<< HEAD
                                     <button type="button" id="cancel" name="cancel" class="btn btn-dark w-25" style="margin-right:10px;">ยกเลิก</button>
                                     <button type="submit" id="submit" name="submit" class="btn btn-warning w-25">ยืนยัน</button>           
+=======
+                                    <button type="button" id="submit" name="submit" class="btn btn-dark w-25" style="margin-right:10px;">ยกเลิก</button>
+                                    <button type="button" id="submit" name="submit" class="btn btn-warning w-25" >ยืนยัน</button>           
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
                                 </div>
                             </div>
                         </div>
                     </div> 
                 </div>
+<<<<<<< HEAD
                 <?php include('error.php'); ?>
                   <?php if(isset($_SESSION['error'])) :?>
                     <div style="color:red">
@@ -123,13 +141,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </h5>
                     </div>
                   <?php endif ?> 
+=======
+                 
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
 
 
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->  
+<<<<<<< HEAD
     </form>
+=======
+>>>>>>> b9aa85ae2263625f012190ed3c744a1a620d29c2
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

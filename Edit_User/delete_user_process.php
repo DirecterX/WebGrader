@@ -1,5 +1,5 @@
 <?php
-    include ("../connect.php");
+    include ("../config.php");
 	$uid = $_SESSION['User_ID'];
     $uname = $_POST['first_name'];
     $usname = $_POST['last_name'];
@@ -41,7 +41,7 @@
     //echo ("'$email'");
 	if(count($errors) == 0){
         $show_user_info = "SELECT User_Password FROM user WHERE User_ID='".$uid."' ";
-        $show_user_info_q = mysqli_query($con,$show_user_info);
+        $show_user_info_q = mysqli_query($connect,$show_user_info);
         $result = mysqli_fetch_array($show_user_info_q);
         if (mysqli_num_rows($show_user_info_q)!=0) {
             $pwd = $result["User_Password"];
@@ -50,10 +50,10 @@
 
         if($_POST['pass']==$pwd){
             $update="update user set User_Name='".$uname."',User_Surname='".$usname."', User_Password='".$pass."',Email='".$email."' where User_ID='".$uid."'";
-            mysqli_query($con,$update) or die(mysqli_error()); 
+            mysqli_query($connect,$update) or die(mysqli_error()); 
             
             $sql = "SELECT * FROM user WHERE User_ID = '".$uid."'";
-            $sqlq2 = mysqli_query($con,$sql);
+            $sqlq2 = mysqli_query($connect,$sql);
             $result = mysqli_fetch_array($sqlq2);
             if (mysqli_num_rows($sqlq2)==1) {
                 $_SESSION["User_ID"] = $result["User_ID"];

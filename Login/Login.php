@@ -1,5 +1,5 @@
 <?php
-include('../connect.php');
+include('../config.php');
 if(isset($_SESSION["User_Authority"])):
   if($_SESSION["User_Authority"]=='admin'){
     header("location:../Home_admin.php");
