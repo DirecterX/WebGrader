@@ -99,8 +99,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="col-sm-6 col-md-5 col-lg-3 m-2" >
           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                 <div class="card-body">
-                    <a href="#" class="text-dark">
-                    <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1 " ?></b></h5> <!-- Class name -->
+                    <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                    <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1 " ?></b></h5> 
 
                     <p class="card-text">
                         <div class="row">
@@ -128,8 +128,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6 col-md-5 col-lg-3 m-2" >
           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                 <div class="card-body">
-                    <a href="#" class="text-dark">
-                    <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1.2 " ?></b></h5> <!-- Class name -->
+                    <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                    <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1.2 " ?></b></h5> 
 
                     <p class="card-text">
                         <div class="row">
@@ -157,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6 col-md-5 col-lg-3 m-2" >
           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                 <div class="card-body">
-                    <a href="#" class="text-dark">
+                    <a href="TurnInCode.php" class="text-dark">
                     <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 3 " ?></b></h5> <!-- Assign name -->
 
                     <p class="card-text">
