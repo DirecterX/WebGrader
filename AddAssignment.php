@@ -260,7 +260,7 @@ function CreateHidden() {
    if(count2 <=5){
        //Create Label 
        var CreateLabel = document.createElement("label");
-       CreateLabel.setAttribute("for","Hidden Test"+ count2 +"_input");
+       CreateLabel.setAttribute("for","HiddenTest"+ count2 +"_input");
        CreateLabel.setAttribute("class","badge bg-light");
        CreateLabel.setAttribute("style","margin-top:10px;");
        CreateLabel.innerHTML="Hidden Test "+ count2;
@@ -268,15 +268,15 @@ function CreateHidden() {
        // Create Row
        var CreateRow = document.createElement("div");
            CreateRow.setAttribute("class","row");
-           CreateRow.setAttribute("id","Hidden Test"+count2);
+           CreateRow.setAttribute("id","HiddenTest"+count2);
        // Create Column
        var CreateCol1 = document.createElement("div");
            CreateCol1.setAttribute("class","col-md-12 col-sm-12");
        // Create TestCase Input    
        var CreateTestInput = document.createElement("textarea");
            CreateTestInput.setAttribute("class","form-control");
-           CreateTestInput.setAttribute("id","Hidden Test"+count2+"_Input");
-           CreateTestInput.setAttribute("Name","Hidden Test"+count2+"_Input");
+           CreateTestInput.setAttribute("id","HiddenTest"+count2+"_Input");
+           CreateTestInput.setAttribute("Name","HiddenTest"+count2+"_Input");
            CreateTestInput.setAttribute("rows","5");
            CreateTestInput.setAttribute("placeholder","Input");
 
