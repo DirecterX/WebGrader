@@ -67,7 +67,7 @@
             <a href="Class.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
+            <a href="Assignment.php" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
           </li>
           
         </ul>

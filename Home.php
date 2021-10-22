@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card" style="background-color:#D3FFA9; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
-                <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
+                <a href="TurnInCode.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body" >
                 
                     <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
@@ -228,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-                <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
+                <a href="Assignment.php" class ="cardlink"> <!-- Link Here -->
                 <div class="card-body">
                 
                     <p class="card-text">
