@@ -1,3 +1,13 @@
+<?php
+    include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:Login/Login.php");
+    endif;
+    if($_SESSION["Is_admin"]){
+        header("location:Home_admin.php");
+    }
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -7,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blank Page</title>
+  <title>Grader - Home</title>
 
   <style>
       .container{
@@ -125,7 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>               
                     </p>
 
-                    <a href="#" class="card-link text-cyan" ">- <?php echo "Assingment 2" ?></a> <!-- Assignment -->
+                    <a href="#" class="card-link text-cyan">- <?php echo "Assingment 2" ?></a> <!-- Assignment -->
                 </div>
             </div>
             <!-- /.card -->     
@@ -223,85 +233,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
-         
-        <div class="row m-2">
+        <?php include "Show_course.php"; ?>
+        
 
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
-            <div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-                <a href="Assignment.php" class ="cardlink"> <!-- Link Here -->
-                <div class="card-body">
-                
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-user fa-6x"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo "Python class" ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo "Name" ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "กำลังเรียนอยู่" ?></h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <!-- /.card -->
-            <!--***************************************************************************************-->
-            </div>
-            <!-- /.col-sm-6 -->
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
-            <div class="card" style="filter: grayscale(100%);border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+    </div><!-- /.container-fluid -->
 
-
-            <div class="card-body ">
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-user fa-6x"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo "Java class" ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo "Name" ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo "เรียนจบแล้ว" ?></h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.card -->     
-            </div>
-
-
-</div><!-- /.container-fluid -->
-
-      </div><!-- /container-->
+    </div><!-- /container-->
     </div> <!-- /content-header-->
 <!-- REQUIRED SCRIPTS -->
 

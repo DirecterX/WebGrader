@@ -1,3 +1,9 @@
+<?php
+    include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:Login/Login.php");
+    endif
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
