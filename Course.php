@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row mb-2">
           <div class="col">
-            <h1 class="m-0"> <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h1>
+            <h1 class="m-0"> <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h2>
           </div><!-- /.col -->         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -92,13 +92,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
-      <div class="container">
+    <div class="container">
+      <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+          <div class="col mt-2" >
+    
+            <h1 class="m-0 fw-bolder">ห้องเรียน<?php echo $Course_Name; ?><i class="fa fa-book ml-2"></i></i></h1>
+
+          </div><!-- /.col -->         
+        </div><!-- /.row -->
               
       <!-- Coding Here -->
         <div class="row">
             <div class="col">
-                <h1 class="m-0"> <?php echo $Course_Name; ?> </i></h1>
                 <style type="text/css">
                   .tg  {border-collapse:collapse;border-spacing:0;}
                   .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -109,6 +114,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </style>
                 <p>
                   <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export->Excel </a>'; ?>
+                  <?php 
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" >';
+                  if ($role=="Owner"){
+                    echo 'Edit </a>';
+                  }else{
+                    echo 'Info </a>';
+                  }
+                  
+                  
+                  
+                  
+                   ?>
                 </p>
                 <?php
                 $showuserbyteacher = mysqli_query($connect,
@@ -188,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           }
                           ?>
                         <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Update</a></td>
-                        <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Kick</a></td>
+                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">Kick</a></td>
                       </tr>
                         <?php
                         $i++;

@@ -116,6 +116,7 @@ function confirmation(){
 	<div class="card-body border border-dark">
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <?php if ($role=="Owner"){ ?>
 				<h1 class="mb-2 text-dark">การตั้งค่าห้องเรียน</h1>
 			</div>
 
@@ -138,7 +139,7 @@ function confirmation(){
 
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
-			<form action="#" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
+			<form action="course_info_process.php?Course_ID=<?=$Course_ID?>" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
       <div class="form-group" >
 					<label class="badge bg-warning"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
 				</div>
@@ -149,8 +150,8 @@ function confirmation(){
 				</div>
 
                 <div class="form-group">
-					<label for="Course_name">ชื่อ Course </label>
-					<input type="text" class="form-control" id="Course_name" name="Course_name" value="<?php echo $Course_Name; ?>">
+					<label for="Course_Name">ชื่อ Course </label>
+					<input type="text" class="form-control" id="Course_Name" name="Course_Name" value="<?php echo $Course_Name; ?>">
 				</div>
 
                 <div class="form-group">
@@ -189,6 +190,7 @@ function confirmation(){
                     id="End_date" 
                     name="End_date" 
                     value="<?php echo $End_date; ?>">
+                    
 				</div>
 
                
@@ -213,26 +215,21 @@ function confirmation(){
 
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="text-left">
-               
-		
-					<button  onclick="document.location='../Home.php'" type="button" id="submit" name="submit" class="btn btn-danger w-10">ลบ</button>
-					<button type="submit" id="submit" name="submit" class="btn btn-info w-10" data-toggle="modal" data-target="#exampleModal">ปิด Course</button> 
-          
-    
-				</div>
-
-
-
-				<div class="text-right">
-					<button  onclick="document.location='../Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
-					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
-          
+           
+            
+          <!-- popupมั่นใจไหมว่าจะลบ --><button  type="button" name="del_course" class="btn btn-danger w-10" data-toggle="modal" data-target="#del_course">ลบ</button>
+					<!-- popมั่นใจไหมที่จะปิดคอร์ส --><button  type="button" name="end_course" class="btn btn-secondary w-10" data-toggle="modal" data-target="#end_course">ปิด Course</button>        
+           
+        
+					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
+          <button  onclick="document.location='Course.php?Course_ID=<?=$Course_ID?>'" type="button"  name="cancel" class="btn btn-dark w-25 float-right ml-2">ยกเลิก</button>
+					
                     
-				</div>
+			</div>
+				
 			</div>
       
-                                
+            
                       
 		</div>
 	</div>
@@ -250,8 +247,158 @@ function confirmation(){
 
       </div>
       
+        <?php }else{?>
+            <h1 class="mb-2 text-dark">แสดงข้อมูลห้องเรียน</h1>
+			</div>
 
 
+
+      <?php
+                 $uid = $_SESSION["User_ID"];
+                 $show_user_info = "SELECT * FROM user WHERE User_ID='".$uid."' ";
+                 $show_user_info_q = mysqli_query($connect,$show_user_info);
+                 $result = mysqli_fetch_array($show_user_info_q);
+                 if (mysqli_num_rows($show_user_info_q)!=0) {
+                    $u_Name = $result["Firstname"];
+                    $u_Sname = $result["Surname"];
+                    $u_Email = $result["Email"]; 
+                 }else{ 
+                    
+                 }
+                  
+      ?>
+
+            
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
+			<form> <!-- ใส่ตรงนี้ -->	
+      <div class="form-group" >
+					<label class="badge bg-warning"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
+				</div>
+
+                <div class="form-group">
+					<label>Enroll_Code</label>
+					<label><h1><?php echo $Enroll_Code; ?></h1></label>
+				</div>
+
+                <div class="form-group">
+					<label for="Course_name">ชื่อ Course </label>
+					<input disabled  type="text" class="form-control" id="Course_name" name="Course_name" value="<?php echo $Course_Name; ?>">
+				</div>
+
+                <div class="form-group">
+					<label for="Semester">ภาคเรียน</label>
+					<select disabled class="form-control" id="Semester" name="Semester">
+                        <option value="<?php echo $Course_Sem; ?>"><?php echo $Course_Sem; ?></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+				</div>
+        
+
+                <div class="form-group">
+                <label for="Schoolyear">ปีการศึกษา</label>
+                    <select disabled class="form-control" id = "Schoolyear" name="Schoolyear" >
+                        <option value="<?php echo $Course_Schoolyear; ?>"><?php echo $Course_Schoolyear; ?></option>
+                        <?php foreach($years as $year) : ?>
+                            <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+				</div>
+
+                <div class="form-group">
+					<label for="Start_date">วันเปิด Course</label>
+					<input disabled type="date" class="form-control" 
+                    id="Start_date" 
+                    name="Start_date" 
+                    value="<?php echo $Start_date; ?>">
+ 
+             
+				</div>
+
+                <div class="form-group">
+					<label for="End_date">วันปิด Course</label>
+					<input disabled type="date" class="form-control" 
+                    id="End_date" 
+                    name="End_date" 
+                    value="<?php echo $End_date; ?>">
+                    
+				</div>
+
+               
+
+			
+
+			</div>	
+		</div>        
+		</div>
+	</div>
+</div>
+</div>
+</div>
+       </div>
+
+         </form>
+
+      </div>
+            
+
+
+            <?php } ?>
+
+            <!-- moal del course -->
+            <div class="modal fade" id="del_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">แจ้งเตือนการลบห้องเรียน</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <h5>คุณแน่ใจจะลบ course นี้ออก</h5>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button onclick="document.location='del_course_process.php?Course_ID=<?=$Course_ID?>'" type="button" class="btn btn-danger">ลบ</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- moal end course -->
+          <div class="modal fade" id="end_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">แจ้งเตือนการปิดห้องเรียน</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5>คุณแน่ใจจะปิด course นี้</h5>
+                </div>
+                <div class="modal-footer">
+                  <!-- แก้ปุ่มใน modal-->
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button onclick="document.location='close_course_process.php?Course_ID=<?=$Course_ID?>'" type="button" class="btn btn-warning">ยืนยัน</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <?php include('error.php'); ?>
+        <?php if(isset($_SESSION['error'])) :?>
+          <div style="color:red">
+            <h5>
+              <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+              ?>
+            </h5>
+          </div>
+        <?php endif ?>
     </div><!-- /.container-fluid -->
 
       </div><!-- /container-->
