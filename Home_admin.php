@@ -67,8 +67,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <th class="tg-0lax">Name</th>
                   <th class="tg-0lax">Surname</th>
                   <th class="tg-0lax">Email</th>          
-                  <th class="tg-0lax">Edit</th>
-                  <th class="tg-0lax">Delete</th>
+                  <th class="tg-0lax"></th>
+                  <th class="tg-0lax"></th>
                 </tr>
               </thead>
               <tbody>
