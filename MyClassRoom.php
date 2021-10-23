@@ -1,12 +1,12 @@
 <?php
-    include('connect.php');
+    include('config.php');
     $classes = explode(',',$_SESSION['Course_ID']);
 
     foreach($classes as $class){
         //echo $class."\n"; 
         $sql = "SELECT * FROM course WHERE Course_ID = '".$class."'";
-        mysqli_query($con,$sql) or die(mysqli_error());
-        $sqlq2 = mysqli_query($con,$sql);
+        mysqli_query($connect,$sql) or die(mysqli_error());
+        $sqlq2 = mysqli_query($connect,$sql);
         $result = mysqli_fetch_array($sqlq2);
         if (mysqli_num_rows($sqlq2)==1) {
             $course_name = $result["Course_Name"];
@@ -16,7 +16,7 @@
         }
 
         $sql = "SELECT * FROM user WHERE User_Username = '".$course_owener."'";
-		$sqlq2 = mysqli_query($con,$sql);
+		$sqlq2 = mysqli_query($connect,$sql);
 		$result = mysqli_fetch_array($sqlq2);
 		if (mysqli_num_rows($sqlq2)==1) {
 			$course_owener_show = $result['User_Name'];

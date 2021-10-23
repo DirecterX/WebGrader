@@ -1,9 +1,8 @@
 <?php
-ob_start();
-session_start(); 
-if($_SESSION==NULL){
-  header("location:Home.php");
- }
+    include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:Login/Login.php");
+    endif
 ?>
 <!DOCTYPE html>
 <!--
@@ -53,6 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               
                 <h1 class="m-0"> Page Content </i></h1>
+             
 
 
 

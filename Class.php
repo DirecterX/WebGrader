@@ -1,5 +1,5 @@
 <?php
-    include('connect.php');
+    include('config.php');
     if(!isset($_SESSION['Username'])):
      header("location:Login/Login.php");
     endif
@@ -34,10 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         border-bottom-width: 20px;
-
       }
-
-
   </style>    
 
   
@@ -70,134 +67,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content-header">
 
       <div class="container">
-        
-        <!--start card-->
-
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+      <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
           <div class="col mt-2" >
     
             <h1 class="m-0 fw-bolder">ห้องเรียนของฉัน<i class="fa fa-book ml-2"></i></i></h1>
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
-         
-        <div class="row m-2">
-        <?php
-                $uid = $_SESSION["User_ID"];
-                $course_status = 'Wait to open';
-                $show_class = "SELECT * FROM course_role WHERE User_ID = '".$uid."' ORDER BY Role DESC";
-                $show_class_q = mysqli_query($con,$show_class);
-                while($row = mysqli_fetch_array($show_class_q)){
-                    $Course_ID = $row["Course_ID"];
-                    $show_course = "SELECT * FROM course WHERE Course_ID = '".$Course_ID."'";
-                    $show_course_q = mysqli_query($con,$show_course);
-                    $show_course_result = mysqli_fetch_array($show_course_q);
-                    $Course_Name = $show_course_result['Name'];
-                    $Course_Schoolyear = $show_course_result['Schoolyear'];
-                    $Course_Sem = $show_course_result['Semester'];
-
-                    $show_owner = "SELECT * FROM course_role WHERE Course_ID = '".$Course_ID."' AND Role = 'Owner'";     
-                    $show_owner_q = mysqli_query($con,$show_owner);
-                    $show_owner_result = mysqli_fetch_array($show_owner_q);
-                    $owner_ID = $show_owner_result['User_ID'];
-
-                    
-                    $sql = "SELECT * FROM user WHERE User_ID = '".$owner_ID."'";
-                    $sqlq2 = mysqli_query($con,$sql);
-                    $result = mysqli_fetch_array($sqlq2);
-                    if (mysqli_num_rows($sqlq2)==1) {
-                        $course_owener_show = $result['Firstname']." ".$result['Surname'];
-                    }
-
-
-                    echo '<div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">';
-                    $Course_Start_date = $show_course_result['Start_date'];
-                    $Course_End_date = $show_course_result['End_date'];
-                    $toDay = date('Y-m-d');
-                    $toDay; 
-                    if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
-                        $course_status = 'Open';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">';
-                    }elseif($Course_End_date <= $toDay ){
-                        $course_status = "Close";
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #A3A3A3;">';
-                    }else{
-                        //wait to open
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8B73;">';
-                    }
-                                    
-
-                    
-
-
-
-                          
-            ?>
-            
-            
-                <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
-                <div class="card-body">
-                
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="fas fa-user fa-6x"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo $Course_Name ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo $course_owener_show ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ภาคเรียน/ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h6>  <!-- Code lang -->
-                        
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ภาษา : Python </h6>  <!-- Code lang -->
-                        
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo $course_status ?> </h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
-           
-            <!-- /.card -->
-            <!--***************************************************************************************-->
-            </div> 
-            <?php }?>
-            <!-- /.col-sm-6 -->
-
-
-
-
-
-
-
-
+        
+        <!--start card-->
+        
             <!-- addclass -->
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
+        <?php include "Show_course.php"; ?>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
             <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
             <a href="AddClass.php" id="add_class"> 
                 <div class="card-body">
@@ -221,8 +103,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.card -->     
             </div>
-
-
 
 </div><!-- /.container-fluid -->
 

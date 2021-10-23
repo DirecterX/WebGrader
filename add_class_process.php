@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");
+include ("config.php");
 $errors = array();
 
 	$uid = $_SESSION['User_ID'];
@@ -17,13 +17,13 @@ $errors = array();
 	if(count($errors) == 0){
 
         $select_course = "SELECT * FROM course WHERE Enroll_Code = '".$Addclass_ID."'";
-		$select_course_q = mysqli_query($con,$select_course);
+		$select_course_q = mysqli_query($connect,$select_course);
 		$select_course_result = mysqli_fetch_array($select_course_q);
 
 		if (mysqli_num_rows($select_course_q)==1) {
             $Class_ID=$select_course_result['Course_ID'];
             $show_course = "SELECT * FROM course_role WHERE User_ID = '".$uid."' and Course_ID = '".$Class_ID."' ";
-		    $show_course_q = mysqli_query($con,$show_course);
+		    $show_course_q = mysqli_query($connect,$show_course);
 		    $result = mysqli_fetch_array($show_course_q);
 		    if (mysqli_num_rows($show_course_q)>0) {
                 array_push($errors, "You are already in this class");
@@ -33,7 +33,7 @@ $errors = array();
                 //add user with role in user_register_ course
                 $add = "INSERT INTO course_role (Course_ID ,User_ID, Role) VALUES ('.$Class_ID.', '.$uid.', 'student')";
 		        echo $add;
-                mysqli_query($con,$add);
+                mysqli_query($connect,$add);
                 header("location:Class.php");
             }
 		

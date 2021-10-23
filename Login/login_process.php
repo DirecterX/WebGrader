@@ -1,5 +1,5 @@
 <?php
-include ("../connect.php");
+include ("../config.php");
 $errors = array();
 	if (isset($_POST['login'])){
 		$uname = $_POST['Username'];
@@ -13,7 +13,7 @@ $errors = array();
 	if(count($errors) == 0){
 
 		$sql = "SELECT * FROM user WHERE Username = '".$uname."' and Password = '".$pwd."'";
-		$sqlq2 = mysqli_query($con,$sql);
+		$sqlq2 = mysqli_query($connect,$sql);
 		$result = mysqli_fetch_array($sqlq2);
 		if (mysqli_num_rows($sqlq2)==1) {
 			echo $result["User_ID"];

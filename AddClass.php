@@ -1,5 +1,5 @@
 <?php
-    include('connect.php');
+    include('config.php');
     if(!isset($_SESSION['Username'])):
      header("location:Login/Login.php");
     endif

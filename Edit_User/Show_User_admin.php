@@ -1,8 +1,7 @@
 <?php
-
-    include('connect.php');
-    if(!isset($_SESSION['Username'])):
-     header("location:Login/Login.php");
+    include('../config.php');
+    if(($_SESSION['Username'])==NULL):
+     header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include "template/navbar.php"; ?>
+  <?php include "../template/navbar.php"; ?>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -68,8 +67,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <th class="tg-0lax">Name</th>
                   <th class="tg-0lax">Surname</th>
                   <th class="tg-0lax">Email</th>
-                  <th class="tg-0lax">Status</th>
-                  <th class="tg-0lax">Edit</th>
+
+                  <td class="tg-0lax">Edit</td>
                   <th class="tg-0lax">Delete</th>
                 </tr>
               </thead>
@@ -83,11 +82,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 ?>
                 <tr>
                 <td class="tg-0lax"><?php echo $i?></td>
-                  <td class="tg-0lax"><?php echo $row['User_Username'] ?></td>
-                  <td class="tg-0lax"><?php echo $row['User_Name'] ?></td>
-                  <td class="tg-0lax"><?php echo $row['User_Surname'] ?></td>
+                  <td class="tg-0lax"><?php echo $row['Username'] ?></td>
+                  <td class="tg-0lax"><?php echo $row['Firstname'] ?></td>
+                  <td class="tg-0lax"><?php echo $row['Surname'] ?></td>
                   <td class="tg-0lax"><?php echo $row['Email'] ?></td>
-                  <td class="tg-0lax"><?php echo $row["User_Authority"] ?></td>
+
                   <td class="tg-0lax">Edit</td>
                   <th class="tg-0lax">Delete</th>
                     

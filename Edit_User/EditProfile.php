@@ -1,5 +1,5 @@
 <?php
-    include('../connect.php');
+    include('../config.php');
     if(($_SESSION['Username'])==NULL):
      header("location:../../WebGrader/Login/Login.php");
     endif
@@ -56,6 +56,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition layout-top-nav " >
+<script>
+function confirmation(){
+    var result = confirm("Are you sure to Edit?");
+    return result;
+}
+</script>
+
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -84,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <?php
                  $uid = $_SESSION["User_ID"];
                  $show_user_info = "SELECT * FROM user WHERE User_ID='".$uid."' ";
-                 $show_user_info_q = mysqli_query($con,$show_user_info);
+                 $show_user_info_q = mysqli_query($connect,$show_user_info);
                  $result = mysqli_fetch_array($show_user_info_q);
                  if (mysqli_num_rows($show_user_info_q)!=0) {
                     $u_Name = $result["Firstname"];
@@ -98,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
-			<form action="edit_user_process.php" method="POST"> <!-- ใส่ตรงนี้ -->	
+			<form action="edit_user_process.php" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
       <div class="form-group" >
 					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["Username"] ?></h4></label>
 				</div>
@@ -149,8 +157,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-right">
 					<button  onclick="document.location='../Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
-          <!-- แก้ตรง formaction -->
-					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
+					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" 
+          data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
           
     
 				</div>
