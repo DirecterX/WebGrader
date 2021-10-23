@@ -1,7 +1,7 @@
 <?php
     include('connect.php');
     if(!isset($_SESSION['Username'])):
-     header("location:../../WebGrader/Login/Login.php");
+     header("location:Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       .cardlink:hover{
           color:#292928;
       }
-      .cardborder {
+      .cardborder {b
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         border-bottom-left-radius: 15px;

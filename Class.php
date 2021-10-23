@@ -1,7 +1,7 @@
 <?php
     include('connect.php');
     if(!isset($_SESSION['Username'])):
-     header("location:../../WebGrader/Login/Login.php");
+     header("location:Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>
@@ -203,7 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="card-body">
                     <p class="card-text">
                             <div class="row">
-                                <div class="col style="text-align:center;">
+                                <div class="col" style="text-align:center;">
                                 <h1><i class="gg-add-r"></i></h1>  <!-- Icon -->
                                 </div>
                             </div>

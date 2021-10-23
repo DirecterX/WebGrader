@@ -1,7 +1,7 @@
 <?php
     include('connect.php');
-    if(!isset($_SESSION['User_Username'])):
-     header("location:../../WebGrader/Login/Login.php");
+    if(!isset($_SESSION['Username'])):
+     header("location:Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>

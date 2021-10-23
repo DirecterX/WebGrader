@@ -2,7 +2,7 @@
 ob_start();
 session_start(); 
 if($_SESSION==NULL){
-  header("location:../../WebGrader/Home.php");
+  header("location:Home.php");
  }
 ?>
 <!DOCTYPE html>
