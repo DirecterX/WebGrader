@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
           <div class="col mt-3" >
-            <h1 class="m-0 fw-bolder">แจ้งเตือน<i class="far fa-bell ml-2"></i></h1>
+            <h1 class="m-0 fw-bolder">Notification<i class="far fa-bell ml-2"></i></h1>
           </div><!-- /.col -->         
         </div><!-- /.row -->
 
@@ -229,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
           <div class="col mt-2" >
     
-            <h1 class="m-0 fw-bolder">ห้องเรียนของฉัน<i class="fa fa-book ml-2"></i></i></h1>
+            <h1 class="m-0 fw-bolder">My Class<i class="fa fa-book ml-2"></i></i></h1>
 
           </div><!-- /.col -->         
         </div><!-- /.row -->

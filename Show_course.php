@@ -2,7 +2,17 @@
         <?php
                 $uid = $_SESSION["User_ID"];
                 $course_status = 'Wait to open';
-                $show_class = "SELECT * FROM course_role WHERE User_ID = '".$uid."' ORDER BY Role DESC";
+
+
+
+                $show_class = "SELECT * 
+                FROM course_role 
+                INNER JOIN course ON course.Course_ID = course_role.Course_ID
+                WHERE course_role.User_ID = '".$uid."'
+                ORDER BY 
+                course.End_Date DESC,
+                course.Start_date ASC,
+                course.Name ASC";
                 $show_class_q = mysqli_query($connect,$show_class);
                 while($row = mysqli_fetch_array($show_class_q)){
                     $Course_ID = $row["Course_ID"];
@@ -10,7 +20,8 @@
                     $show_course = 
                     "SELECT * 
                     FROM course 
-                    WHERE Course_ID = '".$Course_ID."'";
+                    WHERE Course_ID = '".$Course_ID."'
+                    ";
                     $show_course_q = mysqli_query($connect,$show_course);
                     $show_course_result = mysqli_fetch_array($show_course_q);
                     $Course_Name = $show_course_result['Name'];
