@@ -22,7 +22,7 @@ $errors = array();
 			$_SESSION["Is_admin"] = $result["Is_admin"];
 
 			if($_SESSION["Is_admin"]){
-				header("location:../Home_Admin.php");
+				header("location:../Home_admin.php");
 			}else{
 				header("location:../Home.php");
 			}

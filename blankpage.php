@@ -1,7 +1,7 @@
 <?php
     include('config.php');
     if(!isset($_SESSION['Username'])):
-     header("location:../../WebGrader/Login/Login.php");
+     header("location:Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>

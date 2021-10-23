@@ -41,10 +41,10 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="../../WebGrader/Home.php" class="nav-link">Home</a> <!-- Add link here -->
+            <a href="Home.php" class="nav-link">Home</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="../../WebGrader/Class.php" class="nav-link">Class</a> <!-- Add link here -->
+            <a href="Class.php" class="nav-link">Class</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Assignment</a> <!-- Add link here -->
@@ -63,7 +63,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">     
             <div class="dropdown-divider"></div>
-            <a href="../../WebGrader/AddClass.php" class="dropdown-item"> <!-- Add link here -->
+            <a href="AddClass.php" class="dropdown-item"> <!-- Add link here -->
               <i class="fas fa-plus-square mr-2"></i> Add Class             
             </a>
             <div class="dropdown-divider"></div>
@@ -76,15 +76,15 @@
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?php echo $_SESSION["Username"] ?></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="../../WebGrader/Class.php" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
-              <li><a href="../../WebGrader/Edit_User/EditProfile.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
-              <li><a href="../../WebGrader/Classroom/CreateCourse.php" class="dropdown-item"><i class="fas fa-plus-square mr-2"></i> Add new course</a></li>
+              <li><a href="Class.php" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
+              <li><a href="Edit_User/EditProfile.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
+              <li><a href="Classroom/CreateCourse.php" class="dropdown-item"><i class="fas fa-plus-square mr-2"></i> Add new course</a></li>
      
               
 
               <li class="dropdown-divider"></li>
               <li class="dropdown-item">
-                <a href="../../WebGrader/Login/logout_process.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="Login/logout_process.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>         
             </ul>
           </li>
