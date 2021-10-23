@@ -4,5 +4,5 @@
 	unset($_SESSION);
 	unset($_POST);
 	unset($_REQUEST);
-	header("location:Login.php")
+	header("location:/WebGrader/Login/Login.php")
 ?>

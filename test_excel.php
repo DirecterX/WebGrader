@@ -1,7 +1,7 @@
 <?php
 	include('config.php');
     if(!isset($_SESSION['Username'])):
-     header("location:../../WebGrader/Login/Login.php");
+     header("location:/WebGrader/Login/Login.php");
     endif;
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];

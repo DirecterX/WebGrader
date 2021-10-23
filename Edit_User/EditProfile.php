@@ -1,7 +1,7 @@
 <?php
     include('../config.php');
     if(($_SESSION['Username'])==NULL):
-     header("location:../../WebGrader/Login/Login.php");
+     header("location:/WebGrader/Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ function confirmation(){
 <div class="wrapper">
 
   <!-- Navbar -->
-  <div class="sticky-top"> <?php include "../../WebGrader/template/navbar.php"; ?></div>
+  <div class="sticky-top"> <?php include $_SERVER['DOCUMENT_ROOT']."/WebGrader/template/navbar.php"; ?></div>
   <!-- /.navbar -->
 
     <div class="content">

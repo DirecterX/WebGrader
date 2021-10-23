@@ -2,9 +2,9 @@
 include('../config.php');
 if(isset($_SESSION["User_Authority"])):
   if($_SESSION["User_Authority"]=='admin'){
-    header("location:../Home_admin.php");
+    header("location:/WebGrader/Home_admin.php");
   }
-  header("location:../Home.php");
+  header("location:/WebGrader/Home.php");
 endif
 
 ?>
@@ -28,7 +28,7 @@ endif
   <body class="text-center">
     
     <main class="form-signin">
-        <form action = "login_process.php" method="POST">
+        <form action = "/WebGrader/Login/login_process.php" method="POST">
         
         <!-- Image Logo -->
         <img class="mb-2" src="../Pic/Login-Logo.png" alt="" width="100%" height="100%" >
