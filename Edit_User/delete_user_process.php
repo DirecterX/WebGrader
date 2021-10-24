@@ -12,14 +12,14 @@
         $uname = $_SESSION['User_Name'];
         array_push($errors, "Your name can not contain special characters");
 		$_SESSION['error'] = "Your name can not contain special characters";
-        header("location:/WebGrader/Edit_User/EditProfile.php");
+        header("location:../../WebGrader/Edit_User/EditProfile.php");
     }
 
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $usname)){
         $usname = $_SESSION['User_Surname'];
         array_push($errors, "Your Surname can not contain special characters");
 		$_SESSION['error'] = "Your Surname can not contain special characters";
-        header("location:/WebGrader/Edit_User/EditProfile.php");
+        header("location:../../WebGrader/Edit_User/EditProfile.php");
     }
 
 
@@ -29,7 +29,7 @@
         }else{
             array_push($errors, "New Password is not same with confirm password");
 		    $_SESSION['error'] = "New Password is not same with confirm password";
-            header("location:/WebGrader/Edit_User/EditProfile.php");
+            header("location:../../WebGrader/Edit_User/EditProfile.php");
         }
     }else{
         $pass = $_POST['pass'];
@@ -59,13 +59,13 @@
                 $_SESSION["User_ID"] = $result["User_ID"];
                 $_SESSION["User_Username"] = $result["User_Username"];
                 $_SESSION["User_Status"] = $result['User_Status'];
-                header("location:/WebGrader/Edit_User/EditProfile.php");
+                header("location:../../WebGrader/Edit_User/EditProfile.php");
             }
 
         }else{
             array_push($errors, "Password is Wrong");
             $_SESSION['error'] = "Password is Wrong";
-            header("location:/WebGrader/Edit_User/EditProfile.php");
+            header("location:../../WebGrader/Edit_User/EditProfile.php");
         }
     }
 ?>

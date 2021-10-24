@@ -1,9 +1,3 @@
-<?php
-    include('config.php');
-    if(!isset($_SESSION['Username'])):
-     header("location:Login/Login.php");
-    endif
-?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -13,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WebGrader | หน้าสั่งงาน</title>
+  <title>Add Assignment</title>
 
   <style>
       .container{
