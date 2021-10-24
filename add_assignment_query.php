@@ -97,6 +97,25 @@
     ###################### NON HIDDEN TESTCASE WHILE LOOP ###########################
     while($while_count != $testcase_count+1){
 
+      ######################################## EXECUTE TO GET INGNORE INPUT CLI VALUE #################################################
+      $descriptorspec = array(
+        0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
+        1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
+        2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
+        );
+        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+
+        if (is_resource($process)) {
+      
+            fclose($pipes[0]);
+            
+            stream_set_timeout($pipes[1],5);
+            $testcase_output = stream_get_contents($pipes[1],50000);
+            $cli_length = strlen($testcase_output);
+            
+            fclose($pipes[1]);
+            $return_value = proc_close($process);
+        }
       ######################################## EXECUTE SECTION #################################################
       $descriptorspec = array(
         0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
@@ -104,18 +123,19 @@
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
         $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+
         if (is_resource($process)) {
       
             fwrite($pipes[0], "".${"testcase".$while_count."_input"}."");
             fclose($pipes[0]);
             
             stream_set_timeout($pipes[1],5);
-            if ($stream = fopen('S:\xampp\htdocs\WebGrader/27.txt', 'r')) {
-              echo stream_get_contents($stream, 50000);
-
-              fclose($stream);
-          }
             $testcase_output = stream_get_contents($pipes[1],50000);
+<<<<<<< Updated upstream
+=======
+            $testcase_output = substr($testcase_output,$cli_length);
+>>>>>>> Stashed changes
+            
             fclose($pipes[1]);
             $return_value = proc_close($process);
         }
@@ -133,6 +153,25 @@
     $hid = 1;
 
     while($while_count != $hidden_count+1){
+      ######################################## EXECUTE TO GET INGNORE INPUT CLI VALUE #################################################
+      $descriptorspec = array(
+        0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
+        1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
+        2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
+        );
+        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+
+        if (is_resource($process)) {
+      
+            fclose($pipes[0]);
+            
+            stream_set_timeout($pipes[1],5);
+            $testcase_output = stream_get_contents($pipes[1],50000);
+            $cli_length = strlen($testcase_output);
+            
+            fclose($pipes[1]);
+            $return_value = proc_close($process);
+        }
       ######################################## EXECUTE SECTION #################################################
       $descriptorspec = array(
         0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
@@ -148,6 +187,7 @@
             
             stream_set_timeout($pipes[1],5);
             $testcase_output = stream_get_contents($pipes[1],50000);
+            $testcase_output = substr($testcase_output,$cli_length);
             
             fclose($pipes[1]);
             $return_value = proc_close($process);
@@ -161,5 +201,4 @@
       $hid++;
       $while_count++;
     }
-    header("location:/WebGrader/Assignment.php");
 ?>
