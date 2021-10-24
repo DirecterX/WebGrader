@@ -116,10 +116,7 @@
 
 
 
-    Course Open and End Date : <input type="text" name="daterange" value="<?php 
- //Error Select year open and end 
-    echo date();
-  ?>" />
+    Course Open and End Date : <input type="text" name="daterange" value="<?php date();?>" />
         <script>
         $(function() {
           $('input[name="daterange"]').daterangepicker({

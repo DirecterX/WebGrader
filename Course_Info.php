@@ -217,7 +217,26 @@ function confirmation(){
            
             
           <!-- popupมั่นใจไหมว่าจะลบ --><button  type="button" name="del_course" class="btn btn-danger w-10" data-toggle="modal" data-target="#del_course">ลบ</button>
-					<!-- popมั่นใจไหมที่จะปิดคอร์ส --><button  type="button" name="end_course" class="btn btn-secondary w-10" data-toggle="modal" data-target="#end_course">ปิด Course</button>        
+         
+          <?php
+          // check ว่าcourse ปิดแล้วไม่แสดงปุ่ม ปิด course 
+                   $sqlCourseDate = "SELECT * FROM course WHERE course_ID = ".$Course_ID."";
+                   $sqlCourseDate_q = mysqli_query($connect,$sqlCourseDate);
+                    $sqlCourseDate_result = mysqli_fetch_array($sqlCourseDate_q);
+                    $Course_Start_date = $sqlCourseDate_result['Start_date'];
+                    $Course_End_date = $sqlCourseDate_result['End_date'];
+                     $toDay = date('Y-m-d');
+
+                  if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
+                        $course_status = 'Open';
+                        ?>
+          <!-- popมั่นใจไหมที่จะปิดคอร์ส --><button  type="button" name="end_course" class="btn btn-secondary w-10" data-toggle="modal" data-target="#end_course">ปิด Course</button>        
+          <?php
+                    
+                    }elseif($Course_End_date <= $toDay ){
+                        $course_status = "Close";
+                    }
+                    ?>
            
         
 					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
@@ -380,7 +399,8 @@ function confirmation(){
                 </div>
                 <div class="modal-footer">
                   <!-- แก้ปุ่มใน modal-->
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button onclick="document.location='close_course_process.php?Course_ID=<?=$Course_ID?>'" type="button" class="btn btn-warning">ยืนยัน</button>
                 </div>
               </div>
