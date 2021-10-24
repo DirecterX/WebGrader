@@ -223,12 +223,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div> 
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <?php
-                                    $sqlassinut = "SELECT * FROM `testcase` WHERE Assignment_ID = ".$assignment_id."";
-                                    $sqlassinut_q = mysqli_query($connect,$sqlassinut);
-                                    while($input_sqlassinut= mysqli_fetch_array($sqlassinut_q)){
-                                    ?>
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$input_sqlassinut['Input'] ?>"><?=$input_sqlassinut['Input'] ?></textarea> 
+                                    
+                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$testcase_select_rows['Input'] ?>"><?=$testcase_select_rows['Input'] ?></textarea> 
                                     <!-- ID Example = Testcase1_Output -->
                                 </div>                    
                             </div> 
@@ -236,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
                         <?php  
                             $testcase_count++;
-                              }
+                              
                           }
                         ?>
                        
