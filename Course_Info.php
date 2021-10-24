@@ -150,10 +150,21 @@ function confirmation(){
 					<label class="badge bg-warning"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
 				</div>
 
-                <div class="form-group">
-					<label>Enroll_Code</label>
-					<label><h1><?php echo $Enroll_Code; ?></h1></label>
-				</div>
+        <div class="form-group">
+          <label>Enroll_Code : </label>
+          <label class="badge bg-warning" id="copyenrollcode" ><h1><?php echo $Enroll_Code; ?></h1></label>
+           
+
+            <script>
+              copyenrollcode.onclick = function () {
+              /* Copy the text inside the text field */
+              navigator.clipboard.writeText("<?php echo $Enroll_Code; ?>");
+              /* Alert the copied text */
+              alert("Copied the text: " + "<?php echo $Enroll_Code; ?>");
+              }
+            
+            </script>
+          </div>
 
                 <div class="form-group">
 					<label for="Course_Name">ชื่อ Course </label>
@@ -307,8 +318,19 @@ function confirmation(){
 				</div>
 
                 <div class="form-group">
-					<label>Enroll_Code</label>
-					<label><h1><?php echo $Enroll_Code; ?></h1></label>
+					<label>Enroll_Code : </label>
+					<label class="badge bg-warning" id="copyenrollcode" ><h1><?php echo $Enroll_Code; ?></h1></label>
+           
+
+            <script>
+              copyenrollcode.onclick = function () {
+              /* Copy the text inside the text field */
+              navigator.clipboard.writeText("<?php echo $Enroll_Code; ?>");
+              /* Alert the copied text */
+              alert("Copied the text: " + "<?php echo $Enroll_Code; ?>");
+              }
+            
+            </script>
 				</div>
 
                 <div class="form-group">
