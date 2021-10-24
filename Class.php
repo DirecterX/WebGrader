@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </p>
                  <div class="row">
                         <div class="col" style="text-align:left;">
-                            <h4>เพิ่มห้องเรียน</h4>  <!-- Class Name -->
+                            <h4>เข้าห้องเรียน</h4>  <!-- Class Name -->
                         
                         </div>
                     </div>
