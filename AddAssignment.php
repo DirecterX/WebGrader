@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php 
+ include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:/WebGrader/Login/Login.php");
+    endif;
+    $Course_ID = $_GET['Course_ID'];
+    $userid = $_SESSION['User_ID'];
+    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' ");
+    //echo $checkcourserole["Role"];
+    $result = mysqli_fetch_assoc($checkcourserole);
+    $role = $result["Role"];
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -90,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="form-group">
                                
                                     <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name">
+                                    <input type="text" class="form-control" id="Assignment_Name" required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name">
                                     <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail"></textarea>
                                 </div>
 
@@ -103,9 +115,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label>
-                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score">
+                                                <input type="text" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score">
                                                 <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date">
+                                                <input type="date" class="form-control" id="Assignment_Point"  requiredplaceholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date">
 
                                         </div>
                                     </div>
@@ -113,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="margin-top:-15px;">
                                     <div class="col">
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
+                                        <input type="file" id="Assignment_File" required name="Assignment_File" hidden>
                                         <span id="file-chosen">No file chosen</span>
                                                
                                         
@@ -136,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-12 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                            <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
                                         </div>
                                     </div>
 

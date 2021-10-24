@@ -104,7 +104,6 @@
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
         $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
-
         if (is_resource($process)) {
       
             fwrite($pipes[0], "".${"testcase".$while_count."_input"}."");
@@ -112,7 +111,6 @@
             
             stream_set_timeout($pipes[1],5);
             $testcase_output = stream_get_contents($pipes[1],50000);
-            
             fclose($pipes[1]);
             $return_value = proc_close($process);
         }
