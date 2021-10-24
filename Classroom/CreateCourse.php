@@ -46,11 +46,6 @@
 
   </style>
   
-     
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />   
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -109,7 +104,7 @@
     <br><br>
     <label for="Schoolyear">Schoolyear : </label>
     <select id = "Schoolyear" name="Schoolyear">
-      <option>Select Year</option>
+      <option value="0">Select Year</option>
       <?php foreach($years as $year) : ?>
           <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
       <?php endforeach; ?>
@@ -119,21 +114,33 @@
 
 
 
+    <label for="start_date">Course Open date:</label>
+      <input type="date" id="start_date" value="" name="start_date"min="2020-01-01" max="2120-12-31">
 
-    Course Open and End Date : <input type="text" name="daterange" value="<?php date();?>" />
-        <script>
-        $(function() {
-          $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-          }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('Y-m-d') + ' to ' + end.format('Y-m-d'));
-          });
-        });
-        </script>
+    <br>
+
+    <label for="end_date">Course End date:</label>
+      <input type="date" id="end_date" value="" name="end_date"min="2020-01-01" max="2120-12-31">
+
     <br><br>
+    
+    
+    
+    
+    <br>
 
     <button type="submit" id="save" name="save" value="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">สร้างห้องเรียน</button> 
-
+    <?php include('../error.php'); ?>
+        <?php if(isset($_SESSION['error'])) :?>
+          <div style="color:red">
+            <h5>
+              <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+              ?>
+            </h5>
+          </div>
+        <?php endif ?>
   </form>
      
             
@@ -150,17 +157,7 @@
 
       </div>
           
-          <?php include('../error.php'); ?>
-        <?php if(isset($_SESSION['error'])) :?>
-          <div style="color:red">
-            <h5>
-              <?php
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-              ?>
-            </h5>
-          </div>
-        <?php endif ?>
+          
     </div><!-- /.container-fluid -->
 
       </div><!-- /container-->
