@@ -115,9 +115,16 @@ function confirmation(){
 	<div class="card-body border border-dark">
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <?php if ($role=="Owner"){ ?>
-				<h1 class="mb-2 text-dark">การตั้งค่าห้องเรียน</h1>
+        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+          <div class="col mt-2">
+    
+            <?php if ($role=="Owner"){ ?>
+        <h1 class="mb-2 text-dark">การตั้งค่าห้องเรียน<i class="fa fa-book ml-2"></i></h1>
+
+          </div><!-- /.col -->         
+        </div>
 			</div>
+
 
 
 
@@ -266,7 +273,13 @@ function confirmation(){
       </div>
       
         <?php }else{?>
-            <h1 class="mb-2 text-dark">แสดงข้อมูลห้องเรียน</h1>
+        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+          <div class="col mt-2">
+        <h1 class="mb-2 text-dark">แสดงข้อมูลห้องเรียน<i class="fa fa-book ml-2"></i></h1>
+
+          </div><!-- /.col -->         
+        </div>
+      </div>
 			</div>
 
 
