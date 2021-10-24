@@ -98,3 +98,4 @@ Traceback (most recent call last):
   File "./temp_file/item1.py", line 18, in <module>
     x = input("Enter Input : ").split(" ")
 EOFError: EOF when reading a line
+C:\Program Files\Python38\python.exe: can't find '__main__' module in './temp_file/'
