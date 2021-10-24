@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
-        <?php include "Show_course.php"; ?>
+        <?php include "Show_course_Home.php"; ?>
         
 
     </div><!-- /.container-fluid -->
