@@ -213,7 +213,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                        
                         ?>
                         <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case<?php echo $testcase_count; ?></label> 
-                        <div class="row" >
+                        <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     
