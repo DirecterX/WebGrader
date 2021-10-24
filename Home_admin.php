@@ -114,17 +114,16 @@ function confirmation(){
                   <th class="tg-0lax">Name</th>
                   <th class="tg-0lax">Surname</th>
                   <th class="tg-0lax">Email</th>          
-                  <th class="tg-0lax">Role</th>          
-                  <th class="tg-0lax"></th>
-                  <th class="tg-0lax"></th>
+                  <th class="tg-0lax">Is_admin</th>
+                  <th class="tg-0lax">แก้ไข</th>
+                  <th class="tg-0lax">ลบข้อมูล</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-                $show_users = "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID, user.Email
+                $show_users = "SELECT Username , Firstname ,Surname ,User_ID ,Email, Is_admin 
                 FROM user
-                INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                ORDER BY User.User_ID ASC";
+                ORDER BY Is_admin DESC, User.User_ID ASC";
                 $show_users_q = mysqli_query($connect,$show_users);
                 $i=0;
                 while($row = mysqli_fetch_array($show_users_q)){
@@ -136,7 +135,12 @@ function confirmation(){
                   <td class="tg-0lax"><?php echo $row['Firstname'] ?></td>
                   <td class="tg-0lax"><?php echo $row['Surname'] ?></td>
                   <td class="tg-0lax"><?php echo $row['Email'] ?></td>
-                  <td class="tg-0lax"><?php echo $row['Role'] ?></td>
+                  <td class="tg-0lax"><?php 
+                  if($row['Is_admin']== 1 ){
+                    echo "ผู้ดูแลระบบ";
+                  }else{
+                    echo "ผู้ใช้ทั่วไป";
+                  }?></td>
                   
                   <td class="tg-0lax">Edit</td>
                   <th class="tg-0lax">
