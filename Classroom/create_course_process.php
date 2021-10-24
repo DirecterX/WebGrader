@@ -68,6 +68,7 @@ if(isset($_POST['save']))
 		
 		
 		}
+		header("location:/WebGrader/Class.php");
 	mysqli_close($connect);
 
 	}

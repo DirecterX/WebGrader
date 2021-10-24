@@ -50,7 +50,6 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
      
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -122,13 +121,7 @@ function confirmation(){
       <?php endforeach; ?>
     </select>
     <br><br>
-
-
-
-
-
-
-    <input type="text" name="daterange" value="<?php echo date();?>" />
+     <input type="text" name="daterange" value="<?php echo date();?>" />
         <script>
         $(function() {
           $('input[name="daterange"]').daterangepicker({
@@ -138,10 +131,11 @@ function confirmation(){
           });
         });
         </script>
-		<br><br>
+    <br><br>
 
-    
-    <input type="submit" name="save" value="submit">
+   
+
+    <button type="submit" id="save" name="save" class="btn btn-warning w-25" >เพิ่มห้องเรียน</button> 
 
 	</form>
 
