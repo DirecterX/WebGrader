@@ -248,6 +248,120 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <br>
 
+
+ <?php
+                $showuserbyteacher = mysqli_query($connect,
+                "SELECT *
+                FROM assignment
+                WHERE Course_ID = ".$Course_ID."
+                ORDER BY Assignment_ID ASC");?>
+
+                <?php if ($role == "Teacher" || $role == "Owner"){?>
+                    <table class="tg">
+                      <tr>
+                        <td class="tg-0lax">Assigment_ID</td>
+                        <td class="tg-0lax">Course_ID</td>
+                        <td class="tg-0lax">Name</td>
+                        <td class="tg-0lax">Score</td>
+                        <td class="tg-0lax">Detail</td>
+                        <td class="tg-0lax">End_date</td>
+                      
+                      
+                         <!-- add col assignment loop // assignment.name submit.score inner assignment and submit where User_ID and course_ID-->
+                        <?php
+             
+                        $show_assingment = mysqli_query($connect,
+                        "SELECT Name
+                        FROM assignment
+                        WHERE Course_ID = '$Course_ID'
+                        ORDER BY Assignment_ID ASC"); 
+                        while($col = mysqli_fetch_array($show_assingment)) {?>
+                          <td class="tg-0lax"> <?php echo $col["Name"]; ?></td>
+                        <?php
+
+                        }
+                        ?>
+
+                        <td class="tg-0lax">Update</td>
+                        <td class="tg-0lax">Kick</td>
+                      </tr>
+                      <?php
+                        $i=0;
+                        while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                      ?>
+                      
+                      <tr>
+                        <td class="tg-0lax"><?php echo $row["Assignment_ID"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Name"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Score"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Detail"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["End_date"]; ?></td>
+                        
+                        <?php
+                        //echo $count_assignment
+                      
+                        
+                          $show_score_gain = FALSE; 
+                          $show_assingment = mysqli_query($connect,
+                          "SELECT *
+                          FROM assignment
+                          WHERE Course_ID = '$Course_ID'
+                          ORDER BY Assignment_ID ASC");
+                          while($assingment_result = mysqli_fetch_array($show_assingment)){
+                            $assignment_ID = $assingment_result['Assignment_ID'];
+                            $show_score = mysqli_query($connect,
+                            "SELECT * 
+                            FROM submition
+                            WHERE Course_ID = '$Course_ID' and User_ID = '$Suid' and Assignment_ID = '$assignment_ID'
+                            ORDER BY Assignment_ID ASC");
+                            $score_row = mysqli_fetch_array($show_score);
+                            if(mysqli_num_rows($show_score)>0){
+                              ?><td class="tg-0lax"><?php echo $score_row["Score_Gain"]; ?></td><?php
+                            }else{
+                          ?><td class="tg-0lax"> 0 </td>
+                          <?php
+                          }  
+                          }
+                          ?>
+                        <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Update</a></td>
+                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">Kick</a></td>
+                      </tr>
+                        <?php
+                        $i++;
+                        }
+                        ?>
+                  </table>
+                  <?php
+                    
+                  }
+                  else if ($role == "TA"){ ?>
+                  <table class="tg">
+                      <tr>
+                        <td class="tg-0lax">Username</td>
+                        <td class="tg-0lax">firstname</td>
+                        <td class="tg-0lax">surname</td>
+                        <td class="tg-0lax">Role</td> 
+                      </tr>
+                          <?php
+                          $i=0;
+                          while($row = mysqli_fetch_array($showuserbyteacher)) {
+                          ?>  
+                        <tr>
+                          <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
+                          <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
+                          <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
+                          <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                        </tr>
+                          <?php $i++; ?>
+                    </table>
+                    <?php
+                      }
+                    }
+                  else if ($role == "student"){
+                    //echo "test";
+                  }?>
+
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -255,6 +369,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.content-wrapper -->
 </div>
 <!-- ./wrapper -->
+
 
 <!-- REQUIRED SCRIPTS -->
 
