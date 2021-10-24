@@ -9,7 +9,7 @@
         $delsubm = mysqli_query($connect,$del_submit);
                 $i=0;
                 while($row = mysqli_fetch_array($delsubm)){
-                    $del_exac = "DELETE FROM exec_output WHERE Submit_ID = '$row['Submit_ID']'"
+                    $del_exac = "DELETE FROM exec_output WHERE Submit_ID = ".$row['Submit_ID']."";
                 }
 
         $del_course_submit="DELETE FROM submition WHERE User_ID = '$userid'";

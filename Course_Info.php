@@ -5,8 +5,7 @@
     endif;
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
-    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' ");
-    //echo $checkcourserole["Role"];
+    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' AND Course_ID = '$Course_ID' ");
     $result = mysqli_fetch_assoc($checkcourserole);
     $role = $result["Role"];
 

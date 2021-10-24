@@ -15,8 +15,9 @@
                 course.Name ASC";
                 // แสดง Course โดยเรียงจากวันที่ปิดท้ายสุดมาก่อน
                 $show_class_q = mysqli_query($connect,$show_class);
-                for ($x = 0; $x <= 3; $x++) { //แสดง Course ในหน้า Home ล่าสุดไว้ที่ 4 อัน
-                    $row = mysqli_fetch_array($show_class_q);
+                $i = 0;
+                while($row = mysqli_fetch_array($show_class_q) AND $i < 4){
+                    $i++;
                     $Course_ID = $row["Course_ID"];
 
                     $show_course = 

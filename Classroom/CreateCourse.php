@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <?php
     include('../config.php');
-     if(!isset($_SESSION['Username'])):
+    if(!isset($_SESSION['Username'])):
      header("location:/WebGrader/Login/Login.php");
     endif;
     $userid = $_SESSION['User_ID'];
-    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' ");
-    //echo $checkcourserole["Role"];
-    $result = mysqli_fetch_assoc($checkcourserole);
-    $role = $result["Role"];
 
-    $years = range(strftime("%Y", time()), strftime("%Y", date(9634894360))); 
-    
+?>
+<?php $years = range(strftime("%Y", time()), strftime("%Y", date(9634894360))); 
 
 
 
 ?>
-<html>
+<html lang="th">
 <head>
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebGrader | สร้างห้องเรียน</title>
+
   <style>
       .container{
         font-family: 'Kanit', sans-serif;
@@ -46,10 +45,7 @@
 
 
   </style>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  
      
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -71,13 +67,6 @@
 </head>
 
 <body class="hold-transition layout-top-nav " >
-<script>
-function confirmation(){
-    var result = confirm("Are you sure to Edit?");
-    return result;
-}
-</script>
-
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -98,22 +87,23 @@ function confirmation(){
   <div class="card-body border border-dark">
     <div class="row gutters">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <h1 class="mb-2 text-dark">การเพิ่มห้องเรียน</h1>
+        <h1 class="m-0 fw-bolder">สร้างห้องเรียน<i class="fa fa-book ml-2"></i></h1>      
       </div>
 
 
-	<form method="POST" action="create_course_process.php">
-		Course:<br><input type="text" name="Course_Name">
+
+<form method="POST" action="create_course_process.php">
+    Course Name : <input type="text" name="Course_Name">
     <br><br>
 
-    <label for="sem">Semester:</label>
+    <label for="sem">Semester : </label>
       <select id="sem" name="Semester">
         <option value="1">1</option>
         <option value="2">2</option>
       </select>
 
     <br><br>
-    <label for="Schoolyear">Schoolyear:</label>
+    <label for="Schoolyear">Schoolyear : </label>
     <select id = "Schoolyear" name="Schoolyear">
       <option>Select Year</option>
       <?php foreach($years as $year) : ?>
@@ -121,7 +111,15 @@ function confirmation(){
       <?php endforeach; ?>
     </select>
     <br><br>
-     <input type="text" name="daterange" value="<?php echo date();?>" />
+
+
+
+
+
+    Course Open and End Date : <input type="text" name="daterange" value="<?php 
+ //Error Select year open and end 
+    echo date();
+  ?>" />
         <script>
         $(function() {
           $('input[name="daterange"]').daterangepicker({
@@ -133,25 +131,52 @@ function confirmation(){
         </script>
     <br><br>
 
-   
+    <button type="submit" id="save" name="save" value="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">สร้างห้องเรียน</button> 
 
-    <button type="submit" id="save" name="save" class="btn btn-warning w-25" >เพิ่มห้องเรียน</button> 
+  </form>
+     
+            
+       
+    </div>        
+    </div>
+  </div>
+</div>
+</div>
+</div>
+       </div>
 
-	</form>
+         </form>
 
-
-
-	<?php include('../error.php'); ?>
+      </div>
+          
+          <?php include('../error.php'); ?>
         <?php if(isset($_SESSION['error'])) :?>
           <div style="color:red">
-            <h3>
-              <br>
+            <h5>
               <?php
                 echo $_SESSION['error'];
                 unset($_SESSION['error']);
               ?>
-            </h3>
+            </h5>
           </div>
         <?php endif ?>
+    </div><!-- /.container-fluid -->
+
+      </div><!-- /container-->
+    </div> <!-- /content-header-->
+<!-- REQUIRED SCRIPTS -->
+
+
+
+
+
+
+
+        <!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
   </body>
 </html>
