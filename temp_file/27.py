@@ -1,13 +1,6 @@
 import os
 import sys
 import pathlib
-assid = "27.txt"
-path = str(pathlib.Path().resolve())+'\\'+assid
-print(path)
-
-stdoutOrigin=sys.stdout 
-sys.stdout = open(path, "w")
-
 
 im=int(input("Here : "))
 cou=im
@@ -34,6 +27,3 @@ for t in range(im):
 for y in tlis:
     print(''.join(y))
 
-sys.stdout.close()
-
-sys.stdout=stdoutOrigin

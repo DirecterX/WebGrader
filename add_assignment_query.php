@@ -110,6 +110,11 @@
             fclose($pipes[0]);
             
             stream_set_timeout($pipes[1],5);
+            if ($stream = fopen('S:\xampp\htdocs\WebGrader/27.txt', 'r')) {
+              echo stream_get_contents($stream, 50000);
+
+              fclose($stream);
+          }
             $testcase_output = stream_get_contents($pipes[1],50000);
             fclose($pipes[1]);
             $return_value = proc_close($process);
@@ -156,4 +161,5 @@
       $hid++;
       $while_count++;
     }
+    header("location:/WebGrader/Assignment.php");
 ?>
