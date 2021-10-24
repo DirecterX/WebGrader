@@ -54,11 +54,13 @@ if(isset($_POST['save']))
 				echo "Error: " . $sql. mysqli_error($connect);
 				array_push($errors, "Something wrong try again later");
 				$_SESSION['error'] = "Something wrong try again later";
+				header("location:/WebGrader/Class.php");
 			}
 		} else {
 			echo "Error: " . $sql. mysqli_error($connect);
 			array_push($errors, "Something wrong try again later");
 			$_SESSION['error'] = "Something wrong try again later";
+			header("location:/WebGrader/Class.php");
 
 
 
