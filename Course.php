@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                 FROM user
                 INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                WHERE (course_role.Role = 'Student' or 'TA') and (course_role.Course_ID = $Course_ID)
+                WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
                 ORDER BY User.User_ID ASC");?>
 
                 <?php if ($role == "Teacher" || $role == "Owner"){?>
@@ -170,14 +170,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         while($row = mysqli_fetch_array($showuserbyteacher)) { 
                           $Suid = $row["User_ID"]; 
                       ?>
-                      
+                      <form action="editpeople/edit_people_process.php"method = "POST" >
                       <tr>
                         <td class="tg-0lax"><?php echo $Suid; ?></td>
                         <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                        <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                        <td class="tg-0lax">  
+                          <input type = "text" id = "User_ID" name = "User_ID" value = "<?php echo $row["User_ID"]; ?> " hidden >
+                          <input type = "text" id = "Course_ID" name = "Course_ID" value = "<?php echo $row["Course_ID"]; ?>" hidden >
+                          <select name="Role" id="Role">
+                            <option value="student"<?php if( $row["Role"] == "student"){echo " selected";} ?>>student</option>
+                            <option value="TA"<?php if( $row["Role"] == "TA"){echo " selected";} ?>>TA</option>
+                            <option value="Teacher"<?php if( $row["Role"] == "Teacher"){echo " selected";} ?>>Teacher</option>
+                          </select>
+                      </td>
                         
                         <?php
                         //echo $count_assignment
@@ -205,8 +213,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           }  
                           }
                           ?>
-                        <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Update</a></td>
-                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">Kick</a></td>
+                        <td class="tg-0lax"><input type="submit" value="update"></td>
+                        <td class="tg-0lax"><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                      </form>
                       </tr>
                         <?php
                         $i++;
@@ -232,19 +241,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
                           <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
                           <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                          <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                          <td class="tg-0lax"><?php echo $row["Role"]; ?></td>                    
                         </tr>
-                          <?php $i++; ?>
+                          <?php $i++; } ?>
                     </table>
                     <?php
-                      }
-                    }
+                      }                   
                   else if ($role == "student"){
                     //echo "test";
                   }?>
-
-
-
 
 <br>
 
