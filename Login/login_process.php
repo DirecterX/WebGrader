@@ -22,9 +22,9 @@ $errors = array();
 			$_SESSION["Is_admin"] = $result["Is_admin"];
 
 			if($_SESSION["Is_admin"]){
-				header("location:/WebGrader/Home_admin.php");
+				header("location:../Home_Admin.php");
 			}else{
-				header("location:/WebGrader/Home.php");
+				header("location:../Home.php");
 			}
 
 			

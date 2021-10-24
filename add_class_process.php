@@ -36,7 +36,7 @@ $errors = array();
                 mysqli_query($connect,$add);
                 header("location:Class.php");
             }
-		//บัคเรื่องโค้ดที่ใส่ในการเข้า class ผิด
+		
 
         }else{
             array_push($errors, "You are already in this class");

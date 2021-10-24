@@ -1,7 +1,7 @@
 <?php
     include('../config.php');
     if(($_SESSION['Username'])==NULL):
-     header("location:/WebGrader/Login/Login.php");
+     header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>

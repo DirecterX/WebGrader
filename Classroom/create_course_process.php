@@ -41,7 +41,7 @@ if(isset($_POST['save']))
 		echo $end_date.'<br>';
 			
 			echo "New record created successfully ! <br><br><br>";
-
+			//header("location:../Class.php");
 			$show_course = "SELECT * FROM course WHERE Name = '".$Course_Name."'";
 			$show_course_q = mysqli_query($connect,$show_course);
 			$result = mysqli_fetch_array($show_course_q);
@@ -49,18 +49,18 @@ if(isset($_POST['save']))
 			$add = "INSERT INTO course_role (Course_ID, User_ID, Role) VALUES ('.$Class_ID.', '.$uid.', 'Owner')";
 			if (mysqli_query($connect, $add)) {
 				echo "New record created successfully ! <br><br><br>";
-				header("location:/WebGrader/Class.php");
+				//header("location:../Class.php");
 			} else {
 				echo "Error: " . $sql. mysqli_error($connect);
 				array_push($errors, "Something wrong try again later");
 				$_SESSION['error'] = "Something wrong try again later";
-				header("location:/WebGrader/Class.php");
+				//header("location:../../Classroom/CreateCourse.php");
 			}
 		} else {
 			echo "Error: " . $sql. mysqli_error($connect);
 			array_push($errors, "Something wrong try again later");
 			$_SESSION['error'] = "Something wrong try again later";
-			header("location:/WebGrader/Class.php");
+			//header("location:../../Classroom/CreateCourse.php");
 
 
 
@@ -68,7 +68,6 @@ if(isset($_POST['save']))
 		
 		
 		}
-		header("location:/WebGrader/Class.php");
 	mysqli_close($connect);
 
 	}

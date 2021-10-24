@@ -1,7 +1,7 @@
 <?php
     include('config.php');
     if(!isset($_SESSION['Username'])):
-     header("location:/WebGrader/Login/Login.php");
+     header("location:../../WebGrader/Login/Login.php");
     endif;
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
@@ -30,7 +30,6 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="th">
-<title>WebGrader | ห้องเรียน</title>
 <style>
       .container{
         font-family: 'Kanit', sans-serif;
@@ -97,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
           <div class="col mt-2" >
     
-            <h1 class="m-0 fw-bolder">ห้องเรียน : <?php echo $Course_Name; ?><i class="fa fa-book ml-2"></i></i></h1>
+            <h1 class="m-0 fw-bolder">ห้องเรียน<?php echo $Course_Name; ?><i class="fa fa-book ml-2"></i></i></h1>
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
@@ -115,25 +114,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </style>
                 <p>
                   <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export->Excel </a>'; ?>
-                  <?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" >';
-                  if ($role=="Owner"){
-                    echo 'Edit </a>';
-                  }else{
-                    echo 'Info </a>';
-                  }
-                  
-                  
-                  
-                  
-                   ?>
                 </p>
                 <?php
                 $showuserbyteacher = mysqli_query($connect,
                 "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                 FROM user
                 INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                WHERE (course_role.Role = 'Student' or 'TA') and (course_role.Course_ID = $Course_ID)
+                WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
                 ORDER BY User.User_ID ASC");?>
 
                 <?php if ($role == "Teacher" || $role == "Owner"){?>
@@ -170,14 +157,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         while($row = mysqli_fetch_array($showuserbyteacher)) { 
                           $Suid = $row["User_ID"]; 
                       ?>
-                      
+                      <form action="editpeople/edit_people_process.php"method = "POST" >
                       <tr>
                         <td class="tg-0lax"><?php echo $Suid; ?></td>
                         <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
                         <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                        <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                        <td class="tg-0lax">  
+                        <input type = "text" id = "User_ID" name = "User_ID" value = "<?php echo $row["User_ID"]; ?> " hidden >
+                        <input type = "text" id = "Course_ID" name = "Course_ID" value = "<?php echo $row["Course_ID"]; ?>" hidden >
+                        <select name="Role" id="Role">
+                          <option value="student"<?php if( $row["Role"] == "student"){echo " selected";} ?>>student</option>
+                          <option value="TA"<?php if( $row["Role"] == "TA"){echo " selected";} ?>>TA</option>
+                          <option value="Teacher"<?php if( $row["Role"] == "Teacher"){echo " selected";} ?>>Teacher</option>
+                        </select>
+                     </td>
+          
                         
                         <?php
                         //echo $count_assignment
@@ -205,8 +201,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           }  
                           }
                           ?>
-                        <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Update</a></td>
-                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">Kick</a></td>
+                        <td class="tg-0lax"><input type="submit" value="update"></td>
+                        <td class="tg-0lax"><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+            
+                        </form>
                       </tr>
                         <?php
                         $i++;
@@ -217,37 +215,266 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                   }
                   else if ($role == "TA"){ ?>
-                  <table class="tg">
+                   <table class="tg">
                       <tr>
+                        <td class="tg-0lax">User_ID</td>
+                        <td class="tg-0lax">Course_ID</td>
                         <td class="tg-0lax">Username</td>
                         <td class="tg-0lax">firstname</td>
                         <td class="tg-0lax">surname</td>
-                        <td class="tg-0lax">Role</td> 
+                        
+                      
+                      
+                         <!-- add col assignment loop // assignment.name submit.score inner assignment and submit where User_ID and course_ID-->
+                        <?php
+             
+                        $show_assingment = mysqli_query($connect,
+                        "SELECT Name
+                        FROM assignment
+                        WHERE Course_ID = '$Course_ID'
+                        ORDER BY Assignment_ID ASC"); 
+                        while($col = mysqli_fetch_array($show_assingment)) {?>
+                          <td class="tg-0lax"> <?php echo $col["Name"]; ?></td>
+                        <?php
+
+                        }
+                        ?>
+
+                      
                       </tr>
+                      <?php
+                        $i=0;
+                        while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                          $Suid = $row["User_ID"]; 
+                      ?>
+                     
+                      <tr>
+                        <td class="tg-0lax"><?php echo $Suid; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
+                      
+                     
+                      
+                     </td>
+          
+                        
+                        <?php
+                        //echo $count_assignment
+                      
+                        
+                          $show_score_gain = FALSE; 
+                          $show_assingment = mysqli_query($connect,
+                          "SELECT *
+                          FROM assignment
+                          WHERE Course_ID = '$Course_ID'
+                          ORDER BY Assignment_ID ASC");
+                          while($assingment_result = mysqli_fetch_array($show_assingment)){
+                            $assignment_ID = $assingment_result['Assignment_ID'];
+                            $show_score = mysqli_query($connect,
+                            "SELECT * 
+                            FROM submition
+                            WHERE Course_ID = '$Course_ID' and User_ID = '$Suid' and Assignment_ID = '$assignment_ID'
+                            ORDER BY Assignment_ID ASC");
+                            $score_row = mysqli_fetch_array($show_score);
+                            if(mysqli_num_rows($show_score)>0){
+                              ?><td class="tg-0lax"><?php echo $score_row["Score_Gain"]; ?></td><?php
+                            }else{
+                          ?><td class="tg-0lax"> 0 </td>
                           <?php
-                          $i=0;
-                          while($row = mysqli_fetch_array($showuserbyteacher)) {
-                          ?>  
-                        <tr>
-                          <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
-                          <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
-                          <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                          <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
-                        </tr>
-                          <?php $i++; ?>
-                    </table>
-                    <?php
-                      }
+                          }  
+                          }
+                          ?>
+                
+            
+                        </form>
+                      </tr>
+                        <?php
+                        $i++;
+                        }
+                        ?>
+                  </table>
+                  <?php
                     }
                   else if ($role == "student"){
-                    //echo "test";
+                    
                   }?>
 
 
 
 
 <br>
+<div class="row">
+        <!-- **********************************\*Use this for generate with PHP******************************************-->
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card cardborder" style="background-color:#FFFFFF;border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+                <a href="blankpage.php" class ="cardlink"> <!-- Link Here -->
+                <div class="card-body" >
+                
+                    <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
 
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-check fa-6x"></i>  <!-- Icon -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <h5><?php echo "Passed" ?></h5>  <!-- Status -->
+                            
+                            </div>
+                        </div>               
+                    </p>
+
+                    <h6>- <?php echo "Assignment 1" ?></h6> <!-- Assignment -->
+              
+              </div>
+              </a>
+            </div>
+            <!-- /.card -->
+          <!-- **********************************************************************************************************-->  
+          </div>
+          <!-- /.col-sm-6 -->
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
+
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-search fa-6x"></i>  <!-- Icon -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <h5><?php echo "waiting for inspect" ?></h5>  <!-- Status -->
+                            
+                            </div>
+                        </div>               
+                    </p>
+
+                    <a href="#" class="card-link">- <?php echo "Assingment 2" ?></a> <!-- Assignment -->
+                </div>
+            </div>
+            <!-- /.card -->     
+          </div>
+          <!-- /.col-sm-6 -->
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b><?php echo "Python Class" ?></b></h5> <!-- Class Name -->
+
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-history fa-6x"></i>  <!-- Icon -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <h5><?php echo "waiting for turn in" ?></h5>  <!-- Status -->
+                            
+                            </div>
+                        </div>               
+                    </p>
+
+                    <a href="#" class="card-link">- <?php echo "Assingment 3" ?></a> <!-- Assignment -->
+                </div>
+            </div>
+            <!-- /.card -->     
+          </div>
+          <!-- /.col-sm-6 -->
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class Name -->
+                    
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-times-circle fa-6x"></i>  <!-- Icon -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <h5><?php echo "Not Passed" ?></h5>  <!-- Status -->
+                            
+                            </div>
+                        </div>               
+                    </p>
+
+                    <a href="#" class="card-link">- <?php echo "Assignment 2" ?></a> <!-- Assingment -->
+                </div>
+            </div>
+            <!-- /.card -->     
+          </div>
+          <!-- /.col-sm-6 -->
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b><?php echo "Java Class" ?></b></h5> <!-- Class name -->
+
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <i class="fas fa-calendar-times fa-6x"></i>  <!-- Icon -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align:center;">
+                                <h5><?php echo "Not turn in" ?></h5>  <!-- Status -->
+                            
+                            </div>
+                        </div>               
+                    </p>
+
+                    <a href="#" class="card-link">- <?php echo "Assingment 1" ?></a> <!-- Assingment -->
+                </div>
+            </div>
+            <!-- /.card -->     
+          </div>
+          <!-- /.col-sm-6 -->
+          <?php if ($role == "Teacher" || $role == "Owner"){?>          
+          <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
+            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
+            <a href="#" id="add_class"> 
+                <div class="card-body">
+                    <p class="card-text">
+                            <div class="row">
+                                <div class="col style="text-align:center;">
+                                <h1><i class="gg-add-r"></i></h1>  <!-- Icon -->
+                                </div>
+                            </div>
+                    </p>
+                 <div class="row">
+                        <div class="col" style="text-align:left;">
+                            <h4>เพิ่ม Assignment</h4>  <!-- Class Name -->
+                        
+                        </div>
+                    </div>
+                    
+        
+                </div>
+            </a>
+            </div>
+            <!-- /.card -->     
+          </div>
+          <?php } ?>
+
+        </div>
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->  
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

@@ -1,7 +1,7 @@
 <?php
     include('config.php');
     if(!isset($_SESSION['Username'])):
-     header("location:Login/Login.php");
+     header("location:../../WebGrader/Login/Login.php");
     endif
 ?>
 <!DOCTYPE html>
@@ -15,53 +15,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blank Page</title>
 
-  <style>
-      .container{
-        font-family: 'Kanit', sans-serif;
-
-      }
-      .cardlink{
-          color:black;
-        
-  
-      }
-      .cardlink:hover{
-          color:#292928;
-      }
-      .cardborder {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        border-bottom-width: 20px;
-
-      }
-
-
-  </style>
-
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-  
-  <!-- link font google kanit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
-
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-
-   
-
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <div class="sticky-top"> <?php include "template/navbar.php"; ?></div>
+  <?php include "template/navbar.php"; ?>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -88,6 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               
                 <h1 class="m-0"> Page Content </i></h1>
+             
 
 
 
