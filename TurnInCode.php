@@ -4,7 +4,7 @@
     $testcase_count2 = 1;
 
     $course_id = 1;
-    $user_id = $_GET['User_ID'];
+    $user_id = $_SESSION['User_ID'];
     $assignment_id = $_GET['Assignment_ID'];
 
     ####################### select score to check if exist or not #######################################
@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
             <div class="col mt-2" >
                 
-                <h1 class="badge bg-warning"><?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
+                <h1 class="badge bg-warning"> Assignment Name : <?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
                 <hr style="border: 2px solid #FECA65">
 
           </div><!-- /.col -->         
@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
                         <div class="row">
                             <div class="col-6">
-                                <h2 class="badge bg-warning" style="font-size:120%;"><?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
+                                <h2 class="badge bg-warning" style="font-size:120%;"> ชื่องาน : <?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
                             </div>
                             <div class="col-6 text-right">
                                 <label style="font-size:120%;"><i class="fa fa-check"></i></label>                        <!-- red -->                                                       <!-- green -->             <!-- red -->
@@ -157,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="form-group">
 
-                                <textarea  class="form-control h-100" id="Assignment_Note" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
+                                <textarea  class="form-control h-100" id="Assignment_Note" disabled="true" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
 
                                 </div>
                             </div> 
