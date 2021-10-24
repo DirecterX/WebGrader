@@ -276,14 +276,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         WHERE Course_ID = '$Course_ID'
                         ORDER BY Assignment_ID ASC"); 
                         while($col = mysqli_fetch_array($show_assingment)) {?>
-                          <td class="tg-0lax"> <?php echo $col["Name"]; ?></td>
                         <?php
 
                         }
                         ?>
 
-                        <td class="tg-0lax">Update</td>
-                        <td class="tg-0lax">Kick</td>
+                        <td class="tg-0lax">Info</td>
+                        <td class="tg-0lax">Delete</td>
                       </tr>
                       <?php
                         $i=0;
@@ -315,23 +314,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             FROM submition
                             WHERE Course_ID = '$Course_ID' and User_ID = '$Suid' and Assignment_ID = '$assignment_ID'
                             ORDER BY Assignment_ID ASC");
-                            $score_row = mysqli_fetch_array($show_score);
-                            if(mysqli_num_rows($show_score)>0){
-                              ?><td class="tg-0lax"><?php echo $score_row["Score_Gain"]; ?></td><?php
-                            }else{
-                          ?><td class="tg-0lax"> 0 </td>
-                          <?php
-                          }  
+                             
                           }
                           ?>
-                        <td class="tg-0lax"><a href="update-process.php?id=<?php echo $row["id"]; ?>">Update</a></td>
-                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">Kick</a></td>
+                        <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
+                        <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">ลบ</a></td>
                       </tr>
                         <?php
-                        $i++;
                         }
                         ?>
                   </table>
+                  <a href="AddAssignment.php?Course_ID=<?php echo $Course_ID; ?>">เพิ่มงาน</a>
                   <?php
                     
                   }
@@ -359,9 +352,98 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       }
                     }
                   else if ($role == "student"){
-                    //echo "test";
-                  }?>
+            
+                $showuserbyteacher = mysqli_query($connect,
+                "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
+                FROM user
+                INNER JOIN course_role ON course_role.User_ID = user.User_ID
+                WHERE (course_role.Role = 'Student' or 'TA') and (course_role.Course_ID = $Course_ID)
+                ORDER BY User.User_ID ASC");?>
 
+                    <table class="tg">
+                      <tr>
+                        <td class="tg-0lax">Username</td>
+                        <td class="tg-0lax">firstname</td>
+                        <td class="tg-0lax">surname</td>
+                        <td class="tg-0lax">Role</td>
+                      
+                        
+
+                      <?php
+                        $i=0;
+                        while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                      ?>
+                      
+                      <tr>
+                        <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                        
+                        <?php
+                          }  
+                          ?>
+                        <?php
+                        ?>
+                  </table>
+                  <?php
+                    
+                  
+                  ?>
+
+
+
+<br>
+
+
+ <?php
+                $showuserbyteacher = mysqli_query($connect,
+                "SELECT *
+                FROM assignment
+                WHERE Course_ID = ".$Course_ID."
+                ORDER BY Assignment_ID ASC");?>
+
+                    <table class="tg">
+                      <tr>
+                        <td class="tg-0lax">Assigment_ID</td>
+                        <td class="tg-0lax">Course_ID</td>
+                        <td class="tg-0lax">Name</td>
+                        <td class="tg-0lax">Score</td>
+                        <td class="tg-0lax">Detail</td>
+                        <td class="tg-0lax">End_date</td>
+                      
+                      
+                         <!-- add col assignment loop // assignment.name submit.score inner assignment and submit where User_ID and course_ID-->
+                        <?php
+             
+                        $show_assingment = mysqli_query($connect,
+                        "SELECT Name
+                        FROM assignment
+                        WHERE Course_ID = '$Course_ID'
+                        ORDER BY Assignment_ID ASC"); 
+                       
+                        ?>
+                        <td class="tg-0lax">Update</td>
+                      </tr>
+                      <?php
+                        while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                      ?>
+                      
+                      <tr>
+                        <td class="tg-0lax"><?php echo $row["Assignment_ID"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Name"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Score"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["Detail"]; ?></td>
+                        <td class="tg-0lax"><?php echo $row["End_date"]; ?></td>
+                        <td class="tg-0lax"><a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูงาน</a></td>
+                      </tr>
+                        <?php
+                        }
+                      }
+                        ?>
+                  </table>
+                    
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
