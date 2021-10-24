@@ -1,9 +1,3 @@
-<?php
-    include('config.php');
-    if(!isset($_SESSION['Username'])):
-     header("location:Login/Login.php");
-    endif
-?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -13,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WebGrader | หน้าสั่งงาน</title>
+  <title>Add Assignment</title>
 
   <style>
       .container{
@@ -89,15 +83,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="card h-100">
                     <div class="card-body border border-dark">
-                    <form action="#"> <!-- Open Form Here -->
+                    <form action="add_assignment_query.php" method="post" enctype="multipart/form-data"> <!-- Open Form Here -->
                         <div class="row">
                             
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="form-group">
                                
                                     <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> ">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> "></textarea>
+                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name">
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail"></textarea>
                                 </div>
 
                                 
@@ -109,9 +103,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label>
-                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
+                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score">
                                                 <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
+                                                <input type="date" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date">
 
                                         </div>
                                     </div>
@@ -142,7 +136,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-12 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase1_input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                            <textarea  class="form-control" id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
                                         </div>
                                     </div>
 
@@ -175,6 +169,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.col -->
         </div>
+        <input type="hidden" name="Course_ID" value="<?=$_GET['Course_ID']?>">
                             </form><!-- End Form Here -->
         <!-- /.row -->  
       </div><!-- /.container-fluid -->
