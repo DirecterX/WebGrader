@@ -247,9 +247,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!------------------------------------------------Tab People ------------------------------------------------->
                     <div class="tab-pane" id="TabPeople">
                       <!-----------------------------Button Export Excel And Edit----------------------->
-                <p>
-                  <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
-                    <?php
+                      <p>
+                      <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
+                      <?php
                       $showuserbyteacher = mysqli_query($connect,
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                       FROM user
@@ -257,7 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
                       ORDER BY User.User_ID ASC");?>
 
-                      <?php if ($role == "Teacher" || $role == "Owner"){?>
+                        <?php if ($role == "Teacher" || $role == "Owner"){?>
                         <table class="table table-bordered">
                           <thead>
                             <tr>                            
@@ -363,7 +363,84 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /Tab People --> 
 
                     <!------------------------------------------------ Tab Assignment ---------------------------------------------->
-                    <div class="tab-pane" id="TabAssignment">                       
+                    <div class="tab-pane" id="TabAssignment">    
+                      <div class="row">
+                        <!----------------------PHP CODE Query and START LOOP HERE ----------------------------------------------------------------->
+                        
+                        <!---------------------------------------------------------------------------------------------------------------------------->
+                        <div class="col-12">
+                          <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                              <div class="card-body">
+                                <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1 " ?></b></h5> 
+                                  <label class=" float-right font-weight-light" style="margin-left:5px;">
+                                     Point <?php echo "1" ?> / <?php echo "1" ?> <!-- Score -->                                      
+                                  </label>
+                                  <label class=" float-right text-success font-weight-light">
+                                    <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>  <!-- Status -->                                     
+                                  </label>
+                                  
+                                <p class="card-text">
+                                    <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <h5 class="float-left font-weight-bold">By <?php echo "6301xxxx" ?> <?php echo "Full name" ?> </h5> <!--  Userinfo who turn in assignment -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="text-align:right;">
+                                          <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
+                                          <a href="#" id="Approve_btn" name="Approve_btn" class="btn btn-info w-15">Grade-Feedback</a>
+                                          <a href="#" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
+                                        </div>
+                                    </div>               
+                                </p>
+                                </a>
+                              </div>
+                          </div>
+
+
+                        </div>
+                        <!-----------------------------PHP End Loop here ----------------------------------------------------------->
+
+                        <!----------------------------Dummy mockup Deleteable-------------------------------------------------------->
+                        <div class="col-12">
+                          <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                              <div class="card-body">
+                                <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo " 1 " ?></b></h5> 
+                                  <label class=" float-right font-weight-light" style="margin-left:5px;">
+                                     Point <?php echo "1" ?> / <?php echo "1" ?> <!-- Score -->                                      
+                                  </label>
+                                  <label class=" float-right text-danger font-weight-light">
+                                    <i class="fa fa-search" style="color:black;"></i> <?php echo "Wait for inspect"?>  <!-- Status -->                                     
+                                  </label>
+                                  
+                                <p class="card-text">
+                                    <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <h5 class="float-left font-weight-bold">By <?php echo "6301xxxx" ?> <?php echo "Full name" ?> </h5> <!--  Userinfo who turn in assignment -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="text-align:right;">
+                                          <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
+                                          <a href="#" id="Approve_btn" name="Approve_btn" class="btn btn-info w-15">Grade-Feedback</a>
+                                          <a href="#" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
+                                        </div>
+                                    </div>               
+                                </p>
+                                </a>
+                              </div>
+                          </div>
+
+
+                        </div>
+                        <!--------------------------------------End dummy mockup-------------------------------------------------------->
+                      </div>
+                    
+
                       <?php
                           $showuserbyteacher = mysqli_query($connect,
                           "SELECT *
@@ -434,20 +511,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   ?>
                             </table>
                             
-                            <?php
-                              
-                            }
-                            else if ($role == "TA"){ ?>
-                            
-                            <div class="tab-pane" id="TabAssignment">                     
-                      <?php
+                            <?php                           
+                              }
+                              else if ($role == "TA"){ 
+                            ?>
+                                                                         
+                          <?php
                           $showuserbyteacher = mysqli_query($connect,
                           "SELECT *
                           FROM assignment
                           WHERE Course_ID = ".$Course_ID."
                           ORDER BY Assignment_ID ASC");?>
-
-                          <?php if ($role == "TA"){?>
+                        
                               <table class="tg">
                                 <tr>
                                   <td class="tg-0lax">Name</td>
@@ -483,27 +558,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   <td class="tg-0lax"><?php echo $row["Detail"]; ?></td>
                                   <td class="tg-0lax"><?php echo $row["End_date"]; ?></td>
                                   
-                                  <?php
-                                  //--------------------------Suspect------------------------------//
-                                  //echo $count_assignment
-                                
-                                  
-                                    $show_score_gain = FALSE; 
-                                    $show_assingment = mysqli_query($connect,
-                                    "SELECT *
-                                    FROM assignment
-                                    WHERE Course_ID = '$Course_ID'
-                                    ORDER BY Assignment_ID ASC");
-                                    while($assingment_result = mysqli_fetch_array($show_assingment)){
-                                      $assignment_ID = $assingment_result['Assignment_ID'];
-                                      $show_score = mysqli_query($connect,
-                                      "SELECT * 
-                                      FROM submition
-                                      WHERE Course_ID = '$Course_ID' and User_ID = '$userid' and Assignment_ID = '$assignment_ID'
-                                      ORDER BY Assignment_ID ASC");
-                                     //------------------------End Suspect--------------------------// 
-                                    }
-                                    ?>
                                   <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
                                 </tr>
                                   <?php
@@ -512,7 +566,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </table>
                           </div>
                               <?php
-                                }
+                                
                               }
                             else if ($role == "student"){
                       
@@ -603,6 +657,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     ?>
                                 </table>    
                         <!-------------------------------------End Suspect----------------------------------------->
+                   
+                   
                     </div><!-- /Tab Assignment --> 
                 </div><!-- Tab-->
                 </div><!-- Card Body -->
