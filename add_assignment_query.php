@@ -197,6 +197,6 @@
       $hid++;
       $while_count++;
     }
-    unlink("temp_file/".$_FILES['fileToUpload']['name']."");
+    unlink("temp_file/".$_FILES['Assignment_File']['name']."");
     header("location:/WebGrader/Course.php?Course_ID=".$course_id."");
 ?>

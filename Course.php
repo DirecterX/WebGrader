@@ -422,7 +422,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                      Point <?php echo $row['Score_Gain']; ?> / <?php echo "1" ?> <!-- Score -->                                      
                                   </label>
                                   <label class=" float-right text-danger font-weight-light">
-                                    <i class="fa fa-search" style="color:black;"></i> <?php echo "Wait for inspect"?>  <!-- Status -->                                     
+                                    <i class="fa fa-search" style="color:black;"></i> <?php echo $row['Turn_in_Status'];?>  <!-- Status -->                                     
                                   </label>
                                   
                                 <p class="card-text">
