@@ -131,10 +131,7 @@
             
             stream_set_timeout($pipes[1],5);
             $testcase_output = stream_get_contents($pipes[1],50000);
-<<<<<<< Updated upstream
-=======
             $testcase_output = substr($testcase_output,$cli_length);
->>>>>>> Stashed changes
             
             fclose($pipes[1]);
             $return_value = proc_close($process);
@@ -201,4 +198,6 @@
       $hid++;
       $while_count++;
     }
+
+    unlink("temp_file/".$_FILES['fileToUpload']['name']."");
 ?>
