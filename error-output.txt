@@ -99,3 +99,15 @@ Traceback (most recent call last):
     x = input("Enter Input : ").split(" ")
 EOFError: EOF when reading a line
 C:\Program Files\Python38\python.exe: can't find '__main__' module in './temp_file/'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line

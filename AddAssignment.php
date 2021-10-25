@@ -122,8 +122,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="row" style="margin-top:-15px;">
                                     <div class="col">
-                                        <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="file" id="Assignment_File" required name="Assignment_File" hidden>
+                                        <label for="Assignment_File"  class="btn btn-dark"  style="margin-top:10px;">Add File</label>
+                                        <input type="file" id="Assignment_File" required accept=".py" name="Assignment_File" hidden>
                                         <span id="file-chosen">No file chosen</span>
                                                
                                         

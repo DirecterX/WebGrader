@@ -97,7 +97,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
           <div class="col mt-2" >
     
-            <h1 class="m-0 fw-bolder">ห้องเรียน : <?php echo $Course_Name; ?><i class="fa fa-book ml-2"></i></h1>
+            <h1 class="m-0 fw-bolder">ห้องเรียน : <?php echo $Course_Name; ?><i class="fa fa-book ml-2"> <?php 
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" >';
+                  if ($role=="Owner"){
+                    echo 'Edit Info</a>';
+                  }else{
+                    echo 'Info </a>';
+                  }                                                 
+                   ?></i> </h1>
+
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
@@ -238,6 +246,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /Tab Class -->         
                     <!------------------------------------------------Tab People ------------------------------------------------->
                     <div class="tab-pane" id="TabPeople">
+                      <!-----------------------------Button Export Excel And Edit----------------------->
+                <p>
+                  <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
                     <?php
                       $showuserbyteacher = mysqli_query($connect,
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
@@ -350,6 +361,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         }
                       ?>
                     </div><!-- /Tab People --> 
+
                     <!------------------------------------------------ Tab Assignment ---------------------------------------------->
                     <div class="tab-pane" id="TabAssignment">                       
                       <?php
@@ -362,8 +374,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <?php if ($role == "Teacher" || $role == "Owner"){?>
                               <table class="tg">
                                 <tr>
-                                  <td class="tg-0lax">Assigment_ID</td>
-                                  <td class="tg-0lax">Course_ID</td>
                                   <td class="tg-0lax">Name</td>
                                   <td class="tg-0lax">Score</td>
                                   <td class="tg-0lax">Detail</td>
@@ -393,8 +403,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 ?>
                                 
                                 <tr>
-                                  <td class="tg-0lax"><?php echo $row["Assignment_ID"]; ?></td>
-                                  <td class="tg-0lax"><?php echo $row["Course_ID"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Name"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Score"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Detail"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["End_date"]; ?></td>
+                                  
+                                  <?php
+                                  //--------------------------Suspect------------------------------//
+                                    $show_score_gain = FALSE; 
+                                    $show_assingment = mysqli_query($connect,
+                                    "SELECT *
+                                    FROM assignment
+                                    WHERE Course_ID = '$Course_ID'
+                                    ORDER BY Assignment_ID ASC");
+                                    while($assingment_result = mysqli_fetch_array($show_assingment)){
+                                      $assignment_ID = $assingment_result['Assignment_ID'];
+                                      $show_score = mysqli_query($connect,
+                                      "SELECT * 
+                                      FROM submition
+                                      WHERE Course_ID = '$Course_ID' and User_ID = '$userid' and Assignment_ID = '$assignment_ID'
+                                      ORDER BY Assignment_ID ASC");
+                                     //------------------------End Suspect--------------------------// 
+                                    }
+                                    ?>
+                                  <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
+                                  <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">ลบ</a></td>
+                                </tr>
+                                  <?php
+                                  }
+                                  ?>
+                            </table>
+                            
+                            <?php
+                              
+                            }
+                            else if ($role == "TA"){ ?>
+                            
+                            <div class="tab-pane" id="TabAssignment">                     
+                      <?php
+                          $showuserbyteacher = mysqli_query($connect,
+                          "SELECT *
+                          FROM assignment
+                          WHERE Course_ID = ".$Course_ID."
+                          ORDER BY Assignment_ID ASC");?>
+
+                          <?php if ($role == "TA"){?>
+                              <table class="tg">
+                                <tr>
+                                  <td class="tg-0lax">Name</td>
+                                  <td class="tg-0lax">Score</td>
+                                  <td class="tg-0lax">Detail</td>
+                                  <td class="tg-0lax">End_date</td>
+                                
+                                
+                                  <!-- add col assignment loop // assignment.name submit.score inner assignment and submit where User_ID and course_ID-->
+                                  <?php
+                      
+                                  $show_assingment = mysqli_query($connect,
+                                  "SELECT Name
+                                  FROM assignment
+                                  WHERE Course_ID = '$Course_ID'
+                                  ORDER BY Assignment_ID ASC"); 
+                                  while($col = mysqli_fetch_array($show_assingment)) {?>
+                                  <?php
+
+                                  }
+                                  ?>
+
+                                  <td class="tg-0lax">Info</td>
+                                </tr>
+                                <?php
+                                  $i=0;
+                                  while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                                ?>
+                                
+                                <tr>
                                   <td class="tg-0lax"><?php echo $row["Name"]; ?></td>
                                   <td class="tg-0lax"><?php echo $row["Score"]; ?></td>
                                   <td class="tg-0lax"><?php echo $row["Detail"]; ?></td>
@@ -416,46 +499,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                       $show_score = mysqli_query($connect,
                                       "SELECT * 
                                       FROM submition
-                                      WHERE Course_ID = '$Course_ID' and User_ID = '$Suid' and Assignment_ID = '$assignment_ID'
+                                      WHERE Course_ID = '$Course_ID' and User_ID = '$userid' and Assignment_ID = '$assignment_ID'
                                       ORDER BY Assignment_ID ASC");
                                      //------------------------End Suspect--------------------------// 
                                     }
                                     ?>
                                   <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
-                                  <td class="tg-0lax"><a href="#" onclick="return confirm('Are you sure to kick tihs user?')">ลบ</a></td>
                                 </tr>
                                   <?php
                                   }
                                   ?>
                             </table>
-                            
-                            <?php
-                              
-                            }
-                            else if ($role == "TA"){ ?>
-                            <table class="tg">
-                                <tr>
-                                  <td class="tg-0lax">Username</td>
-                                  <td class="tg-0lax">firstname</td>
-                                  <td class="tg-0lax">surname</td>
-                                  <td class="tg-0lax">Role</td> 
-                                </tr>
-                                    <?php
-                                    $i=0;
-                                    while($row = mysqli_fetch_array($showuserbyteacher)) {
-                                    ?>  
-                                  <tr>
-                                    <!------------WTF is this Shit ?? เขียนเหี้ยไรกันไว้เนี่ย ?
-                                    Query ของ $showuserbyteacher อันนี้ที่เอามา มันของ Table assignment มันไม่มี Attribute Username,Firstname,Surname,Role 
-                                    ละชื่อ Query แม่งซ่้ำกันชิบหายไอเยดแม่ ทำไมไม่แยกชื่อ จะได้ไม่งงกันไอสัส------------------------->
-                                    <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
-                                    <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
-                                    <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                                    <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
-                                    <!-----------End WTF------------------------>
-                                  </tr>
-                                    <?php $i++; ?>
-                              </table>
+                          </div>
                               <?php
                                 }
                               }
@@ -553,18 +608,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div><!-- Card Body -->
               </div><!--  Card -->        
 
-                <!-----------------------------Button Export Excel And Edit----------------------->
-                <p>
-                  <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export->Excel </a>'; ?>
-                  <?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" >';
-                  if ($role=="Owner"){
-                    echo 'Edit </a>';
-                  }else{
-                    echo 'Info </a>';
-                  }                                                 
-                   ?>
-                </p>
+
+                 
                 
 
 
