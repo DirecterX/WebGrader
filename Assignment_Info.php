@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <form action="filter2.php" method="post" enctype="multipart/form-data">
                                         <!-- ยังไม่ได้ทำ -->
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary" value="แก้ไข"></input>
-                                        <input type="submit" id="submit" name="submit" class="btn btn-primary" value="ลบ"></input>
+                                        <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $assignment_id;?> ">ลบ</a></td>
                                         <?php  
                                             while($testcase_select_rows2 = mysqli_fetch_array($testcase_select_query2)){
                                         ?>
