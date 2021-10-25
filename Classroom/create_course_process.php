@@ -92,7 +92,7 @@ if(isset($_POST['save']))
 
 		
 			mysqli_close($connect);
-			//header("location:/WebGrader/Classroom/CreateCourse.php");
+			header("location:/WebGrader/Classroom/CreateCourse.php");
 	}
 
 	
