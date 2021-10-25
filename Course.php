@@ -383,10 +383,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p class="card-text">
                                     <div class="row">
                                         <div class="col" style="text-align:center;">
-                                        <h5 class="float-left font-weight-bold">By <?php echo "6301xxxx" ?> <?php echo "Full name" ?> </h5> <!--  Userinfo who turn in assignment -->
+                                        <h5 class="float-left font-weight-bold">By <?php echo "6301xxxx" ?> <?php echo "Full name" ?> </h5> 
+                                        <!--  Userinfo who turn in assignment -->
 
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col" style="text-align:right;">
                                           <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
@@ -402,7 +404,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </div>
                         <!-----------------------------PHP End Loop here ----------------------------------------------------------->
+                        <?php
+                        $assignment_Sumit = "SELECT * 
+                        FROM submition
+                        INNER JOIN assignment ON assignment.Assignment_ID = submition.Assignment_ID 
+                        WHERE submition.Course_ID = $Course_ID";
+                        $assignment_Sumitq = mysqli_query($connect,$assignment_Sumit);
+                        while ($row = mysqli_fetch_array($assignment_Sumitq)) {
+                          
+                          ?>
+                          <div class="col-12">
+                          <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                              <div class="card-body">
+                                <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment : <?php echo $row['Name']; ?></b></h5> 
+                                  <label class=" float-right font-weight-light" style="margin-left:5px;">
+                                     Point <?php echo $row['Score_Gain']; ?> / <?php echo "1" ?> <!-- Score -->                                      
+                                  </label>
+                                  <label class=" float-right text-danger font-weight-light">
+                                    <i class="fa fa-search" style="color:black;"></i> <?php echo "Wait for inspect"?>  <!-- Status -->                                     
+                                  </label>
+                                  
+                                <p class="card-text">
+                                    <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <?php 
+                                        $showstudentnameinsubmition = "SELECT DISTINCT * FROM user WHERE User_ID = ".$row['User_ID']." ";
+                                        $showstudentnameinsubmitionq = mysqli_query($connect,$showstudentnameinsubmition);
+                                        while ($row = mysqli_fetch_array($showstudentnameinsubmitionq)) { ?>
+                                        
+                                        <h5 class="float-left font-weight-bold">By 
+                                          <?php echo $row['Username'];?> | <?php echo $row['Firstname'];?>  <?php echo $row['Surname']; ?> </h5> 
+                                        <!--  Userinfo who turn in assignment -->
+                                        
+                                        <?php
+                                      }
+                                        ?>
 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="text-align:right;">
+                                          <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
+                                          <a href="#" id="Approve_btn" name="Approve_btn" class="btn btn-info w-15">Grade-Feedback</a>
+                                          <a href="#" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
+                                        </div>
+                                    </div>               
+                                </p>
+                                </a>
+                              </div>
+                          </div>
+                        </div>
+                          <?php
+                        }
+                        ?>
                         <!----------------------------Dummy mockup Deleteable-------------------------------------------------------->
                         <div class="col-12">
                           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
@@ -434,8 +489,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                               </div>
                           </div>
-
-
                         </div>
                         <!--------------------------------------End dummy mockup-------------------------------------------------------->
                       </div>
