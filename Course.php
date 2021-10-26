@@ -358,9 +358,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <?php
                           }                   
                         else if ($role == "student"){
-                          //echo "test";
-                        }
-                      ?>
+                          $showuserbyteacher = mysqli_query($connect,
+                          "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
+                          FROM user
+                          INNER JOIN course_role ON course_role.User_ID = user.User_ID
+                          WHERE (course_role.Role = 'Student') and (course_role.Course_ID = $Course_ID)
+                          ORDER BY User.User_ID ASC");?>
+                          
+                              <table class="table table-bordered">
+                                <tr>
+                                  <td class="tg-0lax">Username</td>
+                                  <td class="tg-0lax">firstname</td>
+                                  <td class="tg-0lax">surname</td>
+                                  <td class="tg-0lax">Role</td>
+                                
+                                  
+
+                                <?php
+                                  $i=0;
+                                  while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                                ?>
+                                
+                                <tr>
+                                  <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
+                                  <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
+                                  
+                                  <?php
+                                    }  
+                                  ?>
+                            </table>
                     </div><!-- /Tab People --> 
 
                     <!------------------------------------------------ Tab Assignment ---------------------------------------------->
@@ -540,22 +568,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   <td class="tg-0lax"><?php echo $row["End_date"]; ?></td>
                                   
                                   <?php
-                                  //--------------------------Suspect------------------------------//
-                                    $show_score_gain = FALSE; 
-                                    $show_assingment = mysqli_query($connect,
-                                    "SELECT *
-                                    FROM assignment
-                                    WHERE Course_ID = '$Course_ID'
-                                    ORDER BY Assignment_ID ASC");
-                                    while($assingment_result = mysqli_fetch_array($show_assingment)){
-                                      $assignment_ID = $assingment_result['Assignment_ID'];
-                                      $show_score = mysqli_query($connect,
-                                      "SELECT * 
-                                      FROM submition
-                                      WHERE Course_ID = '$Course_ID' and User_ID = '$userid' and Assignment_ID = '$assignment_ID'
-                                      ORDER BY Assignment_ID ASC");
-                                     //------------------------End Suspect--------------------------// 
-                                    }
+                                   
                                     ?>
                                   <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
                                   <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $row["Assignment_ID"];?> ">ลบ</a></td>
@@ -624,45 +637,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               }
                             else if ($role == "student"){
                       
-                          $showuserbyteacher = mysqli_query($connect,
-                          "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
-                          FROM user
-                          INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                          WHERE (course_role.Role = 'Student' or 'TA') and (course_role.Course_ID = $Course_ID)
-                          ORDER BY User.User_ID ASC");?>
-
-                              <table class="tg">
-                                <tr>
-                                  <td class="tg-0lax">Username</td>
-                                  <td class="tg-0lax">firstname</td>
-                                  <td class="tg-0lax">surname</td>
-                                  <td class="tg-0lax">Role</td>
-                                
-                                  
-
-                                <?php
-                                  $i=0;
-                                  while($row = mysqli_fetch_array($showuserbyteacher)) { 
-                                ?>
-                                
-                                <tr>
-                                  <td class="tg-0lax"><?php echo $row["Username"]; ?></td>
-                                  <td class="tg-0lax"><?php echo $row["Firstname"]; ?></td>
-                                  <td class="tg-0lax"><?php echo $row["Surname"]; ?></td>
-                                  <td class="tg-0lax"><?php echo $row["Role"]; ?></td>
-                                  
-                                  <?php
-                                    }  
-                                    ?>
-                                  <?php
-                                  ?>
-                            </table>
+                          ?>
                             <?php
-                            
+                            }
                             
                             ?>
 
-                      <!-------------------------------------Suspect----------------------------------------->
                         <?php
                           $showuserbyteacher = mysqli_query($connect,
                           "SELECT *
@@ -710,7 +690,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     }
                                     ?>
                                 </table>    
-                        <!-------------------------------------End Suspect----------------------------------------->
                    
                    
                     </div><!-- /Tab Assignment --> 
@@ -719,10 +698,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!--  Card -->        
 
 
-                 
                 
-
-
 
 
                   
