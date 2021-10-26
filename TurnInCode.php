@@ -242,7 +242,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                                        
                         ?>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case<?php echo $testcase_count; ?></label> 
+                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case ที่ <?php echo $testcase_count; ?></label>
+                        <br>
+                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Input : <?php echo $testcase_select_rows['Input'] ?></label> 
                         <div class="row" >
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
