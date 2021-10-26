@@ -246,7 +246,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /Tab Class -->         
                     <!------------------------------------------------Tab People ------------------------------------------------->
                     <div class="tab-pane" id="TabPeople">
-                      
+                      <!-----------------------------Button Export Excel And Edit----------------------->
+                      <p>
+                      <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
                       <?php
                       $showuserbyteacher = mysqli_query($connect,
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
@@ -256,9 +258,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       ORDER BY User.User_ID ASC");?>
 
                         <?php if ($role == "Teacher" || $role == "Owner"){?>
-                          <!-----------------------------Button Export Excel And Edit----------------------->
-                      <p>
-                      <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
                         <table class="table table-bordered">
                           <thead>
                             <tr>                            
