@@ -61,9 +61,10 @@
     }
     
     $target_dir = "temp_file/";
-    $filename_username = $_SESSION["Username"];
-    $file = $name_id.".py";
-    $target_file = $target_dir . basename($filename_username);
+    $filename_id = $_SESSION['User_ID'];
+    $file = $filename_id.".py";
+    $file = preg_replace('/\s+/', '_', $file);
+    $target_file = $target_dir . basename($file);
     $uploadOk = 1;
     $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     
@@ -76,10 +77,10 @@
             $uploadOk = 0;
           }
         if ($uploadOk == 0) {
-            header("Location: test2.php");
+            header("Location: home.php");
           // if everything is ok, try to upload file
         }else {
-            if (move_uploaded_file($_FILES["Assignment_File"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["Assignment_File"]["tmp_name"],$target_file)) {
               echo $target_file;
             } else {
               echo "Sorry, there was an error uploading your file.";
@@ -202,4 +203,6 @@
     }
 
     unlink("temp_file/".$file."");
+    header("location:/WebGrader/Course.php?Course_ID=".$course_id."");
+?>
 ?>
