@@ -131,10 +131,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="card">
                 <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#TabClass" data-toggle="tab">CLASS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
+                <ul class="nav nav-pills ">
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
@@ -439,11 +439,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="card">
                 <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#TabClass" data-toggle="tab">CLASS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
+                <ul class="nav nav-pills ">
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
+                  
                 </div><!-- /.card-header -->
                 <div class="card-body">
                   <div class="tab-content">
@@ -608,14 +609,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
                     font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
                   .tg .tg-0lax{text-align:left;vertical-align:top}
+                  
                   </style>
 
               <div class="card">
                 <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#TabClass" data-toggle="tab">CLASS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
+                  <ul class="nav nav-pills ">
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
