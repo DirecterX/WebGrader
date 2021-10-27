@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button  onclick="document.location='Home.php'" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
+                                        <button  onclick="window.history.back()" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
 					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก" >           
 
                                     </div>
