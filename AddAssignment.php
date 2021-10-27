@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php 
+ include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:/WebGrader/Login/Login.php");
+    endif;
+    $Course_ID = $_GET['Course_ID'];
+    $userid = $_SESSION['User_ID'];
+    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' ");
+    //echo $checkcourserole["Role"];
+    $result = mysqli_fetch_assoc($checkcourserole);
+    $role = $result["Role"];
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -83,46 +95,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="card h-100">
                     <div class="card-body border border-dark">
-                    <form action="#"> <!-- Open Form Here -->
+                    <form action="add_assignment_query.php" method="post"  name="AssignmentForm" id="AssignmentForm" enctype="multipart/form-data"> <!-- Open Form Here -->
                         <div class="row">
                             
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="form-group">
                                
-                                    <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> ">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> "></textarea>
+                                    <label for="Assignment_Name">ชื่องาน</label> <label class="text-danger"> *</label>
+                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100">
+                                    <label for="Assignment_Note" class="mt-2">คำอธิบายงาน</label><label class="text-danger">  *</label>
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 2px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"></textarea>
                                 </div>
-
                                 
-
                             </div>
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                                <label for="Assignment_Point">คะแนน</label>
-                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
-                                                <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> ">
+                                                <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
+                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
+                                                <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top:-15px;">
                                     <div class="col">
-                                        <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
-                                        <span id="file-chosen">No file chosen</span>
+                                        <label for="Assignment_File"  class="btn btn-dark"  style="margin-top:10px;">Add File</label>
+                                        <input type="file" id="Assignment_File" required accept=".py" name="Assignment_File" hidden>
+                                        <span id="file-chosen" class="ml-2">No file chosen</span><label class="text-danger"> *</label>
                                                
                                         
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button  onclick="document.location='Home.php'" type="button" id="submit" name="submit" class="btn btn-dark ">ยกเลิก</button>
-					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" value="บันทึก">           
+                                        <button  onclick="window.history.back()" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
+					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก" >           
 
                                     </div>
                                 </div>
@@ -136,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-12 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase1_input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                            <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
                                         </div>
                                     </div>
 
@@ -169,7 +180,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.col -->
         </div>
-                            </form><!-- End Form Here -->
+        <input type="hidden" name="Course_ID" value="<?=$_GET['Course_ID']?>">
+        </form><!-- End Form Here -->
         <!-- /.row -->  
       </div><!-- /.container-fluid -->
     </div>
@@ -211,6 +223,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 
 <script>
+
+//------------------Lock Past Date Script-----------------------------------//
+$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    //alert(maxDate);
+    $('#Assignment_End_date').attr('min', maxDate);
+});
+
+
     var count = 2;
     var count2 = 1;
 function CreateTastCase() {
@@ -237,6 +272,9 @@ function CreateTastCase() {
             CreateTestInput.setAttribute("Name","Testcase"+count+"_Input");
             CreateTestInput.setAttribute("rows","5");
             CreateTestInput.setAttribute("placeholder","Input");
+            CreateTestInput.setAttribute("required","");
+            CreateTestInput.setAttribute("maxlength","270");
+            
 
 
         ++count;
@@ -279,6 +317,8 @@ function CreateHidden() {
            CreateTestInput.setAttribute("Name","HiddenTest"+count2+"_Input");
            CreateTestInput.setAttribute("rows","5");
            CreateTestInput.setAttribute("placeholder","Input");
+           CreateTestInput.setAttribute("required","");
+           CreateTestInput.setAttribute("maxlength","270");
 
 
        ++count2;
@@ -296,6 +336,61 @@ function CreateHidden() {
 
  
 }
+
+//----------------------Prevent Submit Form Script---------------------------//
+var _validFileExtensions = [".py"];
+
+var formsubmit = document.getElementById("AssignmentForm");
+formsubmit.onsubmit  = function(event) { 
+    if(!Validate()){
+        alert("Sorry, Please Upload " + _validFileExtensions.join(", ") + " File");
+        event.preventDefault();
+    }else{
+        $("#exampleModal").modal('show');
+      // May add some delay here
+    }
+}
+
+var submit = document.getElementById('submit');
+submit.onclick = function() {
+    Validate();
+
+}
+
+function ShowMoadal1(){
+    
+}
+//---------------------Check Upload file is .py Script------------------------------//
+   
+function Validate() {
+    var arrInputs = document.getElementById("Assignment_File");
+        var oInput = arrInputs;
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                
+                if (!blnValid) {
+                    
+                    return false;
+                }
+            }else{
+                alert("Please Upload File.");
+                return false;
+                
+            }
+        }
+    
+    return true;
+}
+
 
 
 </script>

@@ -1,3 +1,9 @@
+<?php
+    include('../connect.php');
+    if(($_SESSION['User_Username'])==NULL):
+     header("location:/WebGrader/Login/Login.php");
+    endif
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -53,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <div class="sticky-top"> <?php include "template/navbar.php"; ?></div>
+  <div class="sticky-top"> <?php include $_SERVER['DOCUMENT_ROOT']."/WebGrader/template/navbar.php"; ?></div>
   <!-- /.navbar -->
 
     <div class="content">
@@ -75,40 +81,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
-			<form action="/action_page.php " method="get"> <!-- ใส่ตรงนี้ -->	
+			<form action="edit_user_process.php" method="POST"> <!-- ใส่ตรงนี้ -->	
       <div class="form-group" >
-					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo "630xxxxx" ?></h4></label>
+					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["User_Username"] ?></h4></label>
 				</div>
 
                 <div class="form-group">
 					<label for="fullName">ชื่อ</label>
-					<input type="text" class="form-control" id="fullName" placeholder="<?php echo "ชื่อ" ?> ">
+					<input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $_SESSION["User_Name"] ?> ">
 				</div>
 
         <div class="form-group">
 					<label for="fullName">นามสกุล</label>
-					<input type="text" class="form-control" id="lastName" placeholder="<?php echo "นามสกุล" ?> ">
+					<input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $_SESSION["User_Surname"] ?> ">
 				</div>
         
 
                 <div class="form-group">
 					<label for="eMail">อีเมล</label>
-					<input type="email" class="form-control" id="eMail" placeholder="<?php echo "Name Student@kmitl.ac.th" ?>">
+					<input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION["Email"] ?>">
 				</div>
 
         <div class="form-group">
 					<label for="changepassword">รหัสผ่านผู้ใช้งาน</label>
 
-					<input type="password" class="form-control mb-3" id="password1" placeholder="กรอกรหัสผ่านเดิม"">
-          <input type="password" class="form-control mb-3" id="password2" placeholder="รหัสผ่านใหม่">
-          <input type="password" class="form-control " id="password2" placeholder="ยืนยันรหัสผ่านใหม่">
+					<input type="password" class="form-control mb-3" id="pass"  name="pass"placeholder="กรอกรหัสผ่านเดิม">
+                    <input type="password" class="form-control mb-3" id="pass_new"  name="pass_chk"placeholder="รหัสผ่านใหม่">
+          
         </div>
 
 			
 
 			</div>	
 		</div>
-		
+		<?php include('../error.php'); ?>
+        <?php if(isset($_SESSION['error'])) :?>
+          <div>
+            <h5>
+              <?php
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+              ?>
+            </h5>
+          </div>
+        <?php endif ?>
      
 
 
@@ -117,32 +133,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="text-right">
 					<button  onclick="document.location='Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
           <!-- แก้ตรง formaction -->
-					<button type="button" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal" formaction="/action_page2.php">บันทึก</button> 
+					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
           
-                         
-                    <!-- Modal save -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="Notification">การแจ้งเตือน</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body text-center fs-6 m-3" >
-                                <h1>บันทึกข้อมูลเสร็จสิ้น</h1>
-                            </div>
-                                <div class="modal-footer">
-                                    <button  onclick="document.location='Home.php'"type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-
-
+    
 				</div>
 			</div>
+      
                                 
                       
 		</div>

@@ -1,0 +1,286 @@
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\WebGrader\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\temp_file\27.py': [Errno 2] No such file or directory
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='cp932'>
+OSError: [Errno 22] Invalid argument
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='cp932'>
+OSError: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 12, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 12, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 12, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+python: can't open file 'S:\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\temp_file\27.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "./temp_file/MergeLL.py", line 66, in <module>
+    inp = input("Enter Input (L1,L2) : ").split(" ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "./temp_file/MergeLL.py", line 68, in <module>
+    list2=[inp[1]]
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "./temp_file/MergeLL.py", line 66, in <module>
+    inp = input("Enter Input (L1,L2) : ").split(" ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "./temp_file/MergeLL.py", line 68, in <module>
+    list2=[inp[1]]
+IndexError: list index out of range
+python: can't open file './temp_file/11866251_860145990729588_7428321459687198506_n.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/11866251_860145990729588_7428321459687198506_n.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+python: can't open file './temp_file/75231864_2678667222153889_7719920740639703040_o.jpg': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "./temp_file/Doubly_LinkedList.py", line 220, in <module>
+    inp = input('Enter Input : ').split(',')
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "./temp_file/item1.py", line 18, in <module>
+    x = input("Enter Input : ").split(" ")
+EOFError: EOF when reading a line
+C:\Program Files\Python38\python.exe: can't find '__main__' module in './temp_file/'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+ValueError: invalid literal for int() with base 10: 'asd'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+C:\Users\peech\AppData\Local\Programs\Python\Python39\python.exe: can't find '__main__' module in 'S:\\xampp\\htdocs\\WebGrader\\temp_file\\'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 5, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 10, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\27.py", line 10, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015137roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015137roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\27.py': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+ValueError: invalid literal for int() with base 10: '5 5 4 6 8 10 3 2 1 5 6 4 15 15 16'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+ValueError: invalid literal for int() with base 10: '20 5 7 9 14 13 12 11 10 9 20 10 20 6'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+ValueError: invalid literal for int() with base 10: '5 7 6 5 5 4 4 4 4 4 4 4'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+ValueError: invalid literal for int() with base 10: '5 1 2 3 4 6 7 8 9 10'
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+python: can't open file 'S:\xampp\htdocs\WebGrader\temp_file\Lozenge': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\Lozenge.py", line 1, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 9, in <module>
+    total+=roman[n[i]]
+KeyError: 'x'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\hms.py", line 3, in <module>
+    hh,mm,ss = input("Enter hh mm ss : ").split()
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\hms.py", line 3, in <module>
+    hh,mm,ss = input("Enter hh mm ss : ").split()
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\hms.py", line 3, in <module>
+    hh,mm,ss = input("Enter hh mm ss : ").split()
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\hms.py", line 3, in <module>
+    hh,mm,ss = input("Enter hh mm ss : ").split()
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\roman.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
+    number = int(input("Enter a number of voter(s) : "))
+EOFError: EOF when reading a line

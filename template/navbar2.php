@@ -6,16 +6,7 @@
     
     <title>Top navbar</title>
      
-    <style>
-        
-        li.nav-item:hover {
-           border-radius: 10px ;
-           background:#FEC352;
-           transition: 0.5s;
-           box-shadow: -5px 5px #FF8540;
-       }
-
-   </style>
+   
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-static/">
     
@@ -31,16 +22,16 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    
+    <style>
+        
+         li.nav-item:hover {
+            border-radius: 10px ;
+            background:#FEC352;
+            transition: 0.5s;
+            box-shadow: -5px 5px #FF8540;
+        }
 
-    
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-
+    </style>
   </head>
 
 
@@ -48,7 +39,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md  navbar-light font-weight-bold ">
+  <nav class="main-header navbar navbar-expand-md  navbar-light font-weight-bold bg-white">
     <div class="container">
       
 
@@ -61,13 +52,13 @@
       <!-- Left navbar links -->
         <ul class="navbar-nav ">
           <li class="nav-item ">
-            <a href="/WebGrader/Home.php" class="nav-link text-dark">H O M E</a> <!-- Add link here -->
+            <a href="Home.php" class="nav-link text-dark">H O M E</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="/WebGrader/Class.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
+            <a href="Class.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="/WebGrader/Assignment.php" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
+            <a href="#" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
           </li>
           
         </ul>
@@ -85,26 +76,24 @@
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">     
             <div class="dropdown-divider"></div>
-            <a href="/WebGrader/AddClass.php" class="dropdown-item"> <!-- Add link here -->
-              <i class="fas fa-plus-square mr-2"></i> Join Class             
+            <a href="#" class="dropdown-item"> <!-- Add link here -->
+              <i class="fas fa-plus-square mr-2"></i> Add Class             
             </a>
             <div class="dropdown-divider"></div>
-            <a href="/WebGrader/Classroom/CreateCourse.php" class="dropdown-item"> <!-- Add link here -->
-              <i class="fas fa-plus-square mr-2"></i> Add new course             
-            </a>
+            
           </div>
         </li>
         
     
 <!--  User Menu -->   
         <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?php echo $_SESSION["Username"]; ?></a>
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Show Name </a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="/WebGrader/Class.php" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
-              <li><a href="/WebGrader/Edit_User/EditProfile.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
+              <li><a href="#" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
+              <li><a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item">
-                <a href="/WebGrader/Login/logout_process.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>         
             </ul>
           </li>
@@ -114,23 +103,5 @@
   <!-- /.navbar -->
 
   
-
- 
-
-
-  
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-</body>
 </html>

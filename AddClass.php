@@ -1,3 +1,9 @@
+<?php
+    include('config.php');
+    if(!isset($_SESSION['Username'])):
+     header("location:Login/Login.php");
+    endif
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -7,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Add Class</title>
+  <title>WebGrader | เข้าห้องเรียน</title>
 
   <style>
       .container{
@@ -65,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
             <div class="col mt-2" >
                 
-                <h1 class="m-0 fw-bolder">เพิ่มห้องเรียน<i class="fa fa-book ml-2"></i></i></h1>
+                <h1 class="m-0 fw-bolder">Join Course<i class="fa fa-book ml-2"></i></i></h1>
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
@@ -80,6 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Coding Here -->
         <div class="row">
             <div class="col">
+            <form action="add_class_process.php" method="POST">
                 <div class="card h-100 w-50 " >
                     <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
                         <div class="row">
@@ -88,8 +95,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div> 
                             <div class="col-10">
                                 <div class="form-group">
-                                    <label for="AddClassroom">เพิ่มห้องเรียน</label>
-                                    <input type="text" class="form-control" id="AddClassroom" placeholder="<?php echo "ใส่รหัสห้องเรียน" ?> ">
+                                    <label for="AddClassroom">เข้าห้องเรียน</label>
+                                    <input type="text" class="form-control" id="Addclass_ID" name="Addclass_ID" placeholder="<?php echo "ใส่รหัสห้องเรียน" ?> ">
                                 </div>                    
                             </div> 
                         </div>
@@ -98,15 +105,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: center;">
                                 <div class="text-center">
                                     <button type="button" id="submit" name="submit" class="btn btn-dark w-25" style="margin-right:10px;">ยกเลิก</button>
-                                    <button type="button" id="submit" name="submit" class="btn btn-warning w-25" >ยืนยัน</button>           
+                                    <button type="submit" id="submit" name="submit" class="btn btn-warning w-25" >ยืนยัน</button>           
                                 </div>
                             </div>
                         </div>
                     </div> 
                 </div>
-                 
+                <?php include('error.php'); ?>
+                  <?php if(isset($_SESSION['error'])) :?>
+                    <div style="color:red">
+                      <h5>
+                        <?php
+                          echo $_SESSION['error'];
+                          unset($_SESSION['error']);
+                        ?>
+                      </h5>
+                    </div>
+                  <?php endif ?>  
 
-
+            </form>          
             </div>
             <!-- /.col -->
         </div>

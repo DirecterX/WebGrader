@@ -61,10 +61,10 @@
       <!-- Left navbar links -->
         <ul class="navbar-nav ">
           <li class="nav-item ">
-            <a href="/WebGrader/Home.php" class="nav-link text-dark">H O M E</a> <!-- Add link here -->
+            <a href="/WebGrader/Home_admin.php" class="nav-link text-dark">H O M E</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="/WebGrader/Class.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
+            <a href="/WebGrader/Course_admin.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
             <a href="/WebGrader/Assignment.php" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
@@ -78,22 +78,6 @@
 
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-plus-square"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">     
-            <div class="dropdown-divider"></div>
-            <a href="/WebGrader/AddClass.php" class="dropdown-item"> <!-- Add link here -->
-              <i class="fas fa-plus-square mr-2"></i> Join Class             
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="/WebGrader/Classroom/CreateCourse.php" class="dropdown-item"> <!-- Add link here -->
-              <i class="fas fa-plus-square mr-2"></i> Add new course             
-            </a>
-          </div>
-        </li>
         
     
 <!--  User Menu -->   

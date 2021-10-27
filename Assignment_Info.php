@@ -147,29 +147,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <h2 class="badge bg-warning" style="font-size:120%;"> ชื่องาน : <?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
                             </div>
                             <div class="col-6 text-right">
-                                <label style="font-size:120%;"><i class="fa fa-check"></i></label>                        <!-- red -->                                                       <!-- green -->             <!-- red -->
-                                <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FF2020";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
-                                <label style="font-size:120%;">Point <?php if(mysqli_num_rows($select_score_query) == 0){echo "0";}else{echo $select_score_rows['Score_Gain'];}?> / <?=$assignment_rows['Score']?></label> <!-- Assignment Score -->
-                                                                            <!--student score-->                           <!--assignment score cap-->
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="form-group">
 
-                                <textarea  class="form-control h-100" id="Assignment_Note" disabled="true" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
+                                <textarea  class="form-control h-100" id="Assignment_Note"  style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
 
                                 </div>
                             </div> 
-                            <div class="col-lg-5 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="Comment_Teacher">Comment form Teacher</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
-                                    <label for="Comment">Comment</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
-                                    <button type="button" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;">Send Comment</button>  
-                                </div>                    
-                            </div> 
+                             
                         </div>
                         <!--  Button For Upload And Submit -->
                         <div class="row" style="margin-bottom:-20px;">
@@ -177,10 +165,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="text-right">
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
                                     <form action="filter2.php" method="post" enctype="multipart/form-data">
-                                        <span id="file-chosen">No file chosen</span>
-                                        <input type="file" id="Assignment_File" name="fileToUpload" hidden>
-                                        <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="submit" id="submit" name="submit" class="btn btn-primary">
+                                        <!-- ยังไม่ได้ทำ -->
+                                        <input type="submit" id="submit" name="submit" class="btn btn-primary" value="แก้ไข"></input>
+                                        <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $assignment_id;?> ">ลบ</a></td>
                                         <?php  
                                             while($testcase_select_rows2 = mysqli_fetch_array($testcase_select_query2)){
                                         ?>
@@ -214,25 +201,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col">
                 <div class="card h-100" >
                     <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
-                        <div class="row">
-                            <div class="col-6">
-                                <h2 class="badge bg-warning" style="font-size:120%;">My Code</h2>
-                            </div>
-                            <div class="col-6 text-right">
-                                
-                                <label style="font-size:120%; color:#FF2020" >ส่งครั้งที่ <?=$select_score_rows['Attempt_count']; ?></label>  <!-- Assignment ์number attemp -->
-                                
-                                
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-bottom:30px;"> <!-- Text Area for Code ? -->
-                            <div class="col">
-                                <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;" rows="8" disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
-                                <hr style="border: 2px solid #FECA65">
-                            </div>
-                        </div>
-
+                        
+                        
                         <!------------------------------------- PHP Code Looping Start Here ------------------------------->
                         <?php  
                             while($testcase_select_rows = mysqli_fetch_array($testcase_select_query)){
@@ -242,10 +212,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                                        
                         ?>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case ที่ <?php echo $testcase_count; ?></label>
-                        <br>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Input : <?php echo $testcase_select_rows['Input'] ?></label> 
-                        <div class="row" >
+                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case<?php echo $testcase_count; ?></label> 
+                        <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     
@@ -255,7 +223,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div> 
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" placeholder="Output from student" disabled="true"><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{echo $select_exec_rows['Actual_result'];}?></textarea> 
+                                    
+                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$testcase_select_rows['Input'] ?>"><?=$testcase_select_rows['Input'] ?></textarea> 
                                     <!-- ID Example = Testcase1_Output -->
                                 </div>                    
                             </div> 
@@ -263,7 +232,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
                         <?php  
                             $testcase_count++;
-                              }
+                              
+                          }
                         ?>
                        
                             
