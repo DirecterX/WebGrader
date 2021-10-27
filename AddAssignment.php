@@ -101,9 +101,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="form-group">
                                
-                                    <label for="Assignment_Name">ชื่องาน</label>
+                                    <label for="Assignment_Name">ชื่องาน</label> <label class="text-danger"> *</label>
                                     <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"></textarea>
+                                    <label for="Assignment_Note" class="mt-2">คำอธิบายงาน</label><label class="text-danger">  *</label>
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 10px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"></textarea>
                                 </div>
                                 
                             </div>
@@ -112,9 +113,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                                <label for="Assignment_Point">คะแนน</label>
+                                                <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
                                                 <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
-                                                <label for="Assignment_DueDate">กำหนดส่ง</label>
+                                                <label for="Assignment_DueDate">กำหนดส่ง</label><label class="text-danger">  *</label>
                                                 <input type="date" class="form-control" id="Assignment_Point"  requiredplaceholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
 
                                         </div>
@@ -124,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <label for="Assignment_File"  class="btn btn-dark"  style="margin-top:10px;">Add File</label>
                                         <input type="file" id="Assignment_File" required accept=".py" name="Assignment_File" hidden>
-                                        <span id="file-chosen">No file chosen</span>
+                                        <span id="file-chosen">No file chosen</span><label class="text-danger"> *</label>
                                                
                                         
                                     </div>
