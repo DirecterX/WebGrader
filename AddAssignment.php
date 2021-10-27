@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
                                                 <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
                                                 <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
-                                                <input type="date" class="form-control" id="Assignment_Point"  requiredplaceholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
 
                                         </div>
                                     </div>
@@ -223,6 +223,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 
 <script>
+
+//------------------Lock Past Date Script-----------------------------------//
+$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    //alert(maxDate);
+    $('#Assignment_End_date').attr('min', maxDate);
+});
+
+
     var count = 2;
     var count2 = 1;
 function CreateTastCase() {
