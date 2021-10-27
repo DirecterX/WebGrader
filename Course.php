@@ -54,7 +54,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
 
       .nav-item .active{
-                      background-color: #FFD56B!important;
+        background-color: #FFD56B!important;
+        border-radius: 10px ;
+        background:#FEC352;
+        transition: 0.5s;
+        box-shadow: -5px 5px #FF8540;
       }
   </style>    
 
