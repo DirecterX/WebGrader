@@ -61,10 +61,13 @@
     }
     
     $target_dir = "temp_file/";
-    $target_file = $target_dir . basename($_FILES["Assignment_File"]["name"]);
+    $filename_username = $_SESSION["Username"];
+    $file = $name_id.".py";
+    $target_file = $target_dir . basename($filename_username);
     $uploadOk = 1;
     $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     
+
     ######################################## UPLOAD SECTION #################################################
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
@@ -77,8 +80,7 @@
           // if everything is ok, try to upload file
         }else {
             if (move_uploaded_file($_FILES["Assignment_File"]["tmp_name"], $target_file)) {
-              echo "The file ". htmlspecialchars( basename( $_FILES["Assignment_File"]["name"])). " has been uploaded.";
-              echo $_FILES["Assignment_File"]["name"];
+              echo $target_file;
             } else {
               echo "Sorry, there was an error uploading your file.";
             }
@@ -103,7 +105,7 @@
         1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
-        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+        $process = proc_open("python ./temp_file/".$file."", $descriptorspec, $pipes);
 
         if (is_resource($process)) {
       
@@ -122,7 +124,7 @@
         1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
-        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+        $process = proc_open("python ./temp_file/".$file."", $descriptorspec, $pipes);
 
         if (is_resource($process)) {
       
@@ -156,7 +158,7 @@
         1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
-        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+        $process = proc_open("python ./temp_file/".$file."", $descriptorspec, $pipes);
 
         if (is_resource($process)) {
       
@@ -175,7 +177,7 @@
         1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
         2 => array("file", "./error-output.txt", "a") // stderr is a file to write to
         );
-        $process = proc_open("python ./temp_file/".$_FILES["Assignment_File"]["name"]."", $descriptorspec, $pipes);
+        $process = proc_open("python ./temp_file/".$file."", $descriptorspec, $pipes);
 
         if (is_resource($process)) {
       
@@ -199,5 +201,5 @@
       $while_count++;
     }
 
-    unlink("temp_file/".$_FILES['fileToUpload']['name']."");
+    unlink("temp_file/".$file."");
 ?>
