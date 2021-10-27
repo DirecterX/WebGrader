@@ -102,8 +102,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="form-group">
                                
                                     <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required></textarea>
+                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100">
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"></textarea>
                                 </div>
                                 
                             </div>
@@ -113,9 +113,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label>
-                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required>
+                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
                                                 <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point"  requiredplaceholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required>
+                                                <input type="date" class="form-control" id="Assignment_Point"  requiredplaceholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
 
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-12 col-sm-12">    
-                                            <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> "></textarea>
+                                            <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
                                         </div>
                                     </div>
 
@@ -249,6 +249,7 @@ function CreateTastCase() {
             CreateTestInput.setAttribute("rows","5");
             CreateTestInput.setAttribute("placeholder","Input");
             CreateTestInput.setAttribute("required","");
+            CreateTestInput.setAttribute("maxlength","270");
             
 
 
@@ -293,6 +294,7 @@ function CreateHidden() {
            CreateTestInput.setAttribute("rows","5");
            CreateTestInput.setAttribute("placeholder","Input");
            CreateTestInput.setAttribute("required","");
+           CreateTestInput.setAttribute("maxlength","270");
 
 
        ++count2;
