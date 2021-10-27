@@ -53,7 +53,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       }
 
-
+      .nav-item .active{
+                      background-color: #FFD56B!important;
+      }
   </style>    
 
   
@@ -132,9 +134,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card">
                 <div class="card-header p-2">
                 <ul class="nav nav-pills ">
-                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link active text-dark" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
@@ -440,7 +442,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card">
                 <div class="card-header p-2">
                 <ul class="nav nav-pills ">
-                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link active text-dark"  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
@@ -614,10 +616,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="card">
                 <div class="card-header p-2">
-                  <ul class="nav nav-pills ">
-                    <li class="nav-item mr-2"><a class="nav-link text-dark" style="background-color: #FFD56B;  border-radius: 10px ;" href="#TabClass" data-toggle="tab">CLASS</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
+                <ul class="nav nav-pills ">
+                    <li class="nav-item mr-2"><a class="nav-link active text-dark" href="#TabClass" data-toggle="tab">CLASS</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
