@@ -132,6 +132,7 @@
             stream_set_timeout($pipes[1],5);
             $testcase_output = stream_get_contents($pipes[1],50000);
             $testcase_output = substr($testcase_output,$cli_length);
+            
             fclose($pipes[1]);
             $return_value = proc_close($process);
         }
@@ -197,6 +198,8 @@
       $hid++;
       $while_count++;
     }
-    unlink("temp_file/".$_FILES['Assignment_File']['name']."");
+
+    unlink("temp_file/".$_FILES['fileToUpload']['name']."");
     header("location:/WebGrader/Course.php?Course_ID=".$course_id."");
+?>
 ?>
