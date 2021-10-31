@@ -1,3 +1,25 @@
+<style>
+
+.card {
+    border: 1px solid;
+    border-radius: 20px;
+    box-shadow: 0px 15px #3D367B;
+    
+    font-family: 'Kanit', sans-serif;
+    transition-duration: 0.5s;
+}
+.card:hover{
+    color: #233142;
+    border: 1px solid;
+    border-radius: 30px;
+    box-shadow: 0px 15px #FAA3A3;
+
+    font-family: 'Kanit', sans-serif;
+    transition: 0.5s;
+}
+
+</style>
+
 <div class="row m-2">
         <?php
                 $uid = $_SESSION["User_ID"];
@@ -48,30 +70,23 @@
                     $toDay = date('Y-m-d');
                     if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
                         $course_status = 'Open';
-                        $card_Icon ='fas fa-user fa-6x';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">';
+                        echo '<div class="card " >';
                     }elseif($Course_End_date <= $toDay ){
                         $course_status = "Close";
-                        $card_Icon ='fas fa-times-circle fa-6x';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #A3A3A3;">';
+                       
+                        echo '<div class="card " >';
                     }else{
                         $card_Icon ='fas fa-history fa-6x';
                         $course_status = 'Wait to open';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8B73;">';
+                        echo '<div class="card ">';
                     }
       
             ?>
             
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
+             
                 <div class="card-body">
-                
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                    <i class="<?php echo $card_Icon ?>"></i>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
+            
                     <div class="row">
                         <div class="col" style="text-align:left;">
                             <h4><?php echo $Course_Name ?></h4>  <!-- Class Name -->

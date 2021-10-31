@@ -9,10 +9,10 @@
     <style>
         
         li.nav-item:hover {
-           border-radius: 10px ;
-           background:#FEC352;
+           border-radius: 5px 15px 5px 5px ;
+           background:#F4F4F4;
            transition: 0.5s;
-           box-shadow: -5px 5px #FF8540;
+           box-shadow: -5px 5px #3D367B;
        }
 
    </style>
@@ -48,7 +48,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md  navbar-light font-weight-bold ">
+  <nav class="main-header navbar navbar-expand-md font-weight-bold " style="background-color: #D5E3FE">
     <div class="container">
       
 
@@ -59,15 +59,15 @@
       <div class="collapse navbar-collapse order-3" id="navbarCollapse">
        
       <!-- Left navbar links -->
-        <ul class="navbar-nav ">
-          <li class="nav-item ">
-            <a href="/WebGrader/Home.php" class="nav-link text-dark">H O M E</a> <!-- Add link here -->
+        <ul class="navbar-nav " >
+          <li class="nav-item " >
+            <a href="/WebGrader/Home.php" class="nav-link" style="color: #3D367B;">H O M E</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="/WebGrader/Class.php" class="nav-link text-dark">C L A S S</a> <!-- Add link here -->
+            <a href="/WebGrader/Class.php" class="nav-link "style="color: #3D367B;">C O U R S E</a> <!-- Add link here -->
           </li>
           <li class="nav-item">
-            <a href="/WebGrader/Assignment.php" class="nav-link text-dark">A S S I G M E N T</a> <!-- Add link here -->
+            <a href="/WebGrader/Assignment.php" class="nav-link "style="color: #3D367B;">A S S I G N M E N T</a> <!-- Add link here -->
           </li>
           
         </ul>
@@ -77,19 +77,19 @@
 
 
       <!-- Right navbar links -->
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto" >
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-plus-square"></i>
+        <li class="nav-item dropdown" >
+          <a class="nav-link" data-toggle="dropdown" href="#" style="color: #3D367B;">
+          <i class="fas fa-plus"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">     
             <div class="dropdown-divider"></div>
-            <a href="/WebGrader/AddClass.php" class="dropdown-item"> <!-- Add link here -->
+            <a href="/WebGrader/AddClass.php" class="dropdown-item" style="color: #3D367B;"> <!-- Add link here -->
               <i class="fas fa-plus-square mr-2"></i> Join Class             
             </a>
             <div class="dropdown-divider"></div>
-            <a href="/WebGrader/Classroom/CreateCourse.php" class="dropdown-item"> <!-- Add link here -->
+            <a href="/WebGrader/Classroom/CreateCourse.php" class="dropdown-item" style="color: #3D367B;"> <!-- Add link here -->
               <i class="fas fa-plus-square mr-2"></i> Add new course             
             </a>
           </div>
@@ -98,13 +98,13 @@
     
 <!--  User Menu -->   
         <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?php echo $_SESSION["Username"]; ?></a>
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" style="color: #3D367B;"><?php echo $_SESSION["Username"]; ?></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="/WebGrader/Class.php" class="dropdown-item"><i class="fas fa-home"></i> My Class </a></li>
-              <li><a href="/WebGrader/Edit_User/EditProfile.php" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a></li>
+              <li><a href="/WebGrader/Class.php" class="dropdown-item"><i class="fas fa-home" style="color: #3D367B;"></i> My Class </a></li>
+              <li><a href="/WebGrader/Edit_User/EditProfile.php" class="dropdown-item" style="color: #3D367B;"><i class="fas fa-cog"></i> Setting</a></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item">
-                <a href="/WebGrader/Login/logout_process.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="/WebGrader/Login/logout_process.php" class="dropdown-item" style="color: #3D367B;" ><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>         
             </ul>
           </li>
