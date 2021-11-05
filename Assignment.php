@@ -70,84 +70,129 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content-header">
 
       <div class="container">
-        
-  
-
-        <!--
-        <div class="row mb-2 float-left">
-             <div class="col-6">                
-        
-                 <div class="card " style="width: 14rem;border: 0.5px solid #292928; border-radius:15px;">
-                    <div class="card-body">
-                        <h1 class="card-title"><?php //echo"Python class"?></h1>
-                        <div class="badge  h-50 w-100 mt-2" style="background-color:#FFD56B;border: 0.5px solid #292928; border-radius:10px;">
-                        <label class="mt-3" style="font-size:15px;">ผู้สอน <?php //echo"Name Ajarn"?></php>
-                        <p class="pt-2">สถานะ <?php //echo"กำลังเรียน"?></p>
-                        </label>
-                        </div>
-                    </div>
-                    </div>  
-             </div>
-                    
-        </div>-->
-      <!----------------------------PHP Query Class and Start Loop Here --------------------->
-        <?php 
-                for($i=0;$i < 3;$i++){
-         ?>
       <!-------------------------------------------------------------------------------------->
         <div class="row">
-            <div class="col-12">                   
-                <span class="badge bg-warning text-dark" style="font-size: 150%;padding-bottom:-10px;"><?php echo"Class Name".$i?></span>
-                <label class=" float-right font-weight-light" style="margin-left:5px;font-size: 150%;margin-top:10px;">
-                    ROLE : <?php echo "role" ?> <!-- Role in Class -->                                      
-                </label>
-            <hr style="background-color:#ff851b;height:2px;">              
-            </div>
-        </div>
+            <div class="col-12">         
+               
+            <div class="row mb-2">
+          <div class="col mt-2"  >
+            <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่เรียน</h4>
+          </div><!-- /.col -->         
+        </div><!-- /.row -->
+                  <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
+
+              
+              <div class="card"  style="background-color: #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                  <a href="###" class="text-dark">
+                   <div class="card-body">
+                                    <!-- link -->
+                    <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3">test</b></h5> 
+
+                                  <!-------- Assignment Content -->
+                        <p class="card-text" style="width: 200px;">
+                        <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
+                
+                                        </div>
+
+                                        
+                                    </div>
+                                                
+                                  </p>
+                                  
+                              </div>
+                              </a>
+            </div> 
+
+   
+  </div>
+
+
+              
+              </div>
         
-        <div class="row mt-2">
-        <!---------------------------PHP Query Assignment And Start Loop Here ------------------> 
-        <?php 
-                for($y=0;$y <= 3;$y++){
-         ?>      
-        <!-------------------------------------------------------------------------------------->      
-            <div class="col-sm-6 col-md-4 col-lg-3 " >
-                <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                    <div class="card-body">
-                        <a href="TurnInCode.php" class="text-dark"> <!-- link -->
-                        <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment <?php echo $y ?></b></h5> 
-
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                <h5 class="float-left font-weight-bold">Point <?php echo "1" ?> / <?php echo "1" ?> </h5>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                <label class=" float-left text-success font-weight-light">
-                                    <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>
-                                
-                                </label>
-                                
-                                </div>
-                            </div>               
-                        </p>
-                        </a>
-                    </div>
-                </div>
-                <!-- /.card 5 -->     
-            </div>
-        <!-----------------------------End Loop Assignment -------------------------------------->
-            <?php } ?>              
-
-        <!---------------------------------------------------------------------------------------->            
-        </div><!-- /.row Assignment -->
-        <!-----------------------------End Loop Class ------------------------------------------->
-            <?php } ?>          
-        <!---------------------------------------------------------------------------------------->
           </div>
+
+
+          <div class="col-12">         
+               
+               <div class="row mb-2">
+             <div class="col mt-2"  >
+               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 15rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานตรวจในห้องเรียน</h4>
+             </div><!-- /.col -->         
+           </div><!-- /.row -->
+           <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
+      
+           <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                            <a href="###" class="text-dark">
+                            <div class="card-body">
+                                 <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3">test</b></h5> 
+
+                                <!-------- Assignment Content -->
+
+                                <p class="card-text" style="width: 200px;">
+                                <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
+                
+                                        </div>
+
+                                        
+                                    </div>
+                                             
+                                </p>
+                                
+                            </div>
+                            </a>
+          </div> 
+   
+        
+       </div>
+           
+             </div>
+
+
+
+             <div class="col-12">         
+               
+               <div class="row mb-2">
+             <div class="col mt-2"  >
+               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งารที่เสร็จแล้ว</h4>
+             </div><!-- /.col -->         
+           </div><!-- /.row -->
+           <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
+      
+            
+           <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                            <a href="###" class="text-dark">
+                            <div class="card-body">
+                                 <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo "Name"?></b></h5> 
+
+                                <!-------- Assignment Content -->
+
+                                <p class="card-text" style="width: 200px;">
+                                    <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
+                
+                                        </div>
+
+                                        
+                                    </div>
+                                             
+                                </p>
+                                
+                            </div>
+                            </a>
+          </div> 
+   
+        
+       </div>
+           
+             </div>
           </div>
        </div>
       </div><!-- /container-->

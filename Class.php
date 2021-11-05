@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.col -->         
         </div><!-- /.row -->
         <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
-
+        <a href="Course.php" class="text-dark">
         <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
@@ -98,7 +98,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p class="card-text">สถานะ : <label class="text-success"><?php echo "Open"?></label></p>
         </div>
         </div>
-
+    </a>
+    <a href="Course.php" class="text-dark">
         <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
@@ -108,8 +109,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
         </div>
         </div>
+        </a>
 
-
+        <a href="Course.php" class="text-dark">
         <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
@@ -119,7 +121,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
         </div>
         </div>
-
+        </a>
+        <a href="Course.php" class="text-dark">
         <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
@@ -129,6 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
         </div>
         </div>
+    </a>
   
 
 

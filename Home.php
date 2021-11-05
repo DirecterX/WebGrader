@@ -76,8 +76,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
           <div class="col-6 mt-3" >
           <h4 class="p-2 fw-med text-center" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องทำ</h4>
+
           <div class="to-do-list  m-3 p-2 pl-3" style="background-color: #D8D7E5; border-radius: 5px;">
-          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></p>  
+      
+        </a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>

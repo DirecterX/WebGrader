@@ -54,11 +54,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
 
       .nav-item .active{
-        background-color: #FFD56B!important;
+        color: #3D367B;
+        background-color: #FFBFBF!important;
         border-radius: 10px ;
-        background:#FEC352;
+      
         transition: 0.5s;
-        box-shadow: -5px 5px #FF8540;
+    
       }
   </style>    
 
@@ -90,9 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content-header">
       <div class="container">
         <div class="row mb-2">
-          <div class="col">
-            <h1 class="m-0"> <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h2>
-          </div><!-- /.col -->         
+          <!-- /.col -->         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -100,22 +99,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <div class="container">
-      <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
-          <div class="col mt-2" >
-    
-            <h1 class="m-0 fw-bolder" >ห้องเรียน : <?php echo $Course_Name; ?><i class="fa fa-book ml-2"> <?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning"   >';
-                  if ($role=="Owner"){
-                    echo '<b><font face="Arial">Edit Info</font></b> </a>';
-                  }else{
-                    echo '<b><font face="Arial">Info</font></b> </a>';
-                  }                                                 
-                   ?></i> </h1>
+      
+      <div class="row mb-2 ">
+      <div class="row m-3 p-4" style="background-color: #D8D7E5;border:solid 1px;border-radius:20px ;width: 100%;">
+        <div class="info-class" style="color:#3D367B;">
+          <h1>ห้องเรียน</h1>
+          <h1><?php echo"Python-OOP" ?></h1>
+          <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?></h5> <button type="button" class="ml-2 btn btn-warning text-dark" style="border-radius: 10px;">รายละเอียดวิชา</label>
 
-
-          </div><!-- /.col -->         
+        </div>
+      </div>      
         </div><!-- /.row -->
-              
+
+              <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Coding Here -->
       <!---------------------------------------------- Tab Class  For Teacher and Owner--------------------------------------------------->
@@ -135,8 +148,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   .tg .tg-0lax{text-align:left;vertical-align:top}
                   </style>
 
-              <div class="card">
-                <div class="card-header p-2">
+                <div class="card"  style="border:solid 1px;border-radius: 10px;">
+                <div class="card-header p-2 " style="border-bottom:solid 1px;">
                 <ul class="nav nav-pills ">
                     <li class="nav-item mr-2"><a class="nav-link active text-dark" href="#TabClass" data-toggle="tab">CLASS</a></li>
                     <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
@@ -444,13 +457,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </style>
 
               <div class="card">
-                <div class="card-header p-2">
+              <div class="card"  style="border:solid 1px;border-radius: 10px;">
+                <div class="card-header p-2 " style="border-bottom:solid 1px;">
                 <ul class="nav nav-pills ">
                     <li class="nav-item mr-2"><a class="nav-link active text-dark" href="#TabClass" data-toggle="tab">CLASS</a></li>
                     <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
                     <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabAssignment" data-toggle="tab">ASSIGNMENT</a></li>
                   </ul>
-                  
                 </div><!-- /.card-header -->
                 <div class="card-body">
                   <div class="tab-content">
@@ -618,8 +631,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   
                   </style>
 
-              <div class="card">
-                <div class="card-header p-2">
+              <div class="card"  style="border:solid 1px;border-radius: 10px;">
+                <div class="card-header p-2 " style="border-bottom:solid 1px;">
                 <ul class="nav nav-pills ">
                     <li class="nav-item mr-2"><a class="nav-link active text-dark" href="#TabClass" data-toggle="tab">CLASS</a></li>
                     <li class="nav-item mr-2"><a class="nav-link text-dark" href="#TabPeople" data-toggle="tab">PEOPLE</a></li>
@@ -634,14 +647,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <?php        
                             while($row = mysqli_fetch_array($ShowAssignment)) {
                         ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6" ">
 
                           <!--------------------- Card Assignment --------------------------------------->
-                          <div class="card bg-light"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                          <div class="card"  style="background-color: #EBEBEB; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                             <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="text-dark">
                             <div class="card-body">
                                  <!-- link -->
-                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $row["Name"]; ?></b></h5> 
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $row["Name"]; ?></b></h5> 
 
                                 <!-------- Assignment Content -->
 
