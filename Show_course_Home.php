@@ -1,26 +1,29 @@
-<style>
-
-.card {
-    border: 1px solid;
-    border-radius: 20px;
-    box-shadow: 0px 15px #3D367B;
-    
-    font-family: 'Kanit', sans-serif;
-    transition-duration: 0.5s;
-}
-.card:hover{
-    color: #233142;
-    border: 1px solid;
-    border-radius: 30px;
-    box-shadow: 0px 15px #FAA3A3;
-
-    font-family: 'Kanit', sans-serif;
-    transition: 0.5s;
-}
-
-</style>
-
-        <?php
+       <style>
+        a{
+            color: #233142;
+        }
+        a:hover{
+            color: #3D367B;
+        }
+        .card {
+          font-family: 'Kanit', sans-serif;
+          transition-duration: 0.5s;
+          width: 20rem;
+          border-radius: 30px;
+      }
+      .card:hover{
+          color: #233142;
+          border: 1px solid;
+          border-radius: 30px;
+          box-shadow: 0px 15px #3D367B;
+          width: 20rem;
+          font-family: 'Kanit', sans-serif;
+          transition: 0.5s;
+      }
+      
+       </style>
+       
+       <?php
                 $uid = $_SESSION["User_ID"];
                 $course_status = 'Wait to open';
 
@@ -83,8 +86,8 @@
             ?>
             
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
-             <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
-        <div class="card-body">
+           
+        <div class="card-body w-100" style=" border-radius: 30px;">
             <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>
             <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?></p>

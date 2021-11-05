@@ -1,3 +1,34 @@
+<style>
+      a{
+            color: #233142;
+        }
+        a:hover{
+            color: #3D367B;
+        }
+       .card {
+          font-family: 'Kanit', sans-serif;
+          transition-duration: 0.5s;
+      }
+      .card:hover{
+          color: #233142;
+          border: 1px solid;
+          border-radius: 30px;
+          box-shadow: 0px 15px #3D367B;
+          width: 20rem;
+          font-family: 'Kanit', sans-serif;
+          transition: 0.5s;
+      }
+      
+      .cardborder {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-bottom-width: 20px;
+
+      }
+</style>
+
 <div>
         <?php
                 $uid = $_SESSION["User_ID"];
@@ -48,22 +79,22 @@
                     if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
                         $course_status = 'Open';
                         $card_Icon ='fas fa-user fa-6x';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8540;">';
+                    
                     }elseif($Course_End_date <= $toDay ){
                         $course_status = "Close";
                         $card_Icon ='fas fa-times-circle fa-6x';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #A3A3A3;">';
+                        
                     }else{
                         $card_Icon ='fas fa-history fa-6x';
                         $course_status = 'Wait to open';
-                        echo '<div class="card " style=" border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FF8B73;">';
+                       
                     }
       
             ?>
             
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
-             <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>

@@ -26,20 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       }
      
 
-      .card {
-          font-family: 'Kanit', sans-serif;
-          transition-duration: 0.5s;
-      }
-      .card:hover{
-          color: #233142;
-          border: 1px solid;
-          border-radius: 30px;
-          box-shadow: 0px 15px #3D367B;
-          width: 20rem;
-          font-family: 'Kanit', sans-serif;
-          transition: 0.5s;
-      }
-      
+   
 
 </style>
 
