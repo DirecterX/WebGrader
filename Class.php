@@ -20,14 +20,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         font-family: 'Kanit', sans-serif;
 
       }
-      .cardlink{
-          color:black;
-        
-  
+      .card {
+          font-family: 'Kanit', sans-serif;
+          transition-duration: 0.5s;
       }
-      .cardlink:hover{
-          color:#292928;
+      .card:hover{
+          color: #233142;
+          border: 1px solid;
+          border-radius: 30px;
+          box-shadow: 0px 15px #3D367B;
+          width: 20rem;
+          font-family: 'Kanit', sans-serif;
+          transition: 0.5s;
       }
+      
       .cardborder {
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -36,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         border-bottom-width: 20px;
 
       }
-
+  
 
   </style>    
 
@@ -72,42 +78,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         
         <!--start card-->
-
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
-          <div class="col mt-2" >
-    
-            <h1 class="m-0 fw-bolder">My Class<i class="fa fa-book ml-2"></i></i></h1>
-
+        <div class="row mb-2">
+          <div class="col mt-2"  >
+            <h4 class="p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">คอร์สเรียน</h4>
+            <div class="addbtnclass">
+            <a href="###"><p class="p-2 mr-3 fw-medium text-center float-right" style="color:#3D367B;box-shadow: -5px 5px #FAA3A3;width: 10rem; border: 1px solid; border-radius: 20px; background-color:#F4F4F4;"> <i class="fas fa-plus-square mr-2"></i>สร้างคอร์สเรียน</p></a>
+            <a href="###"><p class="p-2 mr-3 fw-medium text-center float-right " style="color:#3D367B;box-shadow: -5px 5px #FAA3A3;width: 10rem; border: 1px solid; border-radius: 20px; background-color:#F4F4F4;"><i class="fas fa-users mr-2"></i>เข้าคอร์สเรียน</p></a>
+            </div>
           </div><!-- /.col -->         
         </div><!-- /.row -->
-         
-            <?php include "Show_course.php"; ?>
+        <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
 
-            <!-- addclass -->
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">
-            <div class="card" style="border-top-left-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-bottom-width: 20px;border-bottom-color: #FEC352;">
-            <a href="AddClass.php" id="add_class"> 
-                <div class="card-body">
-                    <p class="card-text">
-                            <div class="row">
-                                <div class="col" style="text-align:center;">
-                                <h1><i class="gg-add-r"></i></h1>  <!-- Icon -->
-                                </div>
-                            </div>
-                    </p>
-                 <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4>เข้าห้องเรียน</h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    
-        
-                </div>
-            </a>
-            </div>
-            <!-- /.card -->     
-            </div>
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card-body">
+            <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
+            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
+            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo " 1 / 2021" ?></p>
+            <p class="card-text">ภาษา : <?php echo "Python"?></p>
+            <p class="card-text">สถานะ : <label class="text-success"><?php echo "Open"?></label></p>
+        </div>
+        </div>
+
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card-body">
+            <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
+            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
+            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo " 1 / 2021" ?></p>
+            <p class="card-text">ภาษา : <?php echo "Python"?></p>
+            <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
+        </div>
+        </div>
+
+
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card-body">
+            <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
+            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
+            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo " 1 / 2021" ?></p>
+            <p class="card-text">ภาษา : <?php echo "Python"?></p>
+            <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
+        </div>
+        </div>
+
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card-body">
+            <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
+            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
+            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo " 1 / 2021" ?></p>
+            <p class="card-text">ภาษา : <?php echo "Python"?></p>
+            <p class="card-text">สถานะ : <label class="text-secondary"><?php echo "Close"?></label></p>
+        </div>
+        </div>
+  
+
+
+
+
+
+
+        </div>
+    </div><!-- /.container-fluid -->
 
 
 

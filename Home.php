@@ -39,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           font-family: 'Kanit', sans-serif;
           transition: 0.5s;
       }
+      
 
 </style>
 
@@ -75,22 +76,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
           <div class="col-6 mt-3" >
           <h4 class="p-2 fw-med text-center" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องทำ</h4>
-          <div class="to-do-list  m-3 p-2 pl-3" style="background-color: #F5F5FF;border: 1px solid; border-radius: 5px;">
-          <p>1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></label></p>
-          <p>2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p>
-          <p>3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p>
-          <p>4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p>
-          </div>
+          <div class="to-do-list  m-3 p-2 pl-3" style="background-color: #D8D7E5; border-radius: 5px;">
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
+          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้่งหมด</p></a>
+        </div>
+          
           </div><!-- /.col -->       
       
           <div class="col-6 mt-3">
           <h4 class="p-2 fw-med text-center" style="width: 12rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องตรวจ</h4>
-          <div class="to-do-list-room m-3 p-2 pl-3" style="background-color: #F5F5FF;border: 1px solid; border-radius: 5px;">
-          <p>1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></label></p>
-          <p>2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p>
-          <p>3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p>
-          <p>4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p>
-          </div>
+          <div class="to-do-list-room m-3 p-2 pl-3" style="background-color:#D8D7E5; border-radius: 5px;">
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
+          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้่งหมด</p></a>
+        </div>
           </div>
         </div><!-- /.row -->
 
@@ -106,9 +110,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
-        <div class="row m-3 p-2">
+        <div class="row m-3 p-4" style="background-color: #D8D7E5;">
 
-        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#F5F5FF;">
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
@@ -118,7 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         </div>
 
-        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#F5F5FF;">
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
@@ -129,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
 
 
-        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#F5F5FF;">
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
@@ -139,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         </div>
 
-        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#F5F5FF;">
+        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
         <div class="card-body">
             <h5 class="card-title mb-2">Course : <?php echo "Python-OOP" ?></h5>
             <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo "Kanut" ?> </label</p>
@@ -156,9 +160,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
         </div>
-
-
-      
     </div><!-- /.container-fluid -->
 
     </div><!-- /container-->

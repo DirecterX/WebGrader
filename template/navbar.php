@@ -9,6 +9,7 @@
     <style>
         
         li.nav-item:hover {
+          color: #3D367B;
            border-radius: 5px 15px 5px 5px ;
            background:#F4F4F4;
            transition: 0.5s;
@@ -48,7 +49,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md font-weight-bold " style="background-color: #D5E3FE">
+  <nav class="main-header navbar navbar-expand-md font-weight-bold " style="background-color: #D5E3FE;">
     <div class="container">
       
 
