@@ -54,6 +54,9 @@ body{
                                                 <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
                                             </div>
                                         </div>
+                                        <?php if (isset($confirmpass)): ?>
+                                                    <span><?php echo $confirmpass; ?></span>
+                                            <?php endif ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="cols-sm-2 control-label">Firstname</label>

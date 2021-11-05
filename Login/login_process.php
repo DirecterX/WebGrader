@@ -4,6 +4,7 @@ $errors = array();
 	if (isset($_POST['login'])){
 		$uname = $_POST['Username'];
 		$pwd = $_POST['Password'];
+		$pwd = md5($pwd);
 	}
 
 	if(empty($uname) || empty($pwd)){

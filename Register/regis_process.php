@@ -17,12 +17,14 @@ include ("../config.php");
 
   	if (mysqli_num_rows($res_u) > 0) {
   	  $name_error = "Sorry... username already taken"; 	
+    }else if($password != $_POST('confirm')){
+        $confirmpass = "Sorry... Password And Comfirm Password no Match"
   	}else if(mysqli_num_rows($res_e) > 0){
   	  $email_error = "Sorry... email already taken"; 	
   	}else{
 
            $query = "
-           INSERT INTO `user` (`Username`, `Firstname`, `Surname`, `Password`, `Email`) VALUES ('$username','$Firtname' ,'$Surname', '$password', '$email')
+           INSERT INTO `user` (`Username`, `Firstname`, `Surname`, `Password`, `Email`) VALUES ('$username','$Firtname' ,'$Surname', '".md5($password)."', '$email')
       	   	  ";
            $results = mysqli_query($connect, $query);
            echo 'สมัครสมาชิกเรียบร้อยแล้ว! จะไปหน้า Login ใน 5 วินาที';
