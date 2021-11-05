@@ -1,3 +1,4 @@
+<?php include('regis_process.php') ?>
 <!DOCTYPE html>
 <title>Register Grader</title>
 <head>
@@ -23,14 +24,17 @@ body{
                             <div class="card-header">Register</div>
                             <div class="card-body">
 
-                                <form class="form-horizontal" method="post" action="#">
+                                <form class="form-horizontal" method="post" action="register.php" id="register_form">
                                 <div class="form-group">
                                         <label for="name" class="cols-sm-2 control-label">Username</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="stu_id" id="stu_id" placeholder="Student ID" />
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="Student ID" />
                                             </div>
+                                            <?php if (isset($name_error)): ?>
+                                                    <span><?php echo $name_error; ?></span>
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -56,7 +60,7 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Firstname" id="Firstname" placeholder="Enter your Name" />
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +69,7 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Surname" id="Surname" placeholder="Enter your Name" />
                                             </div>
                                         </div>
                                     </div>
@@ -77,10 +81,13 @@ body{
                                                 <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
                                             </div>
                                         </div>
+                                        <?php if (isset($email_error)): ?>
+                                                <span><?php echo $email_error; ?></span>
+                                        <?php endif ?>
                                     </div>
                                     
                                     <div class="form-group ">
-                                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                        <button type="submit" name="register" class="btn btn-primary btn-lg btn-block login-button">Register</button>
                                     </div>
                                     <div class="login-register">
                                         <a href="../Login/Login.php">Login</a>
