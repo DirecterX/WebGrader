@@ -1,4 +1,7 @@
-<?php include('regis_process.php') ?>
+<?php include('regis_process.php');
+$Regisid = rand();
+$_SESSION['Regis_ID'] = $Regisid
+?>
 <!DOCTYPE html>
 <title>Register Grader</title>
 <head>
@@ -81,7 +84,7 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" /><input type="text" class="form-control" hidden name="Regisid" id="Regisid" value="<?php echo $Regisid;?>" />
                                             </div>
                                         </div>
                                         <?php if (isset($email_error)): ?>
