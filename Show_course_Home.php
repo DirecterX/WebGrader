@@ -20,7 +20,6 @@
 
 </style>
 
-<div class="row m-2">
         <?php
                 $uid = $_SESSION["User_ID"];
                 $course_status = 'Wait to open';
@@ -84,50 +83,19 @@
             ?>
             
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
-             
-                <div class="card-body">
-            
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h4><?php echo $Course_Name ?></h4>  <!-- Class Name -->
-                        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ผู้สอน : <?php echo $course_owener_show ?></h6>  <!-- Instructor Name -->
-                        
-                        </div>
-                    </div>
+             <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+        <div class="card-body">
+            <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
+            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>
+            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?></p>
+            <p class="card-text">ภาษา : <?php echo "Python"?></p>
+            <p class="card-text">สถานะ : <label class="text-success"><?php echo $course_status ?></label></p>
+        </div>
+        </div>
 
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ภาคเรียน/ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?> </h6>  <!-- Code lang -->
-                        
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>ภาษา : Python </h6>  <!-- Code lang -->
-                        
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col" style="text-align:left;">
-                            <h6>สถานะ : <?php echo $course_status ?> </h6>  <!-- Status class -->
-                        
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
            
             <!-- /.card -->
             <!--***************************************************************************************-->
-            </div> 
             <?php }?>
             <!-- /.col-sm-6 -->
             

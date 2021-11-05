@@ -105,8 +105,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="info-class" style="color:#3D367B;">
           <h1>ห้องเรียน</h1>
           <h1><?php echo"Python-OOP" ?></h1>
-          <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?></h5> <button type="button" class="ml-2 btn btn-warning text-dark" style="border-radius: 10px;">รายละเอียดวิชา</label>
+          <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?>
 
+        </h5><button type="button"  class="ml-2 btn btn-warning text-dark" style="border-radius: 10px;"><?php 
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning"   >';
+                  if ($role=="Owner"){
+                    echo 'Edit Info</a>';
+                  }else{
+                    echo 'Info</a>';
+                  }                                    ?>
+          
         </div>
       </div>      
         </div><!-- /.row -->
