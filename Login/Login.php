@@ -47,7 +47,7 @@ endif
         <!-- Login Form End -->
 
         <!-- Register Text -->
-        <div class="h6 mb-3 fw-normal" style="text-align: right;"><a href="">สมัครสมาชิก</a></div>
+        <div class="h6 mb-3 fw-normal" style="text-align: right;"><a href="../Register/register.php">สมัครสมาชิก</a></div>
 
         <!-- Login Buttom -->
         <button class="w-100 btn btn-lg btn-primary lgn-btn" type="submit" name="login" value="login"><b>เข้าสู่ระบบ</b></button>
