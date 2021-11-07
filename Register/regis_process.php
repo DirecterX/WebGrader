@@ -2,7 +2,7 @@
 include ("../config.php");
 
  $username = "";
-    $_SESSION['Regis_ID'];
+ $_SESSION['Regis_ID'];
   $email = "";
   
 if(isset($_POST['Regisid'])){
@@ -35,9 +35,9 @@ if(isset($_POST['Regisid'])){
          	   	  ";
               $results = mysqli_query($connect, $query);
               echo 'สมัครสมาชิกเรียบร้อยแล้ว! จะไปหน้า Login ใน 5 วินาที';
-               header('Refresh: 10; URL=/WebGrader/Login/Login.php');
+               header('Refresh: 3; URL=/WebGrader/Login/Login.php');
      }
    }
 }
-   
+   session_destroy();
 ?>
