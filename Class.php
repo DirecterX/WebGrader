@@ -68,16 +68,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div><!-- /.row -->
         <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
     
-<?php include "Show_course.php"; ?>
+          <?php include "Show_course.php"; ?>
        
-       
-  
-
-
-
-
-
-
         </div>
     </div><!-- /.container-fluid -->
 

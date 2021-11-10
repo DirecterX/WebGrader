@@ -72,14 +72,16 @@
                     $toDay = date('Y-m-d');
                     if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
                         $course_status = 'Open';
+                        $text_Color = 'success';
                         echo '<div class="card " >';
                     }elseif($Course_End_date <= $toDay ){
                         $course_status = "Close";
-                       
+                        $text_Color = 'danger';
                         echo '<div class="card " >';
                     }else{
                         $card_Icon ='fas fa-history fa-6x';
                         $course_status = 'Wait to open';
+                        $text_Color = 'warning';
                         echo '<div class="card">';
                     }
       
@@ -92,7 +94,7 @@
                     <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>
                     <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?></p>
                     <p class="card-text">ภาษา : <?php echo "Python"?></p>
-                    <p class="card-text">สถานะ : <label class="text-success"><?php echo $course_status ?></label></p>
+                    <p class="card-text">สถานะ : <label class="text-<?php echo $text_Color ?>"><?php echo $course_status ?></label></p>
                 </div>          
             </div>
         </a>
