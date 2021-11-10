@@ -133,7 +133,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row">
                                     <div class="col-12">
                                         <button  onclick="window.history.back()" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
-					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก" >           
+                                        <button  onclick="document.getElementById('submit').disabled = false" type="button" id="check" name="check" class="btn btn-info" disabled>ตรวจสอบ</button>
+					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก" disabled>           
 
                                     </div>
                                 </div>
@@ -145,11 +146,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="form-group" id="TestCase_Form">
                                         <label class="badge bg-warning" for="Test1_input">TestCase 1</label>
                                         
-                                    <div class="row" id="Testcase1">
-                                        <div class="col-md-12 col-sm-12">    
-                                            <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                        <div class="row" id="Testcase1" style="font-family: Courier New;">
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Testcase1_output" name="Testcase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        <label class="badge bg-light" for="Hiddencase1_Input" style="margin-top:10px;">HiddenCase 1</label>
+                                        <div class="row" id="Hiddencase1" style="font-family: Courier New;">
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Hiddencase1_input" name="Hiddencase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Hiddencase1_output" name="Hiddencase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                            </div>
+                                        </div>
 
                                 </div>             
 
@@ -247,7 +261,7 @@ $(function(){
 
 
     var count = 2;
-    var count2 = 1;
+    var count2 = 2;
 function CreateTastCase() {
    
     if(count <=5){
@@ -262,9 +276,12 @@ function CreateTastCase() {
         var CreateRow = document.createElement("div");
             CreateRow.setAttribute("class","row");
             CreateRow.setAttribute("id","Testcase"+count);
+            CreateRow.setAttribute("style","font-family: Courier New");         
         // Create Column
         var CreateCol1 = document.createElement("div");
-            CreateCol1.setAttribute("class","col-md-12 col-sm-12");
+            CreateCol1.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+        var CreateCol2 = document.createElement("div");
+            CreateCol2.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
         // Create TestCase Input    
         var CreateTestInput = document.createElement("textarea");
             CreateTestInput.setAttribute("class","form-control");
@@ -274,15 +291,29 @@ function CreateTastCase() {
             CreateTestInput.setAttribute("placeholder","Input");
             CreateTestInput.setAttribute("required","");
             CreateTestInput.setAttribute("maxlength","270");
+
             
+            
+        // Create TestCase Output    
+        var CreateTestOutput = document.createElement("textarea");
+            CreateTestOutput.setAttribute("class","form-control");
+            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("Name","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("rows","5");
+            CreateTestOutput.setAttribute("placeholder","Output");
+            CreateTestOutput.setAttribute("required","");
+            CreateTestOutput.setAttribute("maxlength","270");
+            CreateTestOutput.setAttribute("disabled","");
 
 
         ++count;
         // Append Column To Row
         CreateRow.appendChild(CreateCol1);
+        CreateRow.appendChild(CreateCol2);
         
         // Append Textarea To Col
-        CreateCol1.appendChild(CreateTestInput);  
+        CreateCol1.appendChild(CreateTestInput);
+        CreateCol2.appendChild(CreateTestOutput);    
       
         document.getElementById("TestCase_Form").appendChild(CreateLabel);
         document.getElementById("TestCase_Form").appendChild(CreateRow);
@@ -307,10 +338,13 @@ function CreateHidden() {
        var CreateRow = document.createElement("div");
            CreateRow.setAttribute("class","row");
            CreateRow.setAttribute("id","HiddenTest"+count2);
+           CreateRow.setAttribute("style","font-family: Courier New"); 
        // Create Column
        var CreateCol1 = document.createElement("div");
-           CreateCol1.setAttribute("class","col-md-12 col-sm-12");
-       // Create TestCase Input    
+           CreateCol1.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+        var CreateCol2 = document.createElement("div");
+           CreateCol2.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+       // Create HiddenCase Input    
        var CreateTestInput = document.createElement("textarea");
            CreateTestInput.setAttribute("class","form-control");
            CreateTestInput.setAttribute("id","HiddenTest"+count2+"_Input");
@@ -319,14 +353,26 @@ function CreateHidden() {
            CreateTestInput.setAttribute("placeholder","Input");
            CreateTestInput.setAttribute("required","");
            CreateTestInput.setAttribute("maxlength","270");
+        // Create HiddenCase Output    
+       var CreateTestOutput = document.createElement("textarea");
+        CreateTestOutput.setAttribute("class","form-control");
+        CreateTestOutput.setAttribute("id","HiddenTest"+count2+"_Output");
+        CreateTestOutput.setAttribute("Name","HiddenTest"+count2+"_Output");
+        CreateTestOutput.setAttribute("rows","5");
+        CreateTestOutput.setAttribute("placeholder","Output");
+        CreateTestOutput.setAttribute("required","");
+        CreateTestOutput.setAttribute("disabled","");
+        CreateTestOutput.setAttribute("maxlength","270");
 
 
        ++count2;
        // Append Column To Row
        CreateRow.appendChild(CreateCol1);
+       CreateRow.appendChild(CreateCol2);
        
        // Append Textarea To Col
-       CreateCol1.appendChild(CreateTestInput);  
+       CreateCol1.appendChild(CreateTestInput);
+       CreateCol2.appendChild(CreateTestOutput);
      
        document.getElementById("TestCase_Form").appendChild(CreateLabel);
        document.getElementById("TestCase_Form").appendChild(CreateRow);
@@ -401,8 +447,19 @@ function Validate() {
     const fileChosen = document.getElementById('file-chosen');
 
     actualBtn.addEventListener('change', function(){
-    fileChosen.textContent = this.files[0].name
+    
+    const fileSize = this.files[0].size / 1024 / 1024;
+    if (fileSize > 10) {
+        
+        alert('File size exceeds 10 MiB');
+    }else{
+        fileChosen.textContent = this.files[0].name
+        document.getElementById('check').disabled = false;
+        document.getElementById('submit').disabled = true;       
+    }
+
     })
+
 </script>
 
 </body>
