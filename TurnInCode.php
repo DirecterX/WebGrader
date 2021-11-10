@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         </div>
 
-                        <div class="row" style="margin-bottom:30px;"> <!-- Text Area for Code ? -->
+                        <div class="row" style="margin-bottom:30px;" > <!-- Text Area for Code ? -->
                             <div class="col">
                                 <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;" rows="8" disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
                                 <hr style="border: 2px solid #FECA65">
@@ -245,10 +245,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case ที่ <?php echo $testcase_count; ?></label>
                         <br>
                         <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Input : <?php echo $testcase_select_rows['Input'] ?></label> 
-                        <div class="row" >
+                        <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    
+                                     
                                     <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
                                 </div>
