@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
-          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้่งหมด</p></a>
+          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
         </div>
           
           </div><!-- /.col -->       
@@ -82,7 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
           <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
-          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้่งหมด</p></a>
+          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
         </div>
           </div>
         </div><!-- /.row -->
@@ -100,17 +100,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.col -->         
         </div><!-- /.row -->
         <div class="row m-3 p-4" style="background-color: #D8D7E5;">
-          <?php include "Show_course_Home.php"; ?>
-
-        
-
+          <?php include "Show_course_Home.php"; ?>      
         </div>
   
-
-
-
-
-
 
         </div>
     </div><!-- /.container-fluid -->
