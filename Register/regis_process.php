@@ -2,7 +2,7 @@
 include ("../config.php");
 
  $username = "";
- $_SESSION['Regis_ID'];
+
   $email = "";
   
 if(isset($_POST['Regisid'])){
