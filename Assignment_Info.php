@@ -217,17 +217,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
-                                    <!-- ID Example = Testcase1_Output_ex -->
-                                </div>
-                            </div> 
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    
                                     <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$testcase_select_rows['Input'] ?>"><?=$testcase_select_rows['Input'] ?></textarea> 
                                     <!-- ID Example = Testcase1_Output -->
                                 </div>                    
                             </div> 
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    
+                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
+                                    <!-- ID Example = Testcase1_Output_ex -->
+                                </div>
+                            </div> 
+                           
                         </div>
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
                         <?php  

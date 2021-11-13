@@ -245,13 +245,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                       FROM user
                       INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                      WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
+                      WHERE (course_role.Role = 'Student') and (course_role.Course_ID = $Course_ID)
                       ORDER BY User.User_ID ASC");?>
 
                         <?php if ($role == "Teacher" || $role == "Owner"){?>
                           <!-----------------------------Button Export Excel And Edit----------------------->
                       <p>
                       <?php echo '<a href="test_excel.php?Course_ID='.$Course_ID.'" class="btn btn-primary" > Export Student Data to Excel </a>'; ?></p>
+                      <p>Student In Course</p>
                         <table class="table table-bordered">
                           <thead>
                             <tr>                            
@@ -322,6 +323,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               ?>
                           </tbody>
                         </table>
+
+                        <?php 
+                        $showuserbyteacher = mysqli_query($connect,
+                      "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
+                      FROM user
+                      INNER JOIN course_role ON course_role.User_ID = user.User_ID
+                      WHERE (course_role.Role = 'TA' OR course_role.Role = 'Owner' OR course_role.Role = 'Teacher') and (course_role.Course_ID = $Course_ID)
+                      ORDER BY User.User_ID ASC");?>
+                      <p>Teacher AND TA In Course</p>
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>                            
+                              <th>Username</th>
+                              <th>Full Name</th>
+                              <th>Role</th>
+                              <!-- add col assignment loop // assignment.name submit.score inner assignment and submit where User_ID and course_ID-->
+                             
+                              <th>Update</th>
+                              <th>Kick</th>
+                            </tr>
+                          </thead>
+                          <tbody>    
+                            <?php
+                              $i=0;
+                              while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                                $Suid = $row["User_ID"]; 
+                            ?>
+                            <form action="editpeople/edit_people_process.php"method = "POST" >
+                            <tr>                       
+                              <td><?php echo $row["Username"]; ?></td>
+                              <td><?php echo $row["Firstname"]." ".$row["Surname"]; ?></td>
+                              
+                              <td>  
+                                <input type = "text" id = "User_ID" name = "User_ID" value = "<?php echo $row["User_ID"]; ?> " hidden >
+                                <input type = "text" id = "Course_ID" name = "Course_ID" value = "<?php echo $row["Course_ID"]; ?>" hidden >
+                                <select name="Role" id="Role">
+                                  <option value="student"<?php if( $row["Role"] == "student"){echo " selected";} ?>>student</option>
+                                  <option value="TA"<?php if( $row["Role"] == "TA"){echo " selected";} ?>>TA</option>
+                                  <option value="Teacher"<?php if( $row["Role"] == "Teacher" OR $row["Role"] == "Owner"){echo " selected";} ?>>Teacher</option>
+                                </select>
+                              </td>
+                              
+                               
+                              <td><input type="submit" value="update"></td>
+                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                            </form>
+                            </tr>
+                              <?php
+                              $i++;
+                              }
+                              ?>
+                          </tbody>
+                        </table>
+
                     </div><!-- /Tab People --> 
 
                     <!------------------------------------------------ Tab Assignment submition ---------------------------------------------->
@@ -530,10 +585,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                       FROM user
                       INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                      WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
+                      WHERE (course_role.Role = 'Student') and (course_role.Course_ID = $Course_ID)
                       ORDER BY User.User_ID ASC");?>
 
-                         
+                         <p>Student In Course</p>
                         <table class="table table-bordered">
                           <thead>
                             <tr>                            
@@ -556,6 +611,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               <td><?php echo $row["Role"]; ?></td>
                             </tr>
                               <?php
+                              }
+                              ?>
+                          </tbody>
+                        </table>
+                        <?php 
+                        $showuserbyteacher = mysqli_query($connect,
+                      "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
+                      FROM user
+                      INNER JOIN course_role ON course_role.User_ID = user.User_ID
+                      WHERE (course_role.Role = 'TA' OR course_role.Role = 'Owner' OR course_role.Role = 'Teacher') and (course_role.Course_ID = $Course_ID)
+                      ORDER BY User.User_ID ASC");?>
+                      <p>Teacher AND TA In Course</p>
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>                            
+                              <th>Username</th>
+                              <th>Full Name</th>
+                              <th>Role</th>
+                            </tr>
+                          </thead>
+                          <tbody>    
+                            <?php
+                              $i=0;
+                              while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                                $Suid = $row["User_ID"]; 
+                            ?>
+                            <form action="editpeople/edit_people_process.php"method = "POST" >
+                            <tr>                       
+                              <td><?php echo $row["Username"]; ?></td>
+                              <td><?php echo $row["Firstname"]." ".$row["Surname"]; ?></td>
+                              
+                                <td><?php echo $row["Role"]; ?></td>
+                              
+                            </form>
+                            </tr>
+                              <?php
+                              $i++;
                               }
                               ?>
                           </tbody>
@@ -704,11 +796,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
                       FROM user
                       INNER JOIN course_role ON course_role.User_ID = user.User_ID
-                      WHERE (course_role.Role = 'Student' or course_role.Role = 'TA') and (course_role.Course_ID = $Course_ID)
+                      WHERE (course_role.Role = 'Student') and (course_role.Course_ID = $Course_ID)
                       ORDER BY User.User_ID ASC");?>
 
                         <?php if ($role == "student"){?>
                          
+                        <p>Student In Course</p>
                         <table class="table table-bordered">
                           <thead>
                             <tr>                            
@@ -731,6 +824,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               <td><?php echo $row["Role"]; ?></td>
                             </tr>
                               <?php
+                              }
+                              ?>
+                          </tbody>
+                        </table>
+                        <?php 
+                        $showuserbyteacher = mysqli_query($connect,
+                      "SELECT user.Username , user.Firstname , user.Surname , course_role.Role , user.User_ID , course_role.Course_ID
+                      FROM user
+                      INNER JOIN course_role ON course_role.User_ID = user.User_ID
+                      WHERE (course_role.Role = 'TA' OR course_role.Role = 'Owner' OR course_role.Role = 'Teacher') and (course_role.Course_ID = $Course_ID)
+                      ORDER BY User.User_ID ASC");?>
+                      <p>Teacher AND TA In Course</p>
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>                            
+                              <th>Username</th>
+                              <th>Full Name</th>
+                              <th>Role</th>
+                            </tr>
+                          </thead>
+                          <tbody>    
+                            <?php
+                              $i=0;
+                              while($row = mysqli_fetch_array($showuserbyteacher)) { 
+                                $Suid = $row["User_ID"]; 
+                            ?>
+                            <form action="editpeople/edit_people_process.php"method = "POST" >
+                            <tr>                       
+                              <td><?php echo $row["Username"]; ?></td>
+                              <td><?php echo $row["Firstname"]." ".$row["Surname"]; ?></td>
+                              
+                                <td><?php echo $row["Role"]; ?></td>
+                              
+                            </form>
+                            </tr>
+                              <?php
+                              $i++;
                               }
                               ?>
                           </tbody>

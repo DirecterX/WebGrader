@@ -29,11 +29,10 @@
       }
 </style>
 
-<div>
+
         <?php
                 $uid = $_SESSION["User_ID"];
                 $course_status = 'Wait to open';
-
 
 
                 $show_class = "SELECT * 
@@ -70,7 +69,7 @@
                         $course_owener_show = $show_owner_result['Firstname']." ".$show_owner_result['Surname'];
                     }
 
-                    echo '<div class="col-sm-6 col-md-4 col-lg-3 mt-2 pt-3">';
+                    echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 mt-2 pt-3">';
                     $Course_Start_date = $show_course_result['Start_date'];
                     $Course_End_date = $show_course_result['End_date'];
                     $toDay = date('Y-m-d');
@@ -79,30 +78,34 @@
                     if($Course_Start_date <= $toDay and $Course_End_date >= $toDay){
                         $course_status = 'Open';
                         $card_Icon ='fas fa-user fa-6x';
+                        $text_Color = 'success';
                     
                     }elseif($Course_End_date <= $toDay ){
                         $course_status = "Close";
                         $card_Icon ='fas fa-times-circle fa-6x';
+                        $text_Color = 'danger';
                         
                     }else{
                         $card_Icon ='fas fa-history fa-6x';
                         $course_status = 'Wait to open';
+                        $text_Color = 'warning';
                        
                     }
       
             ?>
             
-                <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
-                <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'" class ="cardlink">'; ?><!-- Link Here -->
-        <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
-        <div class="card-body">
-            <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
-            <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>
-            <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?></p>
-            <p class="card-text">ภาษา : <?php echo "Python"?></p>
-            <p class="card-text">สถานะ : <label class="text-success"><?php echo $course_status ?></label></p>
-        </div>
-        </div>
+                <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'">'; ?><!-- Link Here -->
+                <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+                    <div class="card-body w-100">
+                        <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
+                        <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>
+                        <p class="card-text mb-2">ภาคเรียน / ปีการศึกษา : <?php echo $Course_Sem."/".$Course_Schoolyear ?></p>
+                        <p class="card-text">ภาษา : <?php echo "Python"?></p>
+                        <p class="card-text">สถานะ : <label class="text-<?php echo $text_Color; ?>"><?php echo $course_status ?></label></p>
+                    </div>
+                </div>
+                </a>
+            </div>
             <?php }?>
             <!-- /.col-sm-6 -->
 
