@@ -1,8 +1,45 @@
 <?php
     include('config.php');
+
     if(!isset($_SESSION['Username'])):
-     header("location:Login/Login.php");
-    endif
+    header("location:/WebGrader/Login/Login.php");
+    endif;
+    
+    $assignment_id = $_GET['Assignment_ID'];
+    $userid = $_SESSION['User_ID'];
+    
+    ############################# GET COURSE ID #########################
+    $select_course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
+    $select_course_id_query = mysqli_query($connect,$select_course_id_sql);
+    $select_course_id_rows = mysqli_fetch_array($select_course_id_query);
+
+    $course_id = $select_course_id_rows['Course_ID'];
+
+    ############################# GET ROLE ############################################
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$course_id'";
+    $select_role_query = mysqli_query($connect,$select_role_sql);
+    $select_role_rows = mysqli_fetch_array($select_role_query);
+
+    $role = $select_role_rows['Role'];
+
+    if($role != "Owner"){
+        header("Location: home.php");
+    }
+
+    ########################################### GET ASSIGNMENT DETAIL ##########################################
+    $select_assignment_sql = "SELECT Course_ID, Name, Score, Detail, End_date FROM assignment WHERE Assignment_ID ='$assignment_id'";
+    $select_assignment_query = mysqli_query($connect,$select_assignment_sql);
+    $select_assignment_rows = mysqli_fetch_array($select_assignment_query);
+
+    ########################################### GET NON HIDDEN TESTCASE ########################################
+    $testcase_sql = "SELECT * FROM testcase WHERE Assignment_ID ='$assignment_id' AND Is_hidden = 0 ORDER BY Number ASC";
+    $testcase_query = mysqli_query($connect,$testcase_sql);
+
+    ########################################### GET HIDDEN TESTCASE ########################################
+    $hiddencase_sql = "SELECT * FROM testcase WHERE Assignment_ID ='$assignment_id' AND Is_hidden = 1 ORDER BY Number ASC";
+    $hiddencase_query = mysqli_query($connect,$hiddencase_sql);
+
+    
 ?>
 <!DOCTYPE html>
 <!--
@@ -13,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WebGrader | แก้ไขงาน</title>
+  <title>Edit Assignment</title>
 
   <style>
       .container{
@@ -89,79 +126,143 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="card h-100">
                     <div class="card-body border border-dark">
-                    <form action="#"> <!-- Open Form Here -->
+                    <form action="pre_edit_assignment_query.php" method="post"  name="AssignmentForm" id="AssignmentForm" enctype="multipart/form-data"> <!-- Open Form Here -->
                         <div class="row">
                             
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="form-group">
                                
-                                    <label for="Assignment_Name">ชื่องาน</label>
-                                    <input type="text" class="form-control" id="Assignment_Name" placeholder="<?php echo "ชื่องาน" ?> " value="<?php echo "ชื่องาน" ?>">
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 20px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> "><?php echo "รายละเอียดงาน" ?></textarea>
+                                    <label for="Assignment_Name">ชื่องาน</label> <label class="text-danger"> *</label>
+                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100" value="<?=$select_assignment_rows['Name'];?>">
+                                    <label for="Assignment_Note" class="mt-2">คำอธิบายงาน</label><label class="text-danger">  *</label>
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 2px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"><?=$select_assignment_rows['Detail'];?></textarea>
                                 </div>
-
                                 
-
                             </div>
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                                <label for="Assignment_Point">คะแนน</label>
-                                                <input type="text" class="form-control" id="Assignment_Point" placeholder="<?php echo "กรอกคะแนน" ?> " value="<?php echo "1" ?>">
-                                                <label for="Assignment_DueDate">กำหนดส่ง</label>
-                                                <input type="date" class="form-control" id="Assignment_Point" value="<?php echo "2021-10-22" ?>"> <!-- Format Date = yyyy-mm-dd -->
+                                                <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
+                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10" value="<?=$select_assignment_rows['Score'];?>">
+                                                <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10" value="<?=$select_assignment_rows['End_date'];?>">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top:-15px;">
                                     <div class="col">
-                                        <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
-                                        <span id="file-chosen"><?php echo "File Name" ?></span> <!--- File Name -->
+                                        <label for="Assignment_File"  class="btn btn-dark"  style="margin-top:10px;">Add File</label>
+                                        <input type="file" id="Assignment_File" required accept=".py" name="Assignment_File" hidden>
+                                        <span id="file-chosen" class="ml-2">No file chosen</span><label class="text-danger"> *</label>
                                                
                                         
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button  onclick="document.location='Home.php'" type="button" id="submit" name="submit" class="btn btn-dark ">ยกเลิก</button>
-					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" value="บันทึก">           
+                                        <button  onclick="window.history.back()" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
+                                        <button  onclick="document.getElementById('submit').disabled = false" type="submit" id="check" name="check" class="btn btn-info">ตรวจสอบ</button>
+					                          
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!---------------------------------  PHP CODE Looping Check Number of TestCase Here ---------------------------------->
-                        <?php  
-                            for ($i = 1; $i <= 2; $i++) {                             
+                        <div class="row"><label class="badge bg-success" > </label><div class="col" style="background-color: gray;"><label class="badge bg-warning" >Result (OLD)</label>
+                        <?php
+                            while($testcase_rows = mysqli_fetch_array($testcase_query)){
                         ?>
+                        <!---------------------------------  Show assignment testcase output ---------------------------------->
                         <div class="row">
                             <div class="col">
-                                <div class="form-group" id="TestCase_Form">
-                                        <label class="badge bg-warning" for="Test<?php echo $i ; ?>_input">TestCase<?php echo $i ; ?></label>
+                                <div class="form-group">
+                                        <label class="badge bg-warning" >TestCase<?=$testcase_rows['Number'];?></label>
                                         
                                     <div class="row" id="Testcase1">
                                         <div class="col-md-6 col-sm-12 " style="font-family: Courier New;">    
-                                            <textarea  class="form-control" id="Testcase<?php echo $i; ?>_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?>"><?php echo "Input TestCase".$i; ?></textarea>
+                                            <textarea  class="form-control"  rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?>" disabled><?=$testcase_rows['Input'];?></textarea>
                                             <!--  ExampleID = Testcase1_Input -->
                                         </div>
                                         <div class="col-md-6 col-sm-12" style="font-family: Courier New;">    
-                                            <textarea  class="form-control" id="Testcase<?php echo $i ; ?>_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled ><?php echo "Output TestCase".$i; ?></textarea>
+                                            <textarea  class="form-control"  rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled ><?=$testcase_rows['Expected_Result'];?></textarea>
                                             <!--  ExampleID = Testcase1_Output -->
                                         </div>
                                     </div>
                                 </div>             
                             </div>
                         </div>
-                        <?php  
-                              }
+                        <?php
+                            }
                         ?>
-                        <!---------------------------------------------------------------------------------------------------------------------->
-                    
-                        
+                        <?php
+                            while($hiddencase_rows = mysqli_fetch_array($hiddencase_query)){
+                        ?>
+                        <!---------------------------------  Show assignment hiddencase output ---------------------------------->
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                        <label class="badge bg-light" >HiddenCase<?=$hiddencase_rows['Number'];?></label>
+                                        
+                                    <div class="row" id="Testcase1">
+                                        <div class="col-md-6 col-sm-12 " style="font-family: Courier New;">    
+                                            <textarea  class="form-control"  rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?>" disabled><?=$hiddencase_rows['Input'];?></textarea>
+                                            <!--  ExampleID = Testcase1_Input -->
+                                        </div>
+                                        <div class="col-md-6 col-sm-12" style="font-family: Courier New;">    
+                                            <textarea  class="form-control"  rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled ><?=$hiddencase_rows['Expected_Result'];?></textarea>
+                                            <!--  ExampleID = Testcase1_Output -->
+                                        </div>
+                                    </div>
+                                </div>             
+                            </div>
+                        </div>
+                        <?php
+                            }
+                        ?>
+                        </div></div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group" id="TestCase_Form">
+                                        <label class="badge bg-warning" for="Test1_input">TestCase 1</label>
+                                        
+                                        <div class="row" id="Testcase1" style="font-family: Courier New;">
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Testcase1_output" name="Testcase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                            </div>
+                                        </div>
+
+                                        <label class="badge bg-light" for="Hiddencase1_Input" style="margin-top:10px;">HiddenCase 1</label>
+                                        <div class="row" id="Hiddencase1" style="font-family: Courier New;">
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Hiddencase1_input" name="HiddenTest1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-lg-6">    
+                                                <textarea  class="form-control" required id="Hiddencase1_output" name="Hiddencase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                            </div>
+                                        </div>
+
+                                </div>             
+
+                            </div>
+
+                        </div>
+                        <!-- Add Button -->
+                        <div class="row">
+                            <div class="col">
+                                
+                                <div class="text-right">
+                                    <button onclick="CreateHidden()" type="button" id="AddTestCase" name="AddHiddenCase" class="btn btn-secondary" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">เพิ่ม Hidden Case</button>
+                                    <button onclick="CreateTastCase()" type="button" id="AddTestCase" name="AddTestCase" class="btn btn-warning" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">เพิ่ม Test Case</button>
+                                </div>
+                            </div>
+                            
+                        </div>
                     
 
 
@@ -175,7 +276,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.col -->
         </div>
-                            </form><!-- End Form Here -->
+            <input type="hidden" name="Assignment_ID" value="<?=$_GET['Assignment_ID'];?>">
+            <input type="hidden" name="Course_ID" value="<?=$select_assignment_rows['Course_ID']?>">
+            <input type="hidden" name="Is_edit" value="1">
+        </form><!-- End Form Here -->
         <!-- /.row -->  
       </div><!-- /.container-fluid -->
     </div>
@@ -185,28 +289,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Notification">การแจ้งเตือน</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center fs-6 m-3" >
-                <h1>บันทึกข้อมูลเสร็จสิ้น</h1>
-            </div>
-                <div class="modal-footer">
-                    <button  type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-<!-- REQUIRED SCRIPTS -->
-
+    
 
 
 <!-- jQuery -->
@@ -216,6 +300,210 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 
+<script>
+
+//------------------Lock Past Date Script-----------------------------------//
+$(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    //alert(maxDate);
+    $('#Assignment_End_date').attr('min', maxDate);
+});
+
+
+    var count = 2;
+    var count2 = 2;
+function CreateTastCase() {
+   
+    if(count <=5){
+        //Create Label 
+        var CreateLabel = document.createElement("label");
+        CreateLabel.setAttribute("for","Testcase"+ count +"_input");
+        CreateLabel.setAttribute("class","badge bg-warning");
+        CreateLabel.setAttribute("style","margin-top:10px;");
+        CreateLabel.innerHTML="TestCase "+count;
+        
+        // Create Row
+        var CreateRow = document.createElement("div");
+            CreateRow.setAttribute("class","row");
+            CreateRow.setAttribute("id","Testcase"+count);
+            CreateRow.setAttribute("style","font-family: Courier New");         
+        // Create Column
+        var CreateCol1 = document.createElement("div");
+            CreateCol1.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+        var CreateCol2 = document.createElement("div");
+            CreateCol2.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+        // Create TestCase Input    
+        var CreateTestInput = document.createElement("textarea");
+            CreateTestInput.setAttribute("class","form-control");
+            CreateTestInput.setAttribute("id","Testcase"+count+"_Input");
+            CreateTestInput.setAttribute("Name","Testcase"+count+"_Input");
+            CreateTestInput.setAttribute("rows","5");
+            CreateTestInput.setAttribute("placeholder","Input");
+            CreateTestInput.setAttribute("required","");
+            CreateTestInput.setAttribute("maxlength","270");
+
+            
+            
+        // Create TestCase Output    
+        var CreateTestOutput = document.createElement("textarea");
+            CreateTestOutput.setAttribute("class","form-control");
+            CreateTestOutput.setAttribute("id","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("Name","Testcase"+count+"_Output");
+            CreateTestOutput.setAttribute("rows","5");
+            CreateTestOutput.setAttribute("placeholder","Output");
+            CreateTestOutput.setAttribute("required","");
+            CreateTestOutput.setAttribute("maxlength","270");
+            CreateTestOutput.setAttribute("disabled","");
+
+
+        ++count;
+        // Append Column To Row
+        CreateRow.appendChild(CreateCol1);
+        CreateRow.appendChild(CreateCol2);
+        
+        // Append Textarea To Col
+        CreateCol1.appendChild(CreateTestInput);
+        CreateCol2.appendChild(CreateTestOutput);    
+      
+        document.getElementById("TestCase_Form").appendChild(CreateLabel);
+        document.getElementById("TestCase_Form").appendChild(CreateRow);
+        
+    }
+  
+
+  
+}
+
+function CreateHidden() {
+   
+   if(count2 <=5){
+       //Create Label 
+       var CreateLabel = document.createElement("label");
+       CreateLabel.setAttribute("for","HiddenTest"+ count2 +"_input");
+       CreateLabel.setAttribute("class","badge bg-light");
+       CreateLabel.setAttribute("style","margin-top:10px;");
+       CreateLabel.innerHTML="Hidden Test "+ count2;
+       
+       // Create Row
+       var CreateRow = document.createElement("div");
+           CreateRow.setAttribute("class","row");
+           CreateRow.setAttribute("id","HiddenTest"+count2);
+           CreateRow.setAttribute("style","font-family: Courier New"); 
+       // Create Column
+       var CreateCol1 = document.createElement("div");
+           CreateCol1.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+        var CreateCol2 = document.createElement("div");
+           CreateCol2.setAttribute("class","col-md-12 col-sm-12 col-lg-6");
+       // Create HiddenCase Input    
+       var CreateTestInput = document.createElement("textarea");
+           CreateTestInput.setAttribute("class","form-control");
+           CreateTestInput.setAttribute("id","HiddenTest"+count2+"_Input");
+           CreateTestInput.setAttribute("Name","HiddenTest"+count2+"_Input");
+           CreateTestInput.setAttribute("rows","5");
+           CreateTestInput.setAttribute("placeholder","Input");
+           CreateTestInput.setAttribute("required","");
+           CreateTestInput.setAttribute("maxlength","270");
+        // Create HiddenCase Output    
+       var CreateTestOutput = document.createElement("textarea");
+        CreateTestOutput.setAttribute("class","form-control");
+        CreateTestOutput.setAttribute("id","HiddenTest"+count2+"_Output");
+        CreateTestOutput.setAttribute("Name","HiddenTest"+count2+"_Output");
+        CreateTestOutput.setAttribute("rows","5");
+        CreateTestOutput.setAttribute("placeholder","Output");
+        CreateTestOutput.setAttribute("required","");
+        CreateTestOutput.setAttribute("disabled","");
+        CreateTestOutput.setAttribute("maxlength","270");
+
+
+       ++count2;
+       // Append Column To Row
+       CreateRow.appendChild(CreateCol1);
+       CreateRow.appendChild(CreateCol2);
+       
+       // Append Textarea To Col
+       CreateCol1.appendChild(CreateTestInput);
+       CreateCol2.appendChild(CreateTestOutput);
+     
+       document.getElementById("TestCase_Form").appendChild(CreateLabel);
+       document.getElementById("TestCase_Form").appendChild(CreateRow);
+       
+   }
+ 
+
+ 
+}
+
+//----------------------Prevent Submit Form Script---------------------------//
+var _validFileExtensions = [".py"];
+
+var formsubmit = document.getElementById("AssignmentForm");
+formsubmit.onsubmit  = function(event) { 
+    if(!Validate()){
+        alert("Sorry, Please Upload " + _validFileExtensions.join(", ") + " File");
+        event.preventDefault();
+    }else{
+        $("#exampleModal").modal('show');
+      // May add some delay here
+    }
+}
+
+var submit = document.getElementById('submit');
+submit.onclick = function() {
+    Validate();
+
+}
+
+function ShowMoadal1(){
+    
+}
+//---------------------Check Upload file is .py Script------------------------------//
+   
+function Validate() {
+    var arrInputs = document.getElementById("Assignment_File");
+        var oInput = arrInputs;
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                
+                if (!blnValid) {
+                    
+                    return false;
+                }
+            }else{
+                alert("Please Upload File.");
+                return false;
+                
+            }
+        }
+    
+    return true;
+}
+
+
+
+</script>
 <!-- Upload file button Script -->
 <script>
     const actualBtn = document.getElementById('Assignment_File');
@@ -223,8 +511,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     const fileChosen = document.getElementById('file-chosen');
 
     actualBtn.addEventListener('change', function(){
-    fileChosen.textContent = this.files[0].name
+    
+    const fileSize = this.files[0].size / 1024 / 1024;
+    if (fileSize > 10) {
+        
+        alert('File size exceeds 10 MiB');
+    }else{
+        fileChosen.textContent = this.files[0].name
+        document.getElementById('check').disabled = false;
+        document.getElementById('submit').disabled = true;       
+    }
+
     })
+
 </script>
 
 </body>

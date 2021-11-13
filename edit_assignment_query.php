@@ -1,7 +1,8 @@
 <?php
     include('config.php');
 
-    if(isset($_POST['Course_ID']) && isset($_POST['Assignment_Name']) && isset($_POST['Assignment_Score']) && isset($_POST['Assignment_Detail']) && isset($_POST['Assignment_End_date'])){
+    if( isset($_POST['Assignment_Name']) && isset($_POST['Assignment_Score']) && isset($_POST['Assignment_Detail']) && isset($_POST['Assignment_End_date'])){
+        $assignment_id = $_POST['Assignment_ID'];
         $course_id = $_POST['Course_ID'];
         $assignment_name = $_POST['Assignment_Name'];
         $assignment_score = $_POST['Assignment_Score'];
@@ -10,14 +11,15 @@
     }else{
         header("Location: home.php");
     }
+    ########################### DELETE OLD TESTCASE #######################
+    $delete_testcase_sql = "DELETE FROM testcase WHERE Assignment_ID ='$assignment_id'";
+    $delete_testcase_query = mysqli_query($connect,$delete_testcase_sql);
 
-    ############################################## INSERT ASSIGNMENT ##################################################
-    $insert_assignment = $connect->prepare("INSERT INTO assignment (Course_ID,Name,Score,Detail,End_date) VALUES(?,?,?,?,?)");
-    $insert_assignment->bind_param("isiss", $course_id, $assignment_name, $assignment_score, $assignment_detail, $assignment_end_date);
-    $insert_assignment->execute();
-    $insert_assignment->close();
+    ######################### DELETE OLD SUBMITION ###########################
+    $delete_submition_sql = "DELETE FROM submition WHERE Assignment_ID ='$assignment_id'";
+    $delete_submition_query = mysqli_query($connect,$delete_submition_sql);
 
-    $last_insert_id = $connect->insert_id;
+    $last_insert_id = $assignment_id;
 
     $testcase_count = 1;
     $not_hidden = 0;

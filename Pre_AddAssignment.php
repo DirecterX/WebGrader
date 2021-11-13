@@ -6,10 +6,35 @@
     endif;
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
-    $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' ");
-    //echo $checkcourserole["Role"];
-    $result = mysqli_fetch_assoc($checkcourserole);
-    $role = $result["Role"];
+    
+    ############################# GET COURSE ID #########################
+    $select_course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
+    $select_course_id_query = mysqli_query($connect,$select_course_id_sql);
+    $select_course_id_rows = mysqli_fetch_array($select_course_id_query);
+
+    $course_id = $select_course_id_rows['Course_ID'];
+
+    ############################# GET ROLE ############################################
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$course_id'";
+    $select_role_query = mysqli_query($connect,$select_role_sql);
+    $select_role_rows = mysqli_fetch_array($select_role_query);
+
+    $role = $select_role_rows['Role'];
+
+    if($role != "Owner"){
+        header("Location: home.php");
+    }
+
+    if(!isset($_SESSION['pre'])){
+        header("Location: home.php");
+    }else{
+        if($_SESSION['pre'] == False){
+            header("Location: home.php");
+        }
+    }
+    $testcase_count = 1;
+    $hiddencase_count = 1;
+
 ?>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -102,9 +127,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="form-group">
                                
                                     <label for="Assignment_Name">ชื่องาน</label> <label class="text-danger"> *</label>
-                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100">
+                                    <input type="text" class="form-control" id="Assignment_Name"  required placeholder="<?php echo "ชื่องาน" ?> " name="Assignment_Name" maxlength="100" value="<?=$_SESSION['Assignment_Name'];?>">
                                     <label for="Assignment_Note" class="mt-2">คำอธิบายงาน</label><label class="text-danger">  *</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 2px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"></textarea>
+                                    <textarea  class="form-control" id="Assignment_Note" rows="5" style="margin-top: 2px;"placeholder="<?php echo "อธิบายรายละเอียดของงาน" ?> " name="Assignment_Detail" required maxlength="1700"><?=$_SESSION['Assignment_Detail'];?></textarea>
                                 </div>
                                 
                             </div>
@@ -114,27 +139,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
-                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
+                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10" value="<?=$_SESSION['AssignmentScore'];?>">
                                                 <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
-                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10" value="<?=$_SESSION['Assignment_End_date'];?>">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top:-15px;">
-                                    <div class="col">
-                                        <label for="Assignment_File"  class="btn btn-dark"  style="margin-top:10px;">Add File</label>
-                                        <input type="file" id="Assignment_File" required accept=".py" name="Assignment_File" hidden>
-                                        <span id="file-chosen" class="ml-2">No file chosen</span><label class="text-danger"> *</label>
-                                               
-                                        
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <button  onclick="window.history.back()" type="button" id="cancel" name="cancel" class="btn btn-dark ">ยกเลิก</button>
-                                        <button  onclick="document.getElementById('submit').disabled = false" type="button" id="check" name="check" class="btn btn-info" disabled>ตรวจสอบ</button>
-					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก" disabled>           
+					                    <input type="submit" id="submit" name="submit" class="btn btn-warning" value="บันทึก">           
 
                                     </div>
                                 </div>
@@ -144,27 +162,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row">
                             <div class="col">
                                 <div class="form-group" id="TestCase_Form">
-                                        <label class="badge bg-warning" for="Test1_input">TestCase 1</label>
+                                    <?php
+                                        while($testcase_count <= $_SESSION['testcase_count']){
+                                    ?>
+                                        <label class="badge bg-warning" for="Test1_input">TestCase <?=$testcase_count;?></label>
                                         
                                         <div class="row" id="Testcase1" style="font-family: Courier New;">
                                             <div class="col-md-12 col-sm-12 col-lg-6">    
-                                                <textarea  class="form-control" required id="Testcase1_input" name="Testcase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                                <textarea  class="form-control" required id="Testcase<?=$testcase_count;?>_input" name="Testcase<?=$testcase_count;?>_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270" disabled><?=$_SESSION['testcase'.$testcase_count.'_input'];?></textarea>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-lg-6">    
-                                                <textarea  class="form-control" required id="Testcase1_output" name="Testcase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                                <textarea  class="form-control" required id="Testcase<?=$testcase_count;?>_output" name="Testcase<?=$testcase_count;?>_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled><?=$_SESSION['testcase'.$testcase_count];?></textarea>
                                             </div>
                                         </div>
-
+                                    <?php  
+                                        $testcase_count++;
+                                        } 
+                                    ?>
+                                    <?php
+                                        while($hiddencase_count <= $_SESSION['hiddencase_count']){
+                                    ?>
                                         <label class="badge bg-light" for="Hiddencase1_Input" style="margin-top:10px;">HiddenCase 1</label>
                                         <div class="row" id="Hiddencase1" style="font-family: Courier New;">
                                             <div class="col-md-12 col-sm-12 col-lg-6">    
-                                                <textarea  class="form-control" required id="Hiddencase1_input" name="Hiddencase1_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270"></textarea>
+                                                <textarea  class="form-control" required id="Hiddencase<?=$hiddencase_count;?>_input" name="Hiddencase<?=$hiddencase_count;?>_Input" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Input" ?> " maxlength="270" disabled><?=$_SESSION['hiddencase'.$hiddencase_count.'_input'];?></textarea>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-lg-6">    
-                                                <textarea  class="form-control" required id="Hiddencase1_output" name="Hiddencase1_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled></textarea>
+                                                <textarea  class="form-control" required id="Hiddencase<?=$hiddencase_count;?>_output" name="Hiddencase<?=$hiddencase_count;?>_Output" rows="5" style="margin-top: 5px;"placeholder="<?php echo "Output" ?> " maxlength="270" disabled><?=$_SESSION['hiddencase'.$hiddencase_count];?></textarea>
                                             </div>
                                         </div>
-
+                                    <?php
+                                        $hiddencase_count++;
+                                        }
+                                    ?>
                                 </div>             
 
                             </div>
@@ -174,10 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row">
                             <div class="col">
                                 
-                                <div class="text-right">
-                                    <button onclick="CreateHidden()" type="button" id="AddTestCase" name="AddHiddenCase" class="btn btn-secondary" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">เพิ่ม Hidden Case</button>
-                                    <button onclick="CreateTastCase()" type="button" id="AddTestCase" name="AddTestCase" class="btn btn-warning" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">เพิ่ม Test Case</button>
-                                </div>
+
                             </div>
                             
                         </div>
@@ -406,59 +433,8 @@ submit.onclick = function() {
 function ShowMoadal1(){
     
 }
-//---------------------Check Upload file is .py Script------------------------------//
-   
-function Validate() {
-    var arrInputs = document.getElementById("Assignment_File");
-        var oInput = arrInputs;
-        if (oInput.type == "file") {
-            var sFileName = oInput.value;
-            if (sFileName.length > 0) {
-                var blnValid = false;
-                for (var j = 0; j < _validFileExtensions.length; j++) {
-                    var sCurExtension = _validFileExtensions[j];
-                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                        blnValid = true;
-                        break;
-                    }
-                }
-                
-                if (!blnValid) {
-                    
-                    return false;
-                }
-            }else{
-                alert("Please Upload File.");
-                return false;
-                
-            }
-        }
-    
-    return true;
-}
 
 
-
-</script>
-<!-- Upload file button Script -->
-<script>
-    const actualBtn = document.getElementById('Assignment_File');
-
-    const fileChosen = document.getElementById('file-chosen');
-
-    actualBtn.addEventListener('change', function(){
-    
-    const fileSize = this.files[0].size / 1024 / 1024;
-    if (fileSize > 10) {
-        
-        alert('File size exceeds 10 MiB');
-    }else{
-        fileChosen.textContent = this.files[0].name
-        document.getElementById('check').disabled = false;
-        document.getElementById('submit').disabled = true;       
-    }
-
-    })
 
 </script>
 

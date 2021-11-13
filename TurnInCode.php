@@ -1,7 +1,12 @@
 <?php
     include('config.php');
+
+    
+
     $testcase_count = 1;
     $testcase_count2 = 1;
+    $hiddencase_count = 1;
+    $hiddencase_showcount = 1;
 
     $course_id = 1;
     $user_id = $_SESSION['User_ID'];
@@ -26,26 +31,44 @@
     $assignment_select_query = mysqli_query($connect,$assignment_select);
     $assignment_rows = mysqli_fetch_array($assignment_select_query);
 
-    ############################# GET testcase of that assignment ################################
+    ############################# GET testcase of assignment ################################
     $testcase_select = "SELECT testcase.Testcase_ID , testcase.Expected_Result , testcase.Input 
                         FROM testcase
                         INNER JOIN assignment
                         ON assignment.Assignment_ID = testcase.Assignment_ID
-                        WHERE assignment.Assignment_ID = '$assignment_id'  #<<<<<<<<<<<<<<< Dynamic Variable fix ใส่ไปอยู่เปลี่ยนไปใช้ตัวแปร
+                        WHERE assignment.Assignment_ID = '$assignment_id' AND testcase.Is_hidden = 0 
                         ORDER BY testcase.Number ASC";
-    $testcase_select_query = mysqli_query($connect,$testcase_select);        
+    $testcase_select_query = mysqli_query($connect,$testcase_select);
     
-    ############################# GET testcase of that assignment to attach to form ################################
+    ############################# GET hidden testcase of assignment ################################
+    $hiddencase_select = "SELECT testcase.Testcase_ID , testcase.Expected_Result , testcase.Input 
+                        FROM testcase
+                        INNER JOIN assignment
+                        ON assignment.Assignment_ID = testcase.Assignment_ID
+                        WHERE assignment.Assignment_ID = '$assignment_id' AND testcase.Is_hidden = 1 
+                        ORDER BY testcase.Number ASC";
+    $hiddencase_select_query = mysqli_query($connect,$hiddencase_select); 
+    
+    ############################# GET non-hidden testcase of that assignment to attach to form ################################
     $testcase_select2 = "SELECT testcase.Testcase_ID , testcase.Expected_Result , testcase.Input 
                         FROM testcase
                         INNER JOIN assignment
                         ON assignment.Assignment_ID = testcase.Assignment_ID
-                        WHERE assignment.Assignment_ID = '$assignment_id'  #<<<<<<<<<<<<<<< Dynamic Variable fix ใส่ไปอยู่เปลี่ยนไปใช้ตัวแปร
+                        WHERE assignment.Assignment_ID = '$assignment_id' AND testcase.Is_hidden = 0
                         ORDER BY testcase.Number ASC";
     $testcase_select_query2 = mysqli_query($connect,$testcase_select2);  
 
+    ############################# GET hidden testcase of that assignment to attach to form ################################
+    $testcase_select3 = "SELECT testcase.Testcase_ID , testcase.Expected_Result , testcase.Input 
+                        FROM testcase
+                        INNER JOIN assignment
+                        ON assignment.Assignment_ID = testcase.Assignment_ID
+                        WHERE assignment.Assignment_ID = '$assignment_id' AND testcase.Is_hidden = 1
+                        ORDER BY testcase.Number ASC";
+    $testcase_select_query3 = mysqli_query($connect,$testcase_select3);  
+
     ######################### get output that user execute #####################################
-    $select_exec_sql = "SELECT Actual_result FROM exec_output WHERE Submit_ID ='$submit_id' AND User_ID ='$user_id' ORDER BY Testcase_ID ASC";
+    $select_exec_sql = "SELECT Actual_result , Is_correct FROM exec_output WHERE Submit_ID ='$submit_id' AND User_ID ='$user_id' ORDER BY Testcase_ID ASC";
     $select_exec_query = mysqli_query($connect,$select_exec_sql); 
 ?>
 <!DOCTYPE html>
@@ -90,6 +113,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         margin-top: 1rem;
         }
 
+       
+
   </style>
 
   
@@ -124,7 +149,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
             <div class="col mt-2" >
                 
-                <h1 class="badge bg-warning"> Assignment Name : <?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
+                <h1 class="badge bg-warning"><?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
                 <hr style="border: 2px solid #FECA65">
 
           </div><!-- /.col -->         
@@ -144,20 +169,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
                         <div class="row">
                             <div class="col-6">
-                                <h2 class="badge bg-warning" style="font-size:120%;"> ชื่องาน : <?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
+                                <h2 class="badge bg-warning" style="font-size:120%;"><?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
                             </div>
                             <div class="col-6 text-right">
-                                <label style="font-size:120%;"><i class="fa fa-check"></i></label>                        <!-- red -->                                                       <!-- green -->             <!-- red -->
+                                <label style="font-size:120%;"><i class="fa fa-check"></i></label>
                                 <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FF2020";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
                                 <label style="font-size:120%;">Point <?php if(mysqli_num_rows($select_score_query) == 0){echo "0";}else{echo $select_score_rows['Score_Gain'];}?> / <?=$assignment_rows['Score']?></label> <!-- Assignment Score -->
-                                                                            <!--student score-->                           <!--assignment score cap-->
+                                
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="form-group">
 
-                                <textarea  class="form-control h-100" id="Assignment_Note" disabled="true" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
+                                <textarea  class="form-control h-100" id="Assignment_Note" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
 
                                 </div>
                             </div> 
@@ -166,8 +191,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="Comment_Teacher">Comment form Teacher</label>
                                     <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
                                     <label for="Comment">Comment</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
-                                    <button type="button" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;">Send Comment</button>  
+                                    <form action="#">
+                                        <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
+                                        <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                    </form>
                                 </div>                    
                             </div> 
                         </div>
@@ -181,12 +208,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input type="file" id="Assignment_File" name="fileToUpload" hidden>
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
+                                        <!--------- Non-hidden TESTCASE ID Loop --------------->
                                         <?php  
                                             while($testcase_select_rows2 = mysqli_fetch_array($testcase_select_query2)){
                                         ?>
                                             <input type="hidden" name="Testcase<?=$testcase_count2;?>_ID" value="<?=$testcase_select_rows2['Testcase_ID']?>">
                                         <?php  
                                             $testcase_count2++;
+                                            }
+                                        ?>
+                                        <!--------- Hidden TESTCASE ID Loop --------------->
+                                        <?php  
+                                            while($testcase_select_rows3 = mysqli_fetch_array($testcase_select_query3)){
+                                        ?>
+                                            <input type="hidden" name="Hiddencase<?=$hiddencase_count;?>_ID" value="<?=$testcase_select_rows3['Testcase_ID']?>">
+                                        <?php  
+                                            $hiddencase_count++;
                                             }
                                         ?>
                                             <input type="hidden" name="Score" value="<?=$assignment_rows['Score']?>">
@@ -221,12 +258,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-6 text-right">
                                 
                                 <label style="font-size:120%; color:#FF2020" >ส่งครั้งที่ <?=$select_score_rows['Attempt_count']; ?></label>  <!-- Assignment ์number attemp -->
-                                
+                             
                                 
                             </div>
                         </div>
 
-                        <div class="row" style="margin-bottom:30px;" > <!-- Text Area for Code ? -->
+                        <div class="row" style="margin-bottom:30px;"> <!-- Text Area for Code ? -->
                             <div class="col">
                                 <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;" rows="8" disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
                                 <hr style="border: 2px solid #FECA65">
@@ -242,20 +279,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                                        
                         ?>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case ที่ <?php echo $testcase_count; ?></label>
-                        <br>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Input : <?php echo $testcase_select_rows['Input'] ?></label> 
+                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case <?php echo $testcase_count; ?>  </label> <?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?>
+                        
                         <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                     
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
+                              
+                                    <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
                                 </div>
                             </div> 
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" placeholder="Output from student" disabled="true"><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{echo $select_exec_rows['Actual_result'];}?></textarea> 
+                                    <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" placeholder="Output from student" disabled="true"><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{echo $select_exec_rows['Actual_result'];}?></textarea> 
                                     <!-- ID Example = Testcase1_Output -->
                                 </div>                    
                             </div> 
@@ -265,8 +301,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             $testcase_count++;
                               }
                         ?>
-                       
-                            
+
+
+                        <?php  
+                            while($hiddencase_select_rows = mysqli_fetch_array($hiddencase_select_query)){
+                                if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){
+                                }else{
+                                    $select_exec_rows = mysqli_fetch_array($select_exec_query);
+                                }
+                        ?>
+
+                        <p class="bg-warning rounded-pill rounded-5"><label class="m-2"  for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Hidden Case <?php echo $hiddencase_showcount; ?>  </label><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?></p>
+                        
+                        
+                        <!------------------------------------ PHP Code Looping End ---------------------------------------->
+                        <?php  
+                            $hiddencase_showcount++;
+                            $testcase_count++;
+                              }
+                        ?>
+
+
                         
                     </div> 
                 </div>
