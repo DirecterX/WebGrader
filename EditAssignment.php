@@ -144,12 +144,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <label class="badge bg-warning" for="Test<?php echo $i ; ?>_input">TestCase<?php echo $i ; ?></label>
                                         
                                     <div class="row" id="Testcase1">
-                                        <div class="col-md-6 col-sm-12">    
+                                        <div class="col-md-6 col-sm-12 " style="font-family: Courier New;">    
                                             <textarea  class="form-control" id="Testcase<?php echo $i; ?>_Input" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Input" ?>"><?php echo "Input TestCase".$i; ?></textarea>
                                             <!--  ExampleID = Testcase1_Input -->
                                         </div>
-                                        <div class="col-md-6 col-sm-12">    
-                                            <textarea  class="form-control" id="Testcase<?php echo $i ; ?>_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled><?php echo "Output TestCase".$i; ?></textarea>
+                                        <div class="col-md-6 col-sm-12" style="font-family: Courier New;">    
+                                            <textarea  class="form-control" id="Testcase<?php echo $i ; ?>_Output" rows="5" style="margin-top: 20px;"placeholder="<?php echo "Output" ?>" disabled ><?php echo "Output TestCase".$i; ?></textarea>
                                             <!--  ExampleID = Testcase1_Output -->
                                         </div>
                                     </div>
