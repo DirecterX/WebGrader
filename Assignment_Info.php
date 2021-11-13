@@ -21,6 +21,25 @@
         $select_score_rows = mysqli_fetch_array($select_score_query);
     }
     $submit_id = $select_score_rows['Submit_ID'];
+
+    ############################# GET COURSE ID #########################
+    $select_course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
+    $select_course_id_query = mysqli_query($connect,$select_course_id_sql);
+    $select_course_id_rows = mysqli_fetch_array($select_course_id_query);
+
+    $course_id = $select_course_id_rows['Course_ID'];
+
+    ############################# GET ROLE ############################################
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$user_id' AND Course_ID ='$course_id'";
+    $select_role_query = mysqli_query($connect,$select_role_sql);
+    $select_role_rows = mysqli_fetch_array($select_role_query);
+
+    $role = $select_role_rows['Role'];
+
+    if($role != "Owner"){
+        //header("Location: home.php");
+    }
+
     ####################### GET ASSIGNMENT INFORMATION BY Assignment_ID ################################
     $assignment_select = "SELECT * FROM assignment WHERE Assignment_ID ='$assignment_id'";
     $assignment_select_query = mysqli_query($connect,$assignment_select);
@@ -164,9 +183,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
-                                    <form action="filter2.php" method="post" enctype="multipart/form-data">
+
                                         <!-- ยังไม่ได้ทำ -->
-                                        <input type="submit" id="submit" name="submit" class="btn btn-primary" value="แก้ไข"></input>
+                                        <a href="EditAssignment.php?Assignment_ID=<?=$assignment_id;?>"><input type="submit" class="btn btn-primary" value="แก้ไข"></input></a>
                                         <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $assignment_id;?> ">ลบ</a></td>
                                         <?php  
                                             while($testcase_select_rows2 = mysqli_fetch_array($testcase_select_query2)){
@@ -179,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <input type="hidden" name="Score" value="<?=$assignment_rows['Score']?>">
                                             <input type="hidden" name="Assignment_ID" value="<?=$assignment_id?>">
                                             <input type="hidden" name="User_ID" value="<?=$user_id?>">
-                                    </form>
+
                                 <!--
                                     <button type="file" id="submit" name="submit" class="btn btn-dark" style="margin-right:10px;">Add File</button>
                                     <button type="button" id="submit" name="submit" class="btn btn-primary" >Submit</button>           
@@ -217,18 +236,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     
-                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$testcase_select_rows['Input'] ?>"><?=$testcase_select_rows['Input'] ?></textarea> 
-                                    <!-- ID Example = Testcase1_Output -->
-                                </div>                    
-                            </div> 
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    
                                     <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
                                 </div>
                             </div> 
-                           
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    
+                                    <textarea  class="form-control h-100" id="Testcase<?php echo $testcase_count; ?>_Output" rows="7" value="<?=$testcase_select_rows['Input'] ?>"><?=$testcase_select_rows['Input'] ?></textarea> 
+                                    <!-- ID Example = Testcase1_Output -->
+                                </div>                    
+                            </div> 
                         </div>
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
                         <?php  
