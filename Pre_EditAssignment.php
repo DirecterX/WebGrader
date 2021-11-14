@@ -7,6 +7,8 @@
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
     
+    $assignment_id = $_GET['Assignment_ID'];
+
     ############################# GET COURSE ID #########################
     $select_course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
     $select_course_id_query = mysqli_query($connect,$select_course_id_sql);
@@ -28,9 +30,7 @@
     if(!isset($_SESSION['pre_edit'])){
         header("Location: home.php");
     }else{
-        if($_SESSION['pre'] == False){
-            //header("Location: home.php");
-        }
+
     }
     $testcase_count = 1;
     $hiddencase_count = 1;
