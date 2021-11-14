@@ -186,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                           <!--------------------- Card Assignment --------------------------------------->
                           <div class="card bg-light"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                            <a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="text-dark">
+                            <a href="EditAssignment.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="text-dark">
                             <div class="card-body">
                                  <!-- link -->
                                 <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $row["Name"]; ?></b></h5> 
@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <i class="fa fa-ellipsis-h"></i>
                                           </a>
                                           <div class="dropdown-menu dropdown-menu-right">                                               
-                                            <a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="dropdown-item" > <!--------------------- Add link here--------------------- -->
+                                            <a href="EditAssignment.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="dropdown-item" > <!--------------------- Add link here--------------------- -->
                                               <i class="fa fa-edit"></i>Edit
                                             </a>                                        
 
