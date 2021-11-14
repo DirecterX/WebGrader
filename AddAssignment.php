@@ -131,7 +131,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
                                                 <input type="number" class="form-control" max="100" min="0" id="Assignment_Point" pattern="^[-/d]/d*$" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
                                                 <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
-                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10" max="<?php echo $end_date?>">
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required onkeydown="return false" name="Assignment_End_date" required maxlength="10" max="<?php echo $end_date?>">
 
                                         </div>
                                     </div>
