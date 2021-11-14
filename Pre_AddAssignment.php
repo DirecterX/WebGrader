@@ -6,31 +6,20 @@
     endif;
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
-    
-    ############################# GET COURSE ID #########################
-    $select_course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
-    $select_course_id_query = mysqli_query($connect,$select_course_id_sql);
-    $select_course_id_rows = mysqli_fetch_array($select_course_id_query);
-
-    $course_id = $select_course_id_rows['Course_ID'];
 
     ############################# GET ROLE ############################################
-    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$course_id'";
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
     $select_role_query = mysqli_query($connect,$select_role_sql);
     $select_role_rows = mysqli_fetch_array($select_role_query);
 
     $role = $select_role_rows['Role'];
-
+    
     if($role != "Owner"){
         header("Location: home.php");
     }
 
     if(!isset($_SESSION['pre'])){
         header("Location: home.php");
-    }else{
-        if($_SESSION['pre'] == False){
-            header("Location: home.php");
-        }
     }
     $testcase_count = 1;
     $hiddencase_count = 1;
