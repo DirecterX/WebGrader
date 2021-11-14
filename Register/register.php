@@ -1,6 +1,4 @@
 <?php include('regis_process.php');
-$Regisid = rand();
-$_SESSION['Regis_ID'] = $Regisid
 ?>
 <!DOCTYPE html>
 <title>Register Grader</title>
