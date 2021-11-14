@@ -11,12 +11,23 @@
     $user_id = $_SESSION['User_ID'];
     $assignment_id = $_GET['Assignment_ID'];
 
-    ################################ GET COURSE ID #############################
+    ################################ GET COURSE ID #############################s
     $course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
     $course_id_query = mysqli_query($connect,$course_id_sql);
     $course_id_rows = mysqli_fetch_array($course_id_query);
 
     $course_id = $course_id_rows['Course_ID'];
+/*
+    ############################# GET ROLE ############################################
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
+    $select_role_query = mysqli_query($connect,$select_role_sql);
+    $select_role_rows = mysqli_fetch_array($select_role_query);
+
+    $role = $select_role_rows['Role'];
+
+    if($role != "student"){
+        header("Location: home.php");
+    }*/
 
     ####################### select score to check if exist or not #######################################
     $select_score_sql = "SELECT Submit_ID , Score_Gain , Student_Comment , Instructor_Comment , Turn_in_Code , Turn_in_Status , Attempt_count FROM submition WHERE Assignment_ID ='$assignment_id' AND User_ID ='$user_id'";
@@ -209,9 +220,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
-                                    <form action="test.php" method="post" enctype="multipart/form-data">
+                                    <form action="filter2.php" method="post" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
-                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden required accept=".py">
+                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->
