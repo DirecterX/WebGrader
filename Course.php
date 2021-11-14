@@ -383,10 +383,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!------------------------------------------------ Tab Assignment submition ---------------------------------------------->
                     <div class="tab-pane" id="TabAssignment">    
                         <?php
+                        $waiting_for_inspect = "waiting for inspect";
                         $assignment_Sumit = "SELECT * 
                         FROM submition
                         INNER JOIN assignment ON assignment.Assignment_ID = submition.Assignment_ID 
-                        WHERE submition.Course_ID = $Course_ID";
+                        WHERE submition.Course_ID = $Course_ID AND submition.Turn_in_Status ='$waiting_for_inspect'";
                         $assignment_Sumitq = mysqli_query($connect,$assignment_Sumit);
                         while ($row = mysqli_fetch_array($assignment_Sumitq)) {
                           
@@ -394,7 +395,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <div class="col-12">
                           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                               <div class="card-body">
-                                <a href="SubmitedAssignment.php" class="text-dark"> <!-- link -->
+                                <a href="SubmitedAssignment.php?Assignment_ID=<?=$row['Assignment_ID'];?>&Submit_ID=<?=$row['Submit_ID'];?>" class="text-dark"> <!-- link -->
                                 <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment : <?php echo $row['Name']; ?></b></h5> 
                                   <label class=" float-right font-weight-light" style="margin-left:5px;">
                                      Point <?php echo $row['Score_Gain']; ?> / <?php echo "1" ?> <!-- Score -->                                      
