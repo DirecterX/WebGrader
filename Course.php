@@ -196,10 +196,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <i class="fa fa-ellipsis-h"></i>
                                           </a>
                                           <div class="dropdown-menu dropdown-menu-right">                                               
-                                            <a href="#" class="dropdown-item" > <!--------------------- Add link here--------------------- -->
-                                              <i class="fa fa-edit"></i> Edit             
+                                            <a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="dropdown-item" > <!--------------------- Add link here--------------------- -->
+                                              <i class="fa fa-edit"></i>Edit
                                             </a>                                        
-                                            <a href="#" class="dropdown-item" onclick="return confirm('Are you sure to Delete tihs Assignment?')"> <!-- Delete Assignment -->
+
+                                            <a href="Assignment_Delete.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>&Course_ID=<?php echo $Course_ID ?>" class="dropdown-item" onclick="return confirm('Are you sure to Delete tihs Assignment?')"> <!-- Delete Assignment -->
                                               <i class="fa fa-trash"></i> Delete             
                                             </a>
                                             </div>
