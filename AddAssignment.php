@@ -9,6 +9,11 @@
     $Course_ID = $_GET['Course_ID'];
     $userid = $_SESSION['User_ID'];
     
+    ############################# GET COUSRE END DATE #################################
+    $select_course_sql = "SELECT End_date FROM course WHERE Course_ID ='$Course_ID'";
+    $select_course_query = mysqli_query($connect,$select_course_sql);
+    $select_course_rows = mysqli_fetch_array($select_course_query);
+    $end_date = $select_course_rows['End_date'];
 
     ############################# GET ROLE ############################################
     $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
@@ -124,9 +129,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col">
                                         <div class="form-group">
                                                 <label for="Assignment_Point">คะแนน</label><label class="text-danger">  *</label>
-                                                <input type="number" class="form-control" id="Assignment_Point" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
+                                                <input type="number" class="form-control" max="100" min="0" id="Assignment_Point" pattern="^[-/d]/d*$" required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_Score" required maxlength="10">
                                                 <label for="Assignment_DueDate" class="mt-2">กำหนดส่ง</label><label class="text-danger">  *</label>
-                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10">
+                                                <input type="date" class="form-control" id="Assignment_End_date"  required placeholder="<?php echo "กรอกคะแนน" ?> " name="Assignment_End_date" required maxlength="10" max="<?php echo $end_date?>">
 
                                         </div>
                                     </div>
