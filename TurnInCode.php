@@ -211,7 +211,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
                                     <form action="test.php" method="post" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
-                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
+                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden required accept=".py">
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->

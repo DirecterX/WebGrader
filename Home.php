@@ -63,14 +63,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
           <div class="col-6 mt-3" >
           <h4 class="p-2 fw-med text-center" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องทำ</h4>
-
           <div class="to-do-list  m-3 p-2 pl-3" style="background-color: #D8D7E5; border-radius: 5px;">
-          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">1.<?php echo" Assigment 1"?> <label class="text-success ml-2"> <?php echo "( Passed )" ?>  </p>  
-        </a>
-          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">2.<?php echo" Assigment 2"?> <label class="text-danger ml-2"> <?php echo "( Failed )" ?></label></p></a>
-          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">3.<?php echo" Assigment 3"?> <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
-          <a href="###" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;">4.<?php echo" Assigment 4"?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
-          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
+          <?php 
+          $sqlshowworktodo = "SELECT * FROM submition
+          WHERE User_ID = ".$_SESSION["User_ID"]."
+          ";
+          $coun = 0;
+          $sqlshowworktodo_q = mysqli_query($connect,$sqlshowworktodo);
+                while($row = mysqli_fetch_array($sqlshowworktodo_q)){
+                  if ($row["Turn_in_Status"] == "not turn in" AND $row["Turn_in_Status"] == "passed" ) {
+                    // code...ไม่แสดง
+                  }else if ($row["Turn_in_Status"] == "waiting for turn in") {
+                    $coun++;
+                    $ShownameAssigment = "SELECT Name FROM assignment
+                    WHERE Assignment_ID =".$row["Assignment_ID"]."";
+                    $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
+                    $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
+                    ?>
+                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
+                    <?php 
+                  }else if($row["Turn_in_Status"] == "waitingfor inspect"){
+                    $coun++;
+                    $ShownameAssigment = "SELECT Name FROM assignment
+                    WHERE Assignment_ID =".$row["Assignment_ID"]."";
+                    $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
+                    $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
+                    ?>
+                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+                    <?php 
+                  }
+                }
+          ?>
+          <a href="Assignment.php"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
         </div>
           
           </div><!-- /.col -->       
