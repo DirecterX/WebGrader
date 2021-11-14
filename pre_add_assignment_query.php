@@ -82,7 +82,6 @@
     ################ count for loop in pre add assignment page ########################
     $_SESSION['testcase_count'] = $testcase_count;  
     $_SESSION['hiddencase_count'] = $hiddencase_count;
-    echo $_SESSION['hiddencase_count'];
 
     $target_dir = "temp_file/";
     $filename_id = $_SESSION['User_ID'];
@@ -220,9 +219,10 @@
       $hid++;
       $while_count++;
     }
-    $_SESSION['pre'] = True;
+    $_SESSION['pre'] = 1;
 
+    echo $_SESSION['pre'];
 
     unlink("temp_file/".$file."");
-    header("location:/WebGrader/Pre_EditAssignment.php?Course_ID=".$course_id."");
+    header("location:/WebGrader/Pre_AddAssignment.php?Course_ID=".$course_id."");
 ?>

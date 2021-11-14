@@ -15,17 +15,13 @@
     $select_role_rows = mysqli_fetch_array($select_role_query);
 
     $role = $select_role_rows['Role'];
-
+    
     if($role != "Owner"){
         header("Location: home.php");
     }
 
     if(!isset($_SESSION['pre'])){
         header("Location: home.php");
-    }else{
-        if($_SESSION['pre'] == False){
-            header("Location: home.php");
-        }
     }
     $testcase_count = 1;
     $hiddencase_count = 1;

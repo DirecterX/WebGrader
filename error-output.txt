@@ -284,6 +284,7 @@ Traceback (most recent call last):
   File "S:\xampp\htdocs\WebGrader\temp_file\election.py", line 3, in <module>
     number = int(input("Enter a number of voter(s) : "))
 EOFError: EOF when reading a line
+<<<<<<< HEAD
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
@@ -317,3 +318,15 @@ Python was not found; run without arguments to install from the Microsoft Store,
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
 Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
+=======
+C:\Users\peech\AppData\Local\Programs\Python\Python39\python.exe: can't find '__main__' module in 'S:\\xampp\\htdocs\\WebGrader\\temp_file\\'
+C:\Users\peech\AppData\Local\Programs\Python\Python39\python.exe: can't find '__main__' module in 'S:\\xampp\\htdocs\\WebGrader\\temp_file\\'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 10, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 10, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line
+>>>>>>> e9ea14d4bf21ac36b1fcdccc486422a0b2aa35c5
