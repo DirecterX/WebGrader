@@ -194,7 +194,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   ?>
 
-                  <a href="###" class="text-dark">
+                  <a href="SubmitedAssignment.php" class="text-dark"> <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Link Here --------------------->
                             <div class="card-body">
                                  <!-- link -->
                                 <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $counq ?>.<?php echo $showuserandasss["Name"] ?> ส่งโดย : <?php echo $showuser["Firstname"]; echo " ".$showuser["Surname"]  ?> </b></h5> 

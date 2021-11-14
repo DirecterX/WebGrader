@@ -394,7 +394,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <div class="col-12">
                           <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                               <div class="card-body">
-                                <a href="TurnInCode.php" class="text-dark"> <!-- link -->
+                                <a href="SubmitedAssignment.php" class="text-dark"> <!-- link -->
                                 <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment : <?php echo $row['Name']; ?></b></h5> 
                                   <label class=" float-right font-weight-light" style="margin-left:5px;">
                                      Point <?php echo $row['Score_Gain']; ?> / <?php echo "1" ?> <!-- Score -->                                      
@@ -425,7 +425,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col" style="text-align:right;">
                                           <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
                                           <a href="#" id="Approve_btn" name="Approve_btn" class="btn btn-info w-15">Grade-Feedback</a>
-                                          <a href="#" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
+                                          <a href="SubmitedAssignment.php" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
                                         </div>
                                     </div>               
                                 </p>
