@@ -482,8 +482,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   <?php
                                    
                                     ?>
-                                  <td class="tg-0lax"><a href="Assignment_Info.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
-                                  <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $row["Assignment_ID"];?> ">ลบ</a></td>
+                                  <td class="tg-0lax"><a href="EditAssignment.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>">ดูข้อมูล</a></td>
+                                  <td class="tg-0lax"><a href="Assignment_Delete.php?Assignment_ID=<?php echo $row["Assignment_ID"];?> " onclick="return confirm('Are you sure to delete tihs Assignment?')">ลบ</a></td>
                                 </tr>
                                   <?php
                                   }
