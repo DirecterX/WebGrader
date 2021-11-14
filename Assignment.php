@@ -83,14 +83,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               
               <div class="card"  style="background-color: #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                  <a href="###" class="text-dark">
-                   <div class="card-body">
-                                    <!-- link -->
-                    <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3">test</b></h5> 
 
-                                  <!-------- Assignment Content -->
-                        <p class="card-text" style="width: 200px;">
-                        <div class="row">
+              <?php 
+              $sqlshowworktodo = "SELECT * FROM submition
+              WHERE User_ID = ".$_SESSION["User_ID"]."
+              ";
+              $coun = 0;
+              $sqlshowworktodo_q = mysqli_query($connect,$sqlshowworktodo);
+                    while($row = mysqli_fetch_array($sqlshowworktodo_q)){
+                      if ($row["Turn_in_Status"] == "not turn in" AND $row["Turn_in_Status"] == "passed" ) {
+                        // code...ไม่แสดง
+                      }else if ($row["Turn_in_Status"] == "waiting for turn in") {
+                        $coun++;
+                        $ShownameAssigment = "SELECT * FROM assignment
+                        WHERE Assignment_ID =".$row["Assignment_ID"]."";
+                        $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
+                        $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
+
+                        $showcourseass = "SELECT * FROM course
+                        WHERE Course_ID = ".$ShownameAssigment_result["Course_ID"]."";
+                        $showcourseass_q = mysqli_query($connect,$showcourseass);
+                        $showcourseass_result = mysqli_fetch_array($showcourseass_q);
+                        ?>
+
+
+                            <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" class="text-dark">
+                                 <div class="card-body">
+                                                  <!-- link -->
+                                  <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $coun; ?>. <?php echo $showcourseass_result["Name"] ?>  <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></b></h5> 
+
+                                                <!-------- Assignment Content -->
+                                      <p class="card-text" style="width: 200px;">
+                                      <div class="row">
                                         <div class="col" style="text-align:center;">
                                         <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
                 
@@ -103,6 +127,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   
                               </div>
                               </a>
+
+                        <?php 
+                      }else if($row["Turn_in_Status"] == "waitingfor inspect"){
+                        $coun++;
+                        $ShownameAssigment = "SELECT Name FROM assignment
+                        WHERE Assignment_ID =".$row["Assignment_ID"]."";
+                        $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
+                        $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
+                        ?>
+                        <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+                        <?php 
+                      }
+                    }
+              ?>
+
+                  
             </div> 
 
    
@@ -119,23 +159,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
                <div class="row mb-2">
              <div class="col mt-2"  >
-               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 15rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานตรวจในห้องเรียน</h4>
+               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 15rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานตรวจของห้องเรียน</h4>
              </div><!-- /.col -->         
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
-      
-           <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                            <a href="###" class="text-dark">
+            <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                            
+         
+           <?php 
+          $sqlshowcourse = "SELECT course.Course_ID, course_role.Role, course_role.User_ID
+          FROM course
+          INNER JOIN course_role ON course.Course_ID = course_role.Course_ID AND course_role.User_ID = ".$_SESSION["User_ID"]."";
+          $counq = 0;
+          $sqlshowcourse_q = mysqli_query($connect,$sqlshowcourse);
+          while($row = mysqli_fetch_array($sqlshowcourse_q)){
+            if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
+              //echo "waiting for inspect";
+                $sqlshowworktodoforteach = "SELECT * FROM submition 
+                WHERE Course_ID = ".$row["Course_ID"]."";
+                $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
+                while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
+                  $counq++;
+                  $sqlshowuserandasss = "SELECT *
+                  FROM assignment
+                  WHERE Assignment_ID = ".$rowq["Assignment_ID"]."";
+                  $sqlshowuserandasss_q = mysqli_query($connect,$sqlshowuserandasss);
+                  $showuserandasss = mysqli_fetch_array($sqlshowuserandasss_q);
+
+                  $sqlshowuser = "SELECT *
+                  FROM user
+                  WHERE User_ID = ".$rowq["User_ID"]."";
+                  $sqlshowuser_q = mysqli_query($connect,$sqlshowuser);
+                  $showuser = mysqli_fetch_array($sqlshowuser_q);
+
+                  ?>
+
+                  <a href="###" class="text-dark">
                             <div class="card-body">
                                  <!-- link -->
-                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3">test</b></h5> 
-
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $counq ?>.<?php echo $showuserandasss["Name"] ?> ส่งโดย : <?php echo $showuser["Firstname"]; echo " ".$showuser["Surname"]  ?> </b></h5> 
                                 <!-------- Assignment Content -->
-
                                 <p class="card-text" style="width: 200px;">
                                 <div class="row">
                                         <div class="col" style="text-align:center;">
+                                          <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label>
                                         <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
+
                 
                                         </div>
 
@@ -146,9 +215,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 
                             </div>
                             </a>
-          </div> 
+                  <?php 
+              }
+            }
+          }
+          
+          ?>
+           
    
-        
+        </div>
        </div>
            
              </div>
@@ -159,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
                <div class="row mb-2">
              <div class="col mt-2"  >
-               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งารที่เสร็จแล้ว</h4>
+               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่เสร็จแล้ว</h4>
              </div><!-- /.col -->         
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
