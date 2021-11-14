@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
           
           </div><!-- /.col -->       
-      
+      waiting for inspection
           <div class="col-6 mt-3">
           <h4 class="p-2 fw-med text-center" style="width: 12rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องตรวจ</h4>
           <div class="to-do-list-room m-3 p-2 pl-3" style="background-color:#D8D7E5; border-radius: 5px;">
