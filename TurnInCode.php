@@ -8,17 +8,23 @@
     $hiddencase_count = 1;
     $hiddencase_showcount = 1;
 
-    $course_id = 1;
     $user_id = $_SESSION['User_ID'];
     $assignment_id = $_GET['Assignment_ID'];
+
+    ################################ GET COURSE ID #############################
+    $course_id_sql = "SELECT Course_ID FROM assignment WHERE Assignment_ID ='$assignment_id'";
+    $course_id_query = mysqli_query($connect,$course_id_sql);
+    $course_id_rows = mysqli_fetch_array($course_id_query);
+
+    $course_id = $course_id_rows['Course_ID'];
 
     ####################### select score to check if exist or not #######################################
     $select_score_sql = "SELECT Submit_ID , Score_Gain , Student_Comment , Instructor_Comment , Turn_in_Code , Turn_in_Status , Attempt_count FROM submition WHERE Assignment_ID ='$assignment_id' AND User_ID ='$user_id'";
     $select_score_query = mysqli_query($connect,$select_score_sql);
 
     if(mysqli_num_rows($select_score_query) == 0){
-        $insert_score_sql = "INSERT INTO submition (Assignment_ID,User_ID)
-                             VALUES('$assignment_id','$user_id')";
+        $insert_score_sql = "INSERT INTO submition (Course_ID,Assignment_ID,User_ID)
+                             VALUES('$course_id','$assignment_id','$user_id')";
         $insert_score_query = mysqli_query($connect,$insert_score_sql); 
         $select_score_query = mysqli_query($connect,$select_score_sql);
         $select_score_rows = mysqli_fetch_array($select_score_query);                    
@@ -203,9 +209,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
-                                    <form action="filter2.php" method="post" enctype="multipart/form-data">
+                                    <form action="test.php" method="post" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
-                                        <input type="file" id="Assignment_File" name="fileToUpload" hidden required accept=".py">
+                                        <input type="file" id="Assignment_File" name="Assignment_File" hidden>
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->
