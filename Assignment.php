@@ -225,8 +225,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
             <?php 
-            $showworkpass = "SELECT * FROM submition
-            WHERE Turn_in_Status = 'passed' or Turn_in_Status = 'not turn in' AND User_ID = ".$_SESSION['User_ID']."";
+            $showworkpass = "SELECT  * FROM submition
+            WHERE User_ID = ".$_SESSION['User_ID']." AND Turn_in_Status = 'passed' or Turn_in_Status = 'not turn in'
+            ";
             $showworkpass_q = mysqli_query($connect,$showworkpass);
             while ($row = mysqli_fetch_array($showworkpass_q)) {
               ?>
@@ -236,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="card-body">
                                  <!-- link -->
                                  <?php
-                                 $showassname = "SELECT * FROM assignment
+                                 $showassname = "SELECT  * FROM assignment
                                  WHERE Assignment_ID = ".$row['Assignment_ID']."";
                                  $showassname_q = mysqli_query($connect,$showassname);
                                  $showassname_r = mysqli_fetch_array($showassname_q); 
