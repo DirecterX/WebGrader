@@ -21,13 +21,14 @@
     $course_id = $course_id_rows['Course_ID'];
 
     ############################# GET ROLE ############################################
-    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$user_id' AND Course_ID ='$course_id'";
     $select_role_query = mysqli_query($connect,$select_role_sql);
     $select_role_rows = mysqli_fetch_array($select_role_query);
 
     $role = $select_role_rows['Role'];
-
-    if($role != "Owner"){
+    if($role == "Owner" or $role == "Teacher" or $role == "TA"){
+        
+    }else{
         header("Location: home.php");
     }
 
@@ -45,6 +46,11 @@
     ######################### get output that user execute #####################################
     $select_exec_sql = "SELECT Actual_result , Is_correct FROM exec_output WHERE Submit_ID ='$submit_id' ORDER BY Testcase_ID ASC";
     $select_exec_query = mysqli_query($connect,$select_exec_sql); 
+
+
+    $select_usernamefromsubmit = "SELECT * FROM user WHERE User_ID = ".$select_submit_rows["User_ID"]."";
+    $select_usernamefromsubmit_q = mysqli_query($connect,$select_usernamefromsubmit);
+    $select_usernamefromsubmit_rows = mysqli_fetch_array($select_usernamefromsubmit_q);
 ?>
 <!DOCTYPE html>
 <!--
@@ -124,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
             <div class="col mt-2" >
                 
-                <h1 class="badge bg-warning"><?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
+                <h1 class="badge bg-warning"><?=$assignment_rows['Name']; ?> ส่งโดย <?=$select_usernamefromsubmit_rows['Firstname']?> <?=$select_usernamefromsubmit_rows['Surname']?></h1> <!-- Assignment Name-->
                 <hr style="border: 2px solid #FECA65">
 
           </div><!-- /.col -->         

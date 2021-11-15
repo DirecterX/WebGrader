@@ -107,7 +107,7 @@ function confirmation(){
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
 			<form action="edit_user_process.php" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
-      <div class="form-group" >
+        <div class="form-group" >
 					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["Username"] ?></h4></label>
 				</div>
 

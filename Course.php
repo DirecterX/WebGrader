@@ -107,8 +107,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1><?php echo $Course_Name ?></h1>
           <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?>
 
-        </h5><button type="button"  class="ml-2 btn btn-warning text-dark" style="border-radius: 10px;"><?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning"   >';
+        </h5><?php 
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" style="margin-left:10px;"   >';
                   if ($role=="Owner"){
                     echo 'Edit Info</a>';
                   }else{
@@ -215,13 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col" style="text-align:center;">
-                                          <!--<label class=" float-left text-success font-weight-light">
-                                            <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>                                      
-                                          </label>-->                                       
-                                        </div>
-                                    </div>               
+                                                
                                 </p>
                                 
                             </div>
@@ -314,8 +308,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }  
                                 }
                                 ?>
-                              <td><input type="submit" value="update"></td>
-                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                              <td><input type="submit" class="btn btn-info" value="update"></td>
+                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" class="btn btn-danger" value="kick"></td>
                             </form>
                             </tr>
                               <?php
@@ -367,8 +361,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               </td>
                               
                                
-                              <td><input type="submit" value="update"></td>
-                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                              <td><input type="submit" class="btn btn-info" value="update"></td>
+                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" class="btn btn-danger" value="kick"></td>
                             </form>
                             </tr>
                               <?php
@@ -383,7 +377,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!------------------------------------------------ Tab Assignment submition ---------------------------------------------->
                     <div class="tab-pane" id="TabAssignment">    
                         <?php
-                        $waiting_for_inspect = "waiting for inspect";
+                        $waiting_for_inspect = "waiting for inspection";
                         $assignment_Sumit = "SELECT * 
                         FROM submition
                         INNER JOIN assignment ON assignment.Assignment_ID = submition.Assignment_ID 
@@ -769,9 +763,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                     <div class="row">
                                         <div class="col" style="text-align:center;">
-                                          <!--<label class=" float-left text-success font-weight-light">
-                                            <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>                                      
-                                          </label>-->                                       
+                                        <?php 
+                                             $showstatussubmition = "SELECT * FROM submition
+                                             WHERE Assignment_ID = ".$row["Assignment_ID"]." AND User_ID = ".$_SESSION['User_ID']."";
+                                             $showstatussubmition_q = mysqli_query($connect,$showstatussubmition);
+                                             $showstatussubmition_rows = mysqli_fetch_array($showstatussubmition_q);
+                                             $status = $showstatussubmition_rows["Turn_in_Status"];
+                                             $color;
+                                             if($status == "waiting for turn in" || $status == "Wait for inspect"){
+                                               $color = "-warning";
+                                             }else if( $status == "not passed"){
+                                               $color = "-danger";
+                                             }else if( $status == "passed"){
+                                               $color = "-success";
+                                             }
+
+                                          ?>  
+                                          <label class=" float-left text font-weight-light">
+                                            Status :                                                                            
+                                          </label>
+                                            <label class=" float-left text<?php echo $color;?> font-weight-light">    <!-- color replace on success.  Red = danger , yellow = warning , green = success , blue = info -->                                    
+                                            <!-- <i class="fas fa-check" style="color:black;"></i> -->
+                                            <!------------------------ Checking and display Status Here ----------------->
+                                            <?php
+                                                echo  " ".$status;
+                                            ?>                                                                                                                                                                                                               </label>                                       
                                         </div>
                                     </div>               
                                 </p>
