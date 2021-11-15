@@ -770,7 +770,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                              $showstatussubmition_rows = mysqli_fetch_array($showstatussubmition_q);
                                              $status = $showstatussubmition_rows["Turn_in_Status"];
                                              $color;
-                                             if($status == "waiting for turn in" || $status == "Wait for inspect"){
+                                             if($status == "waiting for turn in" || $status == "waiting for inspection"){
                                                $color = "-warning";
                                              }else if( $status == "not passed"){
                                                $color = "-danger";
