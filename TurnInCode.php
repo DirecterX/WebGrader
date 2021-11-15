@@ -53,7 +53,7 @@
     $today = date("Y-m-d"); 
 
     if($today > $assignment_rows['End_date']){
-        header("Location: home.php");
+        //header("Location: home.php");
     }
 
     ############################# GET testcase of assignment ################################
