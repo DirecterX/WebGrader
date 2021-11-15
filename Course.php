@@ -107,8 +107,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h1><?php echo $Course_Name ?></h1>
           <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?>
 
-        </h5><button type="button"  class="ml-2 btn btn-warning text-dark" style="border-radius: 10px;"><?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning"   >';
+        </h5><?php 
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" style="margin-left:10px;"   >';
                   if ($role=="Owner"){
                     echo 'Edit Info</a>';
                   }else{
