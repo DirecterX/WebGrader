@@ -197,7 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <div class="col-6 text-right">
                                 <label style="font-size:120%;"><i class="fa fa-<?php if(mysqli_num_rows($select_score_query) == 0){echo "search";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "check";}else{echo "times";}}?>"></i></label>
-                                <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FF2020";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
+                                <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FFB82A";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
                                 <label style="font-size:120%;">Point <?php if(mysqli_num_rows($select_score_query) == 0){echo "0";}else{echo $select_score_rows['Score_Gain'];}?> / <?=$assignment_rows['Score']?></label> <!-- Assignment Score -->
                                 
                             </div>
