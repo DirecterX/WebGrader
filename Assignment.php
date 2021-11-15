@@ -159,10 +159,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
-                WHERE Course_ID = ".$row["Course_ID"]."";
+                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspect' ";
                 $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
                 while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
                   $counq++;
+                  $subid = $rowq["Submit_ID"];
                   $sqlshowuserandasss = "SELECT *
                   FROM assignment
                   WHERE Assignment_ID = ".$rowq["Assignment_ID"]."";
@@ -178,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   ?> 
                   <div class="col-sm-12 col-md-6 col-lg-6">                  
                     <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >     
-                      <a href="SubmitedAssignment.php" class="text-dark"> <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Link Here --------------------->
+                      <a href="SubmitedAssignment.php?Submit_ID=<?php echo $subid?>&Assignment_ID=<?php echo $rowq["Assignment_ID"]?>" class="text-dark"> <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Link Here --------------------->
                             <div class="card-body">
                                  <!-- link -->
                                 <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $counq ?>.<?php echo $showuserandasss["Name"] ?> ส่งโดย : <?php echo $showuser["Firstname"]; echo " ".$showuser["Surname"]  ?> </b></h5> 

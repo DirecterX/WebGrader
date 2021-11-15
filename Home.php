@@ -110,12 +110,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           $counq = 0;
           $sqlshowcourse_q = mysqli_query($connect,$sqlshowcourse);
           while($row = mysqli_fetch_array($sqlshowcourse_q)){
+
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
-                WHERE Course_ID = ".$row["Course_ID"]."";
+                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspect' ";
                 $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
                 while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
+                  $subid = $rowq["Submit_ID"];
                   $counq++;
                   $sqlshowuserandasss = "SELECT *
                   FROM assignment
@@ -130,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   $showuser = mysqli_fetch_array($sqlshowuser_q);
 
                   ?>
-                  <a href="SubmitedAssignment.php" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $counq ?>.<?php echo $showuserandasss["Name"] ?> ส่งโดย <?php echo $showuser["Firstname"]; echo " ".$showuser["Surname"]  ?><label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+                  <a href="SubmitedAssignment.php?Submit_ID=<?php echo $subid?>&Assignment_ID=<?php echo $rowq["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $counq ?>.<?php echo $showuserandasss["Name"] ?> ส่งโดย <?php echo $showuser["Firstname"]; echo " ".$showuser["Surname"]  ?><label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
                   <?php 
               }
             }
