@@ -17,7 +17,7 @@
     $course_id_rows = mysqli_fetch_array($course_id_query);
 
     $course_id = $course_id_rows['Course_ID'];
-/*
+
     ############################# GET ROLE ############################################
     $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
     $select_role_query = mysqli_query($connect,$select_role_sql);
@@ -25,9 +25,11 @@
 
     $role = $select_role_rows['Role'];
 
-    if($role != "student"){
+    if($role == "student"){
+        
+    }else{
         header("Location: home.php");
-    }*/
+    }
 
     ####################### select score to check if exist or not #######################################
     $select_score_sql = "SELECT Submit_ID , Score_Gain , Student_Comment , Instructor_Comment , Turn_in_Code , Turn_in_Status , Attempt_count FROM submition WHERE Assignment_ID ='$assignment_id' AND User_ID ='$user_id'";
@@ -47,6 +49,12 @@
     $assignment_select = "SELECT * FROM assignment WHERE Assignment_ID ='$assignment_id'";
     $assignment_select_query = mysqli_query($connect,$assignment_select);
     $assignment_rows = mysqli_fetch_array($assignment_select_query);
+
+    $today = date("Y-m-d"); 
+
+    if($today > $assignment_rows['End_date']){
+        header("Location: home.php");
+    }
 
     ############################# GET testcase of assignment ################################
     $testcase_select = "SELECT testcase.Testcase_ID , testcase.Expected_Result , testcase.Input 
