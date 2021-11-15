@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <form action="#">
                                         <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
                                         <?php
-                                        if ($today > $dayendass) {
+                                        if ($today > $dayendass OR $select_score_rows['Turn_in_Status'] == 'not turn in' OR $select_score_rows['Turn_in_Status'] == 'passed') {
                                         
                                     }else{ 
                                         ?>
@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
                                     <?php 
-                                    if ($today > $dayendass OR $select_score_rows['Turn_in_Status'] == 'waiting for inspection') {
+                                    if ($today > $dayendass OR $select_score_rows['Turn_in_Status'] == 'waiting for inspection' OR $select_score_rows['Turn_in_Status'] == 'not turn in') {
                                         
                                     }else{
                                     ?>
