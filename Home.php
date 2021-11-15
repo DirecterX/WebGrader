@@ -69,8 +69,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           WHERE User_ID = ".$_SESSION["User_ID"]."
           ";
           $coun = 0;
+          $subid;
           $sqlshowworktodo_q = mysqli_query($connect,$sqlshowworktodo);
                 while($row = mysqli_fetch_array($sqlshowworktodo_q)){
+                  $subid = $row["Submit_ID"];
                   if ($row["Turn_in_Status"] == "not turn in" AND $row["Turn_in_Status"] == "passed" ) {
                     // code...ไม่แสดง
                   }else if ($row["Turn_in_Status"] == "waiting for turn in") {
@@ -82,14 +84,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     ?>
                     <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
                     <?php 
-                  }else if($row["Turn_in_Status"] == "waitingfor inspect"){
+                  }else if($row["Turn_in_Status"] == "waiting for inspect"){
                     $coun++;
                     $ShownameAssigment = "SELECT Name FROM assignment
                     WHERE Assignment_ID =".$row["Assignment_ID"]."";
                     $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
                     $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
                     ?>
-                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+                    <a href="SubmitedAssignment.php?Submit_ID=<?php echo $subid?>&Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-success ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
                     <?php 
                   }
                 }
