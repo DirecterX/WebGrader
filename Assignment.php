@@ -108,7 +108,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" class="text-dark"> <!-- link here -->
                               <div class="card"> 
                                 <div class="card-body">                                            
-                                  <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $coun; ?>. <?php echo $showcourseass_result["Name"] ?>  <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></b></h5> 
+                                  <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;">
+                                    <b class="p-3"><?php echo $coun; ?>. <?php echo $showcourseass_result["Name"] ?>  
+                                      <label class="text-danger ml-2"> 
+                                        <?php echo "( waiting for turn in )" ?>
+                                      </label>
+                                   </b>
+                                  </h5> 
                                         <!-------- Assignment Content -->
                                       <p class="card-text" style="width: 200px;">
                                       <div class="row">
@@ -224,6 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $showworkpass_q = mysqli_query($connect,$showworkpass);
             while ($row = mysqli_fetch_array($showworkpass_q)) {
               ?>
+              <div class="col-sm-12 col-md-6 col-lg-6">
               <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                             <a href="TurnInCode.php?Assignment_ID=<?=$row['Assignment_ID']?>" class="text-dark">
                             <div class="card-body">
@@ -234,7 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                  $showassname_q = mysqli_query($connect,$showassname);
                                  $showassname_r = mysqli_fetch_array($showassname_q); 
                                  ?>
-                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?= $showassname_r['Name']?> Status = <?=$row['Turn_in_Status']?></b></h5> 
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?= $showassname_r['Name']?> </b></h5> 
 
                                 <!-------- Assignment Content -->
 
@@ -246,29 +253,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         $showcourse_q = mysqli_query($connect,$showcourse);
                                         $showcourse_result = mysqli_fetch_array($showcourse_q);
                                         ?>
-
-                                        <h6 class="float-left font-weight-bold ml-2">Course : <?=$showcourse_result['Name']?> </h6>
-                
-                                        </div>
-
-                                        
+                                        <h6 class="float-left font-weight-bold ml-2">Course : <?=$showcourse_result['Name']?> </h6>    
+                                                                                       
+                                        </div>                                      
                                     </div>
-                                             
+                                    <?php                                 
+                                    $color; 
+                                    $row['Turn_in_Status'];
+                                    if($row['Turn_in_Status'] == "passed"){$color="-success";}else{$color="-danger";}
+                                    ?>
+                                    <h6 class="float-left font-weight-bold ml-2">Status :</h6>    
+                                    <h6 class="float-left font-weight-bold ml-2 text<?=$color;?>"> <?=$row['Turn_in_Status']?></h6>                                           
                                 </p>
                                 
                             </div>
                             </a>
           </div> 
+          </div> 
           <?php
             }
-            ?>
-            
-           
-
-
-   
-        
-       </div>
+            ?>   
+       </div> <!-- div row -->
            
              </div>
           </div>
