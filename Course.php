@@ -215,13 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col" style="text-align:center;">
-                                          <!--<label class=" float-left text-success font-weight-light">
-                                            <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>                                      
-                                          </label>-->                                       
-                                        </div>
-                                    </div>               
+                                                
                                 </p>
                                 
                             </div>
@@ -314,8 +308,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }  
                                 }
                                 ?>
-                              <td><input type="submit" value="update"></td>
-                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                              <td><input type="submit" class="btn btn-info" value="update"></td>
+                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" class="btn btn-danger" value="kick"></td>
                             </form>
                             </tr>
                               <?php
@@ -367,8 +361,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               </td>
                               
                                
-                              <td><input type="submit" value="update"></td>
-                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" value="kick"></td>
+                              <td><input type="submit" class="btn btn-info" value="update"></td>
+                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" class="btn btn-danger" value="kick"></td>
                             </form>
                             </tr>
                               <?php
@@ -769,9 +763,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </div>
                                     <div class="row">
                                         <div class="col" style="text-align:center;">
-                                          <!--<label class=" float-left text-success font-weight-light">
-                                            <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>                                      
-                                          </label>-->                                       
+                                          <label class=" float-left text font-weight-light">
+                                            Status :                                                                            
+                                          </label>
+                                            <label class=" float-left text-success font-weight-light">    <!-- color replace on success.  Red = danger , yellow = warning , green = success , blue = info -->                                    
+                                            <!-- <i class="fas fa-check" style="color:black;"></i> -->
+                                            <!------------------------ Checking and display Status Here ----------------->
+                                             <?php echo " wait"?>         
+                                                                          
+                                          </label>                                       
                                         </div>
                                     </div>               
                                 </p>
