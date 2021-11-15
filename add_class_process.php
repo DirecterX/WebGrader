@@ -39,8 +39,8 @@ $errors = array();
 		//บัคเรื่องโค้ดที่ใส่ในการเข้า class ผิด
 
         }else{
-            array_push($errors, "You are already in this class");
-            $_SESSION['error'] = "You are already in this class";
+            array_push($errors, "Wrong enroll code. Try again");
+            $_SESSION['error'] = "Wrong enroll code. Try again";
             header("location:AddClass.php");
         }
 
