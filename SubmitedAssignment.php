@@ -19,7 +19,7 @@
     $course_id_rows = mysqli_fetch_array($course_id_query);
 
     $course_id = $course_id_rows['Course_ID'];
-/*
+
     ############################# GET ROLE ############################################
     $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
     $select_role_query = mysqli_query($connect,$select_role_sql);
@@ -29,7 +29,7 @@
 
     if($role != "Owner"){
         header("Location: home.php");
-    }*/
+    }
 
 
     ####################### GET ASSIGNMENT INFORMATION BY Assignment_ID ################################
