@@ -768,7 +768,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                              WHERE Assignment_ID = ".$row["Assignment_ID"]." AND User_ID = ".$_SESSION['User_ID']."";
                                              $showstatussubmition_q = mysqli_query($connect,$showstatussubmition);
                                              $showstatussubmition_rows = mysqli_fetch_array($showstatussubmition_q);
-                                             $status = $showstatussubmition_rows["Turn_in_Status"];
+                                             if(mysqli_num_rows($showstatussubmition_q)==0){$status = "waiting for turn in";}
+                                             else{
+                                              $status = $showstatussubmition_rows["Turn_in_Status"];
+                                              }
+                                             
                                              $color;
                                              if($status == "waiting for turn in" || $status == "waiting for inspection"){
                                                $color = "-warning";
