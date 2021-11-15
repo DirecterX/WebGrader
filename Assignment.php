@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
-                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspect' ";
+                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspection' ";
                 $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
                 while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
                   $counq++;

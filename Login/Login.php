@@ -5,7 +5,10 @@ if(isset($_SESSION["User_Authority"])):
     header("location:/WebGrader/Home_admin.php");
   }
   header("location:/WebGrader/Home.php");
-endif
+endif;
+if(isset($_SESSION['Username']) AND isset($_SESSION["User_ID"])):
+    header("location:/WebGrader/Home.php");
+    endif;
 
 ?>
 

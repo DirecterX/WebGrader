@@ -383,7 +383,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!------------------------------------------------ Tab Assignment submition ---------------------------------------------->
                     <div class="tab-pane" id="TabAssignment">    
                         <?php
-                        $waiting_for_inspect = "waiting for inspect";
+                        $waiting_for_inspect = "waiting for inspection";
                         $assignment_Sumit = "SELECT * 
                         FROM submition
                         INNER JOIN assignment ON assignment.Assignment_ID = submition.Assignment_ID 

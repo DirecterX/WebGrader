@@ -21,13 +21,14 @@
     $course_id = $course_id_rows['Course_ID'];
 
     ############################# GET ROLE ############################################
-    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$userid' AND Course_ID ='$Course_ID'";
+    $select_role_sql = "SELECT Role FROM course_role WHERE User_ID ='$user_id' AND Course_ID ='$course_id'";
     $select_role_query = mysqli_query($connect,$select_role_sql);
     $select_role_rows = mysqli_fetch_array($select_role_query);
 
     $role = $select_role_rows['Role'];
-
-    if($role != "Owner"){
+    if($role == "Owner" or $role == "Teacher" or $role == "TA"){
+        
+    }else{
         header("Location: home.php");
     }
 

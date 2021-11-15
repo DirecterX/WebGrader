@@ -1,6 +1,6 @@
 <?php
     include('config.php');
-    if(!isset($_SESSION['Username'])):
+    if(!isset($_SESSION['Username']) AND !isset($_SESSION["User_ID"])):
      header("location:Login/Login.php");
     endif;
     if($_SESSION["Is_admin"]){
@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     ?>
                     <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?> <label class="text-danger ml-2"> <?php echo "( waiting for turn in )" ?></label></p></a>
                     <?php 
-                  }else if($row["Turn_in_Status"] == "waiting for inspect"){
+                  }else if($row["Turn_in_Status"] == "waiting for inspection"){
                     $coun++;
                     $ShownameAssigment = "SELECT Name FROM assignment
                     WHERE Assignment_ID =".$row["Assignment_ID"]."";
@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
-                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspect' ";
+                WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspection' ";
                 $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
                 while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
                   $subid = $rowq["Submit_ID"];
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           ?>
           
           
-          <a href="###"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
+          <a href="Assignment.php"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
         </div>
           </div>
         </div><!-- /.row -->
