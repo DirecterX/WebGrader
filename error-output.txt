@@ -446,3 +446,27 @@ Traceback (most recent call last):
   File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 3, in <module>
     hh,mm,ss = input("Enter hh mm ss : ").split()
 ValueError: not enough values to unpack (expected 3, got 1)
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 1, in <module>
+    n = int(input("Enter Number Between 0-9 :"))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 1, in <module>
+    n = int(input("Enter Number Between 0-9 :"))
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\123465.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\123465.py", line 9, in <module>
+    total+=roman[n[i]]
+KeyError: 'a'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\123465.py", line 1, in <module>
+    n = input("Enter number : ")
+EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\123465.py", line 9, in <module>
+    total+=roman[n[i]]
+KeyError: 'a'
