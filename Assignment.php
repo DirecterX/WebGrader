@@ -263,7 +263,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     if($status == "passed"){$color="-success"}else{$color="-danger"}
                                     ?>
                                     <h6 class="float-left font-weight-bold ml-2 ">Status :</h6>    
-                                    <h6 class="float-left font-weight-bold ml-2 text<? echo $status;?>> <?=$row['Turn_in_Status'];?></h6>                                           
+                                    <h6 class="float-left font-weight-bold ml-2 text<? echo $status;?>> <?=$row['Turn_in_Status'];?>"></h6>                                           
                                 </p>
                                 
                             </div>
