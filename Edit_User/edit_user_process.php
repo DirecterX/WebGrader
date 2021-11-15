@@ -6,6 +6,7 @@
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $errors = [];
+    $pass = md5($pass);
 
 
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $fname)){
@@ -23,14 +24,14 @@
 
 	if($_POST['pass_new']!=NULL){
         if($_POST['pass_new'] == $_POST['pass_chk']){
-            $pass = $_POST['pass_new'];
+            $pass = md5($_POST['pass_new']);
         }else{
             array_push($errors, "New Password is not same with confirm password");
 		    $_SESSION['error'] = "New Password is not same with confirm password";
             header("location:/WebGrader/Edit_User/EditProfile.php");
         }
     }else{
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
     }
     
     //echo ("'$uname'");
@@ -48,7 +49,7 @@
         }else{      
         }
 
-        if($_POST['pass']==$pwd){
+        if(md5($_POST['pass'])==$pwd){
             $update="update user set Firstname ='".$fname."', Surname='".$sname."', Password='".$pass."',Email='".$email."' where User_ID='".$uid."'";
             mysqli_query($connect,$update) or die(mysqli_error()); 
             
