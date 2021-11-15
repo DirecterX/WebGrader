@@ -220,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
             <?php 
             $showworkpass = "SELECT * FROM submition
-            WHERE Turn_in_Status = 'passed' AND User_ID = ".$_SESSION['User_ID']."";
+            WHERE Turn_in_Status = 'passed' or Turn_in_Status = 'not turn in' AND User_ID = ".$_SESSION['User_ID']."";
             $showworkpass_q = mysqli_query($connect,$showworkpass);
             while ($row = mysqli_fetch_array($showworkpass_q)) {
               ?>
