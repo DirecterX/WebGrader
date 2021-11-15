@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
                                     <?php 
-                                    if ($today > $dayendass) {
+                                    if ($today > $dayendass OR $select_score_rows['Turn_in_Status'] == 'waiting for inspection') {
                                         
                                     }else{
                                     ?>
