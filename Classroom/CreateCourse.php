@@ -92,55 +92,46 @@
 
 
 <form method="POST" action="create_course_process.php">
-    Course Name : <input type="text" name="Course_Name">
-    <br><br>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+            <label class="text "> Course Name : </label>
+              <input type="text" class="form-control" name="Course_Name">
+              <br>
+              <label for="sem">Semester : </label>
+                <select id="sem" class="form-control" name="Semester">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+                <br>
+              <label for="Schoolyear">Schoolyear : </label>
+              <select id = "Schoolyear" class="form-control" name="Schoolyear">
+                <option value="0">Select Year</option>
+                <?php foreach($years as $year) : ?>
+                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                <?php endforeach; ?>
+              </select>  
+              <br>         
+              <label for="start_date">Course Open date:</label>
+                <input type="date" id="start_date" class="form-control" value="" name="start_date"min="2020-01-01" max="2120-12-31">          
+              <label for="end_date">Course End date:</label>
+                <input type="date" id="end_date" class="form-control"  value="" name="end_date"min="2020-01-01" max="2120-12-31">
+      </div>
+    </div>
 
-    <label for="sem">Semester : </label>
-      <select id="sem" name="Semester">
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-
-    <br><br>
-    <label for="Schoolyear">Schoolyear : </label>
-    <select id = "Schoolyear" name="Schoolyear">
-      <option value="0">Select Year</option>
-      <?php foreach($years as $year) : ?>
-          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-      <?php endforeach; ?>
-    </select>
-    <br><br>
-
-
-
-
-    <label for="start_date">Course Open date:</label>
-      <input type="date" id="start_date" value="" name="start_date"min="2020-01-01" max="2120-12-31">
-
-    <br>
-
-    <label for="end_date">Course End date:</label>
-      <input type="date" id="end_date" value="" name="end_date"min="2020-01-01" max="2120-12-31">
-
-    <br><br>
+              <button type="submit" id="save" name="save" value="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">สร้างห้องเรียน</button> 
+              <?php include('../error.php'); ?>
+                  <?php if(isset($_SESSION['error'])) :?>
+                    <div style="color:red">
+                      <h5>
+                        <?php
+                          echo $_SESSION['error'];
+                          unset($_SESSION['error']);
+                        ?>
+                      </h5>
+                    </div>
+                  <?php endif ?>
     
-    
-    
-    
-    <br>
-
-    <button type="submit" id="save" name="save" value="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">สร้างห้องเรียน</button> 
-    <?php include('../error.php'); ?>
-        <?php if(isset($_SESSION['error'])) :?>
-          <div style="color:red">
-            <h5>
-              <?php
-                echo $_SESSION['error'];
-                unset($_SESSION['error']);
-              ?>
-            </h5>
-          </div>
-        <?php endif ?>
   </form>
      
             
