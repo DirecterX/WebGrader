@@ -50,6 +50,7 @@
     $assignment_rows = mysqli_fetch_array($assignment_select_query);
 
     $today = date("Y-m-d"); 
+    $dayendass = $assignment_rows['End_date'];
     if($today > $assignment_rows['End_date']){
         //header("Location: home.php");
     }
@@ -216,7 +217,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="Comment">Comment</label>
                                     <form action="#">
                                         <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
+                                        <?php
+                                        if ($today > $dayendass) {
+                                        
+                                    }else{ 
+                                        ?>
                                         <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                    <?php } ?>
                                     </form>
                                 </div>                    
                             </div> 
@@ -225,12 +232,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row" style="margin-bottom:-20px;">
                             <div class="col" style="align-items: right;">
                                 <div class="text-right">
+                                    <?php 
+                                    if ($today > $dayendass) {
+                                        
+                                    }else{
+                                    ?>
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
                                     <form action="filter2.php" method="post" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
                                         <input type="file" id="Assignment_File" name="Assignment_File" hidden required accept=".py">
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary">
+                                    <?php } ?>
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->
                                         <?php  
                                             while($testcase_select_rows2 = mysqli_fetch_array($testcase_select_query2)){
