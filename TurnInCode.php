@@ -50,9 +50,8 @@
     $assignment_rows = mysqli_fetch_array($assignment_select_query);
 
     $today = date("Y-m-d"); 
-
     if($today > $assignment_rows['End_date']){
-        header("Location: home.php");
+        //header("Location: home.php");
     }
 
     ############################# GET testcase of assignment ################################
