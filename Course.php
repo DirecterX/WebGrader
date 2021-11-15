@@ -769,7 +769,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <label class=" float-left text-success font-weight-light">    <!-- color replace on success.  Red = danger , yellow = warning , green = success , blue = info -->                                    
                                             <!-- <i class="fas fa-check" style="color:black;"></i> -->
                                             <!------------------------ Checking and display Status Here ----------------->
-                                             <?php echo " wait"?>         
+
+                                            
+                                             <?php 
+                                             $showstatussubmition = "SELECT * FROM submition
+                                             WHERE Assignment_ID = ".$row["Assignment_ID"]." AND User_ID = ".$_SESSION['User_ID']."";
+                                             $showstatussubmition_q = mysqli_query($connect,$showstatussubmition);
+                                             $showstatussubmition_rows = mysqli_fetch_array($showstatussubmition_q);
+                                             echo $showstatussubmition_rows["Turn_in_Status"];
+                                             ?>         
                                                                           
                                           </label>                                       
                                         </div>
