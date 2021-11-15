@@ -257,13 +257,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                        
                                         </div>                                      
                                     </div>
-                                    <?                                 
+                                    <?php                                 
                                     $color; 
-                                    $status = $row['Turn_in_Status'];
-                                    if($status == "passed"){$color="-success";}else{$color="-danger";}
+                                    $row['Turn_in_Status'];
+                                    if($row['Turn_in_Status'] == "passed"){$color="-success";}else{$color="-danger";}
                                     ?>
-                                    <h6 class="float-left font-weight-bold ml-2 ">Status :</h6>    
-                                    <h6 class="float-left font-weight-bold ml-2 text<? echo $color;?>"> <? echo $status;?></h6>                                           
+                                    <h6 class="float-left font-weight-bold ml-2">Status :</h6>    
+                                    <h6 class="float-left font-weight-bold ml-2 text<?=$color;?>"> <?=$row['Turn_in_Status']?></h6>                                           
                                 </p>
                                 
                             </div>
