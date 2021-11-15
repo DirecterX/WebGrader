@@ -7,6 +7,35 @@
         header("location:Home_admin.php");
     }
 
+    $user_id = $_SESSION['User_ID'];
+    ############################### GET COURSE ID ##############################
+    $student_course_select_sql = "SELECT * FROM course_role WHERE User_ID = '$user_id' AND Role = 'student'";
+    $student_course_select_query = mysqli_query($connect,$student_course_select_sql);
+
+    while($student_course_select_rows = mysqli_fetch_array($student_course_select_query)){
+      $course_id = $student_course_select_rows['Course_ID'];
+      ############################# GET ASSIGNMENT ###############################
+      $select_assignment_sql = "SELECT * FROM assignment WHERE Course_ID ='$course_id'";
+      $select_assignment_query = mysqli_query($connect,$select_assignment_sql);
+
+      while($select_assignment_rows = mysqli_fetch_array($select_assignment_query)){
+        $assignment_id = $select_assignment_rows['Assignment_ID'];
+          ####################### select score to check if exist or not #######################################
+        $select_score_sql = "SELECT Submit_ID , Score_Gain , Student_Comment , Instructor_Comment , Turn_in_Code , Turn_in_Status , Attempt_count FROM submition WHERE Assignment_ID ='$assignment_id' AND User_ID ='$user_id'";
+        $select_score_query = mysqli_query($connect,$select_score_sql);
+
+      if(mysqli_num_rows($select_score_query) == 0){
+        $insert_score_sql = "INSERT INTO submition (Course_ID,Assignment_ID,User_ID)
+                             VALUES('$course_id','$assignment_id','$user_id')";
+        $insert_score_query = mysqli_query($connect,$insert_score_sql); 
+        $select_score_query = mysqli_query($connect,$select_score_sql);
+                          
+    }else{
+        
+    }
+      }
+    }
+
 ?>
 <!DOCTYPE html>
 <!--
