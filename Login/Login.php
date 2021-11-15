@@ -36,12 +36,12 @@ endif
 
         <!-- Login Form Begin -->
         <div class="form-floating" >
-        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="Username">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="Username" required>
         <label for="floatingInput">Username</label>
         </div>
         <br>
         <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password" required>
         <label for="floatingPassword">Password</label>
         </div>
         <!-- Login Form End -->

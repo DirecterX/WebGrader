@@ -31,10 +31,10 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Student ID" />
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="Student ID" required/>
                                             </div>
                                             <?php if (isset($name_error)): ?>
-                                                    <span><?php echo $name_error; ?></span>
+                                                    <span style="color:red"><?php echo $name_error; ?></span>
                                             <?php endif ?>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                                                <input type="password" class="form-control" name="password" id="password" required placeholder="Enter your Password" />
                                             </div>
                                         </div>
                                     </div>
@@ -52,11 +52,11 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+                                                <input type="password" class="form-control" name="confirm" id="confirm" required placeholder="Confirm your Password" />
                                             </div>
                                         </div>
                                         <?php if (isset($confirmpass)): ?>
-                                                    <span><?php echo $confirmpass; ?></span>
+                                                    <span style="color:red"><?php echo $confirmpass; ?></span>
                                             <?php endif ?>
                                     </div>
                                     <div class="form-group">
@@ -64,29 +64,35 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="Firstname" id="Firstname" placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Firstname" id="Firstname" required placeholder="Enter your Name" />
                                             </div>
                                         </div>
+                                        <?php if (isset($fname_error)): ?>
+                                                    <span style="color:red"><?php echo $fname_error; ?></span>
+                                            <?php endif ?>
                                     </div>
                                      <div class="form-group">
                                         <label for="name" class="cols-sm-2 control-label">Surname</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="Surname" id="Surname" placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Surname" id="Surname" required placeholder="Enter your Name" />
                                             </div>
                                         </div>
+                                        <?php if (isset($sname_error)): ?>
+                                                    <span style="color:red"><?php echo $sname_error; ?></span>
+                                            <?php endif ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="cols-sm-2 control-label">E-mail</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" /><input type="text" class="form-control" hidden name="Regisid" id="Regisid" value="<?php echo $Regisid;?>" />
+                                                <input type="email" class="form-control" name="email" id="email" required placeholder="Enter your Email" /><input type="text" class="form-control" hidden name="Regisid" id="Regisid" value="<?php echo $Regisid;?>" />
                                             </div>
                                         </div>
                                         <?php if (isset($email_error)): ?>
-                                                <span><?php echo $email_error; ?></span>
+                                                <span style="color:red"><?php echo $email_error; ?></span>
                                         <?php endif ?>
                                     </div>
                                     
