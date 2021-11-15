@@ -470,3 +470,7 @@ Traceback (most recent call last):
   File "S:\xampp\htdocs\WebGrader\temp_file\123465.py", line 9, in <module>
     total+=roman[n[i]]
 KeyError: 'a'
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 10, in <module>
+    im=int(input("Here : "))
+EOFError: EOF when reading a line

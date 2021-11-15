@@ -218,20 +218,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
              </div><!-- /.col -->         
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
-      
-            
-           <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                            <a href="###" class="text-dark">
+            <?php 
+            $showworkpass = "SELECT * FROM submition
+            WHERE Turn_in_Status = 'passed' AND User_ID = ".$_SESSION['User_ID']."";
+            $showworkpass_q = mysqli_query($connect,$showworkpass);
+            while ($row = mysqli_fetch_array($showworkpass_q)) {
+              ?>
+              <div class="card"  style="background-color:  #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                            <a href="TurnInCode.php?Assignment_ID=<?=$row['Assignment_ID']?>" class="text-dark">
                             <div class="card-body">
                                  <!-- link -->
-                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo "Name"?></b></h5> 
+                                 <?php
+                                 $showassname = "SELECT * FROM assignment
+                                 WHERE Assignment_ID = ".$row['Assignment_ID']."";
+                                 $showassname_q = mysqli_query($connect,$showassname);
+                                 $showassname_r = mysqli_fetch_array($showassname_q); 
+                                 ?>
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?= $showassname_r['Name']?> Status = <?=$row['Turn_in_Status']?></b></h5> 
 
                                 <!-------- Assignment Content -->
 
                                 <p class="card-text" style="width: 200px;">
                                     <div class="row">
                                         <div class="col" style="text-align:center;">
-                                        <h6 class="float-left font-weight-bold ml-2">Course : <?php echo "Python OOP"?> </h6>
+                                        <?php $showcourse = "SELECT * FROM course
+                                        WHERE Course_ID = ".$row['Course_ID']." ";
+                                        $showcourse_q = mysqli_query($connect,$showcourse);
+                                        $showcourse_result = mysqli_fetch_array($showcourse_q);
+                                        ?>
+
+                                        <h6 class="float-left font-weight-bold ml-2">Course : <?=$showcourse_result['Name']?> </h6>
                 
                                         </div>
 
@@ -243,6 +259,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             </a>
           </div> 
+          <?php
+            }
+            ?>
+            
+           
+
+
    
         
        </div>
