@@ -376,7 +376,7 @@ function confirmation(){
                     value="<?php echo $End_date; ?>">
                     
 				</div>
-
+        <button  type="button" name="leave_course" id="leave_course" class="btn btn-danger w-10" data-toggle="modal" data-target="#leave_course_modal">ออกจาก Course</button>  
                
 
 			
@@ -397,6 +397,28 @@ function confirmation(){
 
 
             <?php } ?>
+
+
+             <!-- moal del course -->
+             <div class="modal fade" id="leave_course_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">แจ้งเตือนการออกห้องเรียน</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  <h5>คุณแน่ใจที่จะออก course นี้</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button onclick="document.location='leave_course_process.php?Course_ID=<?php echo $Course_ID ?>&User_ID=<?php echo $_SESSION['User_ID'] ?>'" type="button" class="btn btn-danger">ออก</button> <!-- Link Leave Course Here -->
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- moal del course -->
             <div class="modal fade" id="del_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
