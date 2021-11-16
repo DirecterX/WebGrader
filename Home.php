@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
                     $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
                     ?>
-                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?> <label class="text-danger ml-2"> <?php echo $row["Turn_in_Status"] ?></label></p></a>
+                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?> <label class="text-danger ml-2 float-right " style="padding-right: 10px;"> <?php echo $row["Turn_in_Status"] ?></label></p></a>
                     <?php 
                   }else if($row["Turn_in_Status"] == "waiting for inspection"){
                     $coun++;
@@ -127,7 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     $ShownameAssigment_q = mysqli_query($connect,$ShownameAssigment);
                     $ShownameAssigment_result = mysqli_fetch_array($ShownameAssigment_q);
                     ?>
-                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-warning ml-2"> <?php echo "( waiting for inspect )" ?></label></p></a>
+                    <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"><?php echo $coun; ?>. <?php echo $ShownameAssigment_result["Name"] ?>  <label class="text-warning ml-2 float-right" style="padding-right:10px;"> <?php echo "( waiting for inspect )" ?></label></p></a>
                     <?php 
                   }
                 }
