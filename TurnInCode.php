@@ -320,9 +320,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                              
+                                    
                                     <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
+                                    Input : <input type="text" name="inputValue_<?php echo $testcase_count; ?>" id="inputValue_<?php echo $testcase_count; ?>" disabled="true" value="<?=$testcase_select_rows['Input']?>">
                                 </div>
                             </div> 
                             <div class="col-lg-6 col-md-12 col-sm-12">
