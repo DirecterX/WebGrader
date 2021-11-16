@@ -301,7 +301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <div class="row" style="margin-bottom:30px; font-family: Courier New;"> <!-- Text Area for Code ? -->
                             <div class="col">
-                                <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;"  rows="7"disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
+                                <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;"  rows="10" disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
                                 <hr style="border: 2px solid #FECA65">
                             </div>
                         </div>
