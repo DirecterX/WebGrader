@@ -7,10 +7,11 @@
     $userid = $_SESSION['User_ID'];
     $checkcourserole = mysqli_query($connect,"SELECT Role FROM course_role WHERE User_ID = '$userid' AND Course_ID = '$Course_ID' ");
     //echo $checkcourserole["Role"];
-    $result = mysqli_fetch_assoc($checkcourserole);
+    $result = mysqli_fetch_array($checkcourserole);
     $role = $result["Role"];
-
-
+    if($role == NULL){
+     header("location:/WebGrader/Home.php");
+    }
     $show_course = 
         "SELECT * 
         FROM course 
@@ -262,7 +263,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               <?php } ?>
                               <th>Update</th>
                               <th>Kick</th>
-                              $usertokick;
+                              <?php $usertokick; ?>
                             </tr>
                           </thead>
                           <tbody>    

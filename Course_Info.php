@@ -414,7 +414,7 @@ function confirmation(){
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button onclick="document.location='Linkhere'" type="button" class="btn btn-danger">ออก</button> <!-- Link Leave Course Here -->
+                    <button onclick="document.location='leave_course_process.php?Course_ID=<?php echo $Course_ID ?>&User_ID=<?php echo $_SESSION['User_ID'] ?>'" type="button" class="btn btn-danger">ออก</button> <!-- Link Leave Course Here -->
                   </div>
                 </div>
               </div>
