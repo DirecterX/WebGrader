@@ -262,6 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               <?php } ?>
                               <th>Update</th>
                               <th>Kick</th>
+                              $usertokick;
                             </tr>
                           </thead>
                           <tbody>    
@@ -277,6 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                               
                               <td>  
                                 <input type = "text" id = "User_ID" name = "User_ID" value = "<?php echo $row["User_ID"]; ?> " hidden >
+                             <?php $usertokick = $row["User_ID"]; ?>
                                 <input type = "text" id = "Course_ID" name = "Course_ID" value = "<?php echo $row["Course_ID"]; ?>" hidden >
                                 <select name="Role" id="Role">
                                   <option value="student"<?php if( $row["Role"] == "student"){echo " selected";} ?>>student</option>
@@ -309,7 +311,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                                 ?>
                               <td><input type="submit" class="btn btn-info" value="update"></td>
-                              <td><a href="kick_people_process.php" onclick="return confirm('Are you sure to kick tihs user?')"> <input type="submit" class="btn btn-danger" value="kick"></td>
+                              <td><a href="kick_people_process.php?Course_ID=<?php echo $Course_ID?>&User_ID=<?php echo $row["User_ID"] ?>" onclick="return confirm('Are you sure to kick tihs user?')" class="btn btn-danger" >KICK</td>
                             </form>
                             </tr>
                               <?php
