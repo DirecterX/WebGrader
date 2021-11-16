@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         margin-top: 1rem;
         }
 
-       
+ 
 
   </style>
 
@@ -324,13 +324,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                                        
                         ?>
-                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Test Case <?php echo $testcase_count; ?>  </label> <?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?>
+                    
+                        <label for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px; ">Test Case <?php echo $testcase_count; ?>  </label> <?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?>
                         
                         <div class="row" style="font-family: Courier New;">
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                               
-                                    <textarea  class="form-control h-100 bg-light" id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
+                                    <textarea  class="form-control h-100 bg-light " id="Testcase<?php echo $testcase_count; ?>_Output_ex" rows="7" placeholder="Example Output" disabled="true"><?=$testcase_select_rows['Expected_Result']?></textarea>                               
                                     <!-- ID Example = Testcase1_Output_ex -->
                                     Input : <input type="text" name="inputValue_<?php echo $testcase_count; ?>" id="inputValue_<?php echo $testcase_count; ?>" disabled="true" value="<?=$testcase_select_rows['Input']?>">
                                 </div>
@@ -358,7 +359,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                         ?>
 
-                        <p class="rounded-pill rounded-5" style="background-color: #D8D7E5;"><label class="m-2"  for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Hidden Case <?php echo $hiddencase_showcount; ?>  </label><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?></p>
+                        <p  class="p-2" style="background-color: #D8D7E5;border-radius: 5px;"><label class="m-2"  for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Hidden Case <?php echo $hiddencase_showcount; ?>  </label><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?></p>
                         
                         
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
