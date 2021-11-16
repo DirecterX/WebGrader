@@ -88,6 +88,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               ";
               $coun = 0;
               $sqlshowworktodo_q = mysqli_query($connect,$sqlshowworktodo);
+            if(mysqli_num_rows($sqlshowworktodo_q) == NULL){ ?>
+              <div class="col-sm-12 col-md-12 col-lg-12">  
+                <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีงานที่ต้องส่ง <label class="text-danger ml-2"> </label></p></a>
+              </div>
+             <?php }else{
                     while($row = mysqli_fetch_array($sqlshowworktodo_q)){
                       if ($row["Turn_in_Status"] == "not turn in" AND $row["Turn_in_Status"] == "passed" ) {
                         // code...ไม่แสดง
@@ -140,6 +145,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <?php 
                       }
                     }
+                  }
               ?>                 
             </div> <!-- /row line 82 -->
           </div><!-- / col line 75 -->
