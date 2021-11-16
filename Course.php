@@ -102,14 +102,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="container">
       
       <div class="row mb-2 ">
-      <div class="row m-3 p-4" style="background-color: #D8D7E5;border:solid 1px;border-radius:20px ;width: 100%;">
+      <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:5px ;width: 100%;">
         <div class="info-class" style="color:#3D367B;">
           <h1>ห้องเรียน</h1>
           <h1><?php echo $Course_Name ?></h1>
           <h5 class="mt-2 float-left "><?php echo $Course_Sem."/".$Course_Schoolyear ?>
 
         </h5><?php 
-                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn btn-warning" style="margin-left:10px;"   >';
+                  echo '<a href="Course_Info.php?Course_ID='.$Course_ID.'" class="btn" style="margin-left:10px;background-color:pink"   >';
                   if ($role=="Owner"){
                     echo 'Edit Info</a>';
                   }else{

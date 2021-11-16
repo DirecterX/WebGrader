@@ -76,10 +76,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
             <div class="row mb-2">
               <div class="col mt-2"  >
-                <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่เรียน</h4>
+                <h4 class="ml-3 p-2 fw-med text-center float-left" style="width: 10rem;border-radius: 5px; background-color: pink;">งานที่เรียน</h4>
               </div><!-- /.col -->         
             </div><!-- /.row -->
-            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">            
+            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:5px ;">            
               
               <!--<div class="col-sm-12 col-md-6 col-lg-4">-->
               <?php 
@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         $showcourseass_result = mysqli_fetch_array($showcourseass_q);
                         ?>
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="card"  style="background-color: #FFFFFF; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                            <div class="card"  style="background-color: #FFFFFF;  border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                             <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]?>" class="text-dark"> <!-- link here -->
                               <div class="card"> 
                                 <div class="card-body">                                            
@@ -193,10 +193,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
                <div class="row mb-2">
              <div class="col mt-2"  >
-               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 15rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานตรวจของห้องเรียน</h4>
+               <h4 class="ml-3 p-2 fw-med text-center float-left" style="width: 15rem; border-radius: 5px; background-color: pink;">งานตรวจของห้องเรียน</h4>
              </div><!-- /.col -->         
            </div><!-- /.row -->
-           <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
+           <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:5px ;">
                                
          
            <?php 
@@ -294,7 +294,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                
                <div class="row mb-2">
              <div class="col mt-2"  >
-               <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่เสร็จแล้ว</h4>
+               <h4 class="ml-3 p-2 fw-med text-center float-left" style="width: 10rem;  border-radius: 5px; background-color: pink;">งานที่เสร็จแล้ว</h4>
              </div><!-- /.col -->         
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">

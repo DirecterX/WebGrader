@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row mb-2">
           <div class="col-6 mt-3" >
-          <h4 class="p-2 fw-med text-center" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องทำ</h4>
+          <h4 class="p-2 fw-med text-center ml-3" style="width: 10rem;  border-radius: 5px; background-color: pink;">งานที่ต้องทำ</h4>
           <div class="to-do-list  m-3 p-2 pl-3" style="background-color: #D8D7E5; border-radius: 5px;">
           <?php 
           $sqlshowworktodo = "SELECT * FROM submition
@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           </div><!-- /.col -->   
           <div class="col-6 mt-3">    
-            <h4 class="p-2 fw-med text-center" style="width: 12rem; border: 1px solid; border-radius: 20px; background-color: pink;">งานที่ต้องตรวจ</h4>
+            <h4 class="p-2 fw-med text-center ml-3" style="width: 12rem; border-radius: 5px; background-color: pink;">งานที่ต้องตรวจ</h4>
           <div class="to-do-list-room m-3 p-2 pl-3" style="background-color:#D8D7E5; border-radius: 5px;">
           <?php 
           $sqlshowcourse = "SELECT course.Course_ID, course_role.Role, course_role.User_ID
@@ -183,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           ?>
           
           
-          <a href="Assignment.php"><p class="text-end pr-2" style="color: #3D367B;">ดูทั้งหมด</p></a>
+          <a href="Assignment.php"><p class="text-end pr-2 " style="color: #3D367B;">ดูทั้งหมด</p></a>
         </div>
           </div>
         </div><!-- /.row -->
@@ -195,12 +195,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col mt-2"  >
 
           
-            <h4 class="p-2 fw-med text-center" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">คอร์สเรียน</h4>
+            <h4 class="p-2 fw-med text-center ml-3" style="width: 10rem; border-radius: 5px; background-color: pink;">คอร์สเรียน</h4>
   
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
-        <div class="row m-3 p-4" style="background-color: #D8D7E5;">
+        <div class="row m-3 p-4" style="background-color: #D8D7E5; border-radius: 10px;">
           <?php include "Show_course_Home.php"; ?>      
         </div>
   

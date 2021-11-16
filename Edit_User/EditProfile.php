@@ -108,7 +108,7 @@ function confirmation(){
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
 			<form action="edit_user_process.php" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
         <div class="form-group" >
-					<label class="badge bg-warning"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["Username"] ?></h4></label>
+					<label class="badge" style="background-color:pink;color:black;"> <h4 class="m-2">รหัสนักศึกษา <?php echo $_SESSION["Username"] ?></h4></label>
 				</div>
 
                 <div class="form-group">
@@ -157,7 +157,7 @@ function confirmation(){
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-right">
 					<button  onclick="document.location='../Home.php'" type="button" id="submit" name="submit" class="btn btn-dark w-25">ยกเลิก</button>
-					<button type="submit" id="submit" name="submit" class="btn btn-warning w-25" 
+					<button type="submit" id="submit" name="submit" class="btn w-25"  style="background-color:pink;"
           data-toggle="modal" data-target="#exampleModal">บันทึก</button> 
           
     

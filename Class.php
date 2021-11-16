@@ -55,14 +55,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!--start card-->
         <div class="row mb-2">
           <div class="col mt-2"  >
-            <h4 class="ml-4 p-2 fw-med text-center float-left" style="width: 10rem; border: 1px solid; border-radius: 20px; background-color: pink;">คอร์สเรียน</h4>
+            <h4 class="ml-3 p-2 fw-med text-center float-left" style="width: 10rem; border-radius: 5px; background-color: pink;">คอร์สเรียน</h4>
             <div class="addbtnclass">
             <a href="Classroom/CreateCourse.php"><p class="p-2 mr-3 fw-medium text-center float-right" style="color:#3D367B;box-shadow: -5px 5px #FAA3A3;width: 10rem; border: 1px solid; border-radius: 20px; background-color:#F4F4F4;"> <i class="fas fa-plus-square mr-2"></i>สร้างคอร์สเรียน</p></a>
             <a href="AddClass.php"><p class="p-2 mr-3 fw-medium text-center float-right " style="color:#3D367B;box-shadow: -5px 5px #FAA3A3;width: 10rem; border: 1px solid; border-radius: 20px; background-color:#F4F4F4;"><i class="fas fa-users mr-2"></i>เข้าคอร์สเรียน</p></a>
             </div>
           </div><!-- /.col -->         
         </div><!-- /.row -->
-        <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
+        <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:5px ;">
     
           <?php include "Show_course.php"; ?>
        

@@ -9,12 +9,12 @@
           font-family: 'Kanit', sans-serif;
           transition-duration: 0.5s;
           width: 20rem;
-          border-radius: 30px;
+          border-radius: 5px;
       }
       .card:hover{
           color: #233142;
           border: 1px solid;
-          border-radius: 30px;
+          border-radius: 5px;
           box-shadow: 0px 15px #3D367B;
           width: 20rem;
           font-family: 'Kanit', sans-serif;

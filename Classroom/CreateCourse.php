@@ -81,7 +81,7 @@
 <div class="card h-100">
   <div class="card-body border border-dark">
     <div class="row gutters">
-      <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+      <div class="row mb-2" ">
           <div class="col mt-2">
     
             <h1 class="m-0 fw-bolder">สร้างห้องเรียน<i class="fa fa-book ml-2"></i></h1>
@@ -119,7 +119,7 @@
       </div>
     </div>
 
-              <button type="submit" id="save" name="save" value="submit" class="btn btn-warning w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal">สร้างห้องเรียน</button> 
+              <button type="submit" id="save" name="save" value="submit" class="btn w-25 float-right ml-2 " data-toggle="modal" data-target="#exampleModal" style="background-color: pink;">สร้างห้องเรียน</button> 
               <?php include('../error.php'); ?>
                   <?php if(isset($_SESSION['error'])) :?>
                     <div style="color:red">

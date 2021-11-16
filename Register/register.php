@@ -4,6 +4,9 @@
 <title>Register Grader</title>
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -11,6 +14,7 @@
 <style>
 body{
   background-color:#DAD8F1 ;
+  font-family: 'Kanit', sans-serif;
 }
 </style>
 
@@ -20,18 +24,18 @@ body{
 
 <div class="container mt-5" style="padding-top:3%;">
 <div class="row justify-content-center">
-                    <div class="col-md-8">
+                    <div class="col-md-8 ">
                         <div class="card">
-                            <div class="card-header">Register</div>
+                            <div class="card-header text-center" style="background-color: #BD92B2;color:#ffffff;"><h4 class="pt-2">{ สมัครสมาชิก }</h4></div>
                             <div class="card-body">
 
                                 <form class="form-horizontal" method="post" action="register.php" id="register_form">
                                 <div class="form-group">
-                                        <label for="name" class="cols-sm-2 control-label">Username</label>
+                                        <label for="name" class="cols-sm-2 control-label">รหัสนักศึกษา</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Student ID" required/>
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="กรอกรหัสนักศึกษา" required/>
                                             </div>
                                             <?php if (isset($name_error)): ?>
                                                     <span style="color:red"><?php echo $name_error; ?></span>
@@ -39,20 +43,20 @@ body{
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                                        <label for="password" class="cols-sm-2 control-label">รหัสผ่าน</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="password" id="password" required placeholder="Enter your Password" />
+                                                <input type="password" class="form-control" name="password" id="password" required placeholder="กรอกรหัสผ่าน" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                        <label for="confirm" class="cols-sm-2 control-label">ยืนยันรหัสผ่าน</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                <input type="password" class="form-control" name="confirm" id="confirm" required placeholder="Confirm your Password" />
+                                                <input type="password" class="form-control" name="confirm" id="confirm" required placeholder="ยืนยันรหัสผ่าน" />
                                             </div>
                                         </div>
                                         <?php if (isset($confirmpass)): ?>
@@ -60,11 +64,11 @@ body{
                                             <?php endif ?>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="cols-sm-2 control-label">Firstname</label>
+                                        <label for="name" class="cols-sm-2 control-label">ชื่อ</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="Firstname" id="Firstname" required placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Firstname" id="Firstname" required placeholder="ชื่อ" />
                                             </div>
                                         </div>
                                         <?php if (isset($fname_error)): ?>
@@ -72,11 +76,11 @@ body{
                                             <?php endif ?>
                                     </div>
                                      <div class="form-group">
-                                        <label for="name" class="cols-sm-2 control-label">Surname</label>
+                                        <label for="name" class="cols-sm-2 control-label">นามสกุล</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="Surname" id="Surname" required placeholder="Enter your Name" />
+                                                <input type="text" class="form-control" name="Surname" id="Surname" required placeholder="นามสกุล" />
                                             </div>
                                         </div>
                                         <?php if (isset($sname_error)): ?>
@@ -88,7 +92,7 @@ body{
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                <input type="email" class="form-control" name="email" id="email" required placeholder="Enter your Email" /><input type="text" class="form-control" hidden name="Regisid" id="Regisid" value="<?php echo $Regisid;?>" />
+                                                <input type="email" class="form-control" name="email" id="email" required placeholder="กรอกอีเมล" /><input type="text" class="form-control" hidden name="Regisid" id="Regisid" value="<?php echo $Regisid;?>" />
                                             </div>
                                         </div>
                                         <?php if (isset($email_error)): ?>
@@ -97,10 +101,10 @@ body{
                                     </div>
                                     
                                     <div class="form-group ">
-                                        <button type="submit" name="register" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                        <button type="submit" name="register" class="btn btn-lg btn-block login-button text-light w-50 mx-auto" style="background-color:#30214B;border-radius: 20px;">ลงทะเบียน</button>
                                     </div>
-                                    <div class="login-register">
-                                        <a href="../Login/Login.php">Login</a>
+                                    <div class="login-register" style="text-align: center;">
+                                        <label>เป็นสมาชิกแล้ว? </label><a href="../Login/Login.php" style="color:#FD4D82;"> เข้าสู่ระบบ</a>
                                     </div>
                                 </form>
                             </div>

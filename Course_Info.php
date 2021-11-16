@@ -112,10 +112,10 @@ function confirmation(){
 
 <div class="col-md-12 col-sm-12 col-12">
 <div class="card h-100">
-	<div class="card-body border border-dark">
+	<div class="card-body" style="background-color: #F4F4FC; border-radius: 5px;">
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+        <div class="row mb-2" >
           <div class="col mt-2">
     
             <?php if ($role=="Owner"){ ?>
@@ -146,14 +146,13 @@ function confirmation(){
             
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
 			<form action="course_info_process.php?Course_ID=<?=$Course_ID?>" method="POST"  onsubmit="return confirmation()"> <!-- ใส่ตรงนี้ -->	
-      <div class="form-group" >
-					<label class="badge bg-warning"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
+        <div class="form-group" >
+					<label class="badge" style="background-color:pink;"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
 				</div>
 
-        <div class="form-group">
-          <label>Enroll_Code : </label>
-          <label class="badge bg-warning" id="copyenrollcode" ><h1><?php echo $Enroll_Code; ?></h1></label>
-           
+            <div class="form-group">
+            <label>รหัสเข้าร่วมคอร์ส : </label>
+            <label class="badge" style="background-color:pink;" id="copyenrollcode" ><h5><?php echo $Enroll_Code; ?></h5></label>
 
             <script>
               copyenrollcode.onclick = function () {
@@ -284,9 +283,9 @@ function confirmation(){
       </div>
       
         <?php }else{?>
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+        <div class="row mb-2">
           <div class="col mt-2">
-        <h1 class="mb-2 text-dark">แสดงข้อมูลห้องเรียน<i class="fa fa-book ml-2"></i></h1>
+        <h1 class="ml-3 mb-2 text-dark">แสดงข้อมูลห้องเรียน<i class="fa fa-book ml-2"></i></h1>
 
           </div><!-- /.col -->         
         </div>
@@ -314,12 +313,12 @@ function confirmation(){
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 m-2">
 			<form> <!-- ใส่ตรงนี้ -->	
       <div class="form-group" >
-					<label class="badge bg-warning"> <h4 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h4></label>
+					<label class="badge" style="background-color:pink;"> <h5 class="m-2"> ห้องเรียน <?php echo $Course_Name ?></h5></label>
 				</div>
 
-                <div class="form-group">
-					<label>Enroll_Code : </label>
-					<label class="badge bg-warning" id="copyenrollcode" ><h1><?php echo $Enroll_Code; ?></h1></label>
+          <div class="form-group">
+					<label>รหัสเข้าร่วมคอร์ส : </label>
+					<label class="badge" style="background-color:pink;" id="copyenrollcode" ><h5><?php echo $Enroll_Code; ?></h5></label>
            
 
             <script>
@@ -376,8 +375,8 @@ function confirmation(){
                     value="<?php echo $End_date; ?>">
                     
 				</div>
+        <button  type="button" name="leave_info" class="btn btn-dark w-10" value="back" onclick="history.go(-1);" >กลับ</button>  
         <button  type="button" name="leave_course" id="leave_course" class="btn btn-danger w-10" data-toggle="modal" data-target="#leave_course_modal">ออกจาก Course</button>  
-               
 
 			
 

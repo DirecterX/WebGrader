@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
-        <div class="row mb-2" style="text-decoration: underline; text-decoration-color: #FF8540;-webkit-text-decoration-color:#FF8540;text-decoration-thickness: 4px;">
+        <div class="row mb-2">
             <div class="col mt-2" >
                 
                 <h1 class="m-0 fw-bolder">Join Course<i class="fa fa-book ml-2"></i></i></h1>
@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col">
             <form action="add_class_process.php" method="POST">
                 <div class="card h-100 w-50 " >
-                    <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
+                    <div class="card-body " style="background-color:#D8D7E5;">
                         <div class="row">
                             <div class="col-2">
                                 <i class="fas fa-plus fa-3x"></i> 
@@ -105,7 +105,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col" style="align-items: center;">
                                 <div class="text-center">
                                     <button type="button" id="submit" name="submit" class="btn btn-dark w-25" style="margin-right:10px;" onclick="window.history.back()">ยกเลิก</button>
-                                    <button type="submit" id="submit" name="submit" class="btn btn-warning w-25" >ยืนยัน</button>           
+                                    <button type="submit" id="submit" name="submit" class="btn w-25" style="background-color:pink;">ยืนยัน</button>           
                                 </div>
                             </div>
                         </div>

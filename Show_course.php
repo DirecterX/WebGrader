@@ -95,7 +95,7 @@
             ?>
             
                 <?php echo '<a href="Course.php?Course_ID='.$Course_ID.'">'; ?><!-- Link Here -->
-                <div class="card border border-dark m-2 mt-3 fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 20px;background-color:#FFFFFF;">
+                <div class="card border border-dark m-2  fw-bolder" style="width: 20rem; border: 1px solid; border-radius: 10px;background-color:#FFFFFF;">
                     <div class="card-body w-100">
                         <h5 class="card-title mb-2">Course : <?php echo $Course_Name ?></h5>
                         <p class="card-text">ผู้สอน : <label style="text-decoration: underline;"> <?php echo $course_owener_show ?> </label></p>

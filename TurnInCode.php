@@ -177,8 +177,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
             <div class="col mt-2" >
                 
-                <h1 class="badge bg-warning"><?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
-                <hr style="border: 2px solid #FECA65">
+                <h1 class="badge" style="background-color: #D8D7E5;"><?=$assignment_rows['Name']; ?></h1> <!-- Assignment Name-->
+                <button class="float-right btn-dark btn" value="back" onclick="history.go(-1);">กลับ</a></button>
+        
+                <hr style="border: 2px solid #3D367B">
 
           </div><!-- /.col -->         
         </div><!-- /.row -->
@@ -194,20 +196,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row"> <!-- Top Assignment -->
             <div class="col">
                 <div class="card h-100" >
-                    <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
+                    <div class="card-body " style="background-color:#EDEDED;">
                         <div class="row">
                             <div class="col-6">
-                                <h2 class="badge bg-warning" style="font-size:120%;"><?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
+                                <h2 class="badge" style="font-size:120%; background-color: #D8D7E5;"><?=$assignment_rows['Name']; ?></h2> <!-- Assignment Name-->
                             </div>
                             <div class="col-6 text-right">
-                                <label style="font-size:120%;"><i class="fa fa-<?php if(mysqli_num_rows($select_score_query) == 0){echo "search";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "check";}else{echo "times";}}?>"></i></label>
-                                <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FFB82A";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
+                               
                                 <label style="font-size:120%;">Point <?php if(mysqli_num_rows($select_score_query) == 0){echo "0";}else{echo $select_score_rows['Score_Gain'];}?> / <?=$assignment_rows['Score']?></label> <!-- Assignment Score -->
-                                
+                                 <p>
+                                <label style="font-size:120%;"><i class="fa fa-<?php if(mysqli_num_rows($select_score_query) == 0){echo "search";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "check";}else{echo "times";}}?>"></i></label>
+                                <label style="font-size:120%; color:#<?php if(mysqli_num_rows($select_score_query) == 0){echo "FF2020";}else{if($select_score_rows['Turn_in_Status']=="passed"){echo "52DF46";}else{echo "FFD56B";}}?>" ><?php if(mysqli_num_rows($select_score_query) == 0){echo "waiting for turn in";}else{echo $select_score_rows['Turn_in_Status'];}?></label>  <!-- Assignment Status -->
+                                </p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-7 col-md-12 col-sm-12">
+                            <div class="col-lg-7 col-md-12 col-sm-12" >
                                 <div class="form-group">
 
                                 <textarea  class="form-control h-100" id="Assignment_Note" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
@@ -226,7 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         
                                     }else{ 
                                         ?>
-                                        <input type="button" id="submit_Comment" name="submit_Comment" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                        <input type="button" id="submit_Comment" name="submit_Comment" class="btn h-50 text-light" style="float:right;margin-top: 5px; background-color: #9B9B9B;" value="Send Comment">
                                     <?php } ?>
                                     <input type="hidden" id="Submit_ID" name="Submit_ID" value="<?php echo $submit_id;?>">
                                     
@@ -246,8 +250,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <form action="filter2.php" method="post" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
                                         <input type="file" id="Assignment_File" name="Assignment_File" hidden required accept=".py">
-                                        <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
-                                        <input type="submit" id="submit" name="submit" class="btn btn-primary">
+                                        <label for="Assignment_File"  class="btn " style="margin-top:10px;background-color:#242F46;color: #EDEDED;">Add File</label>
+                                        <input type="submit" id="submit" name="submit" class="btn" style="background-color:#AECEFF;">
                                     <?php } ?>
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->
                                         <?php  
@@ -291,10 +295,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row" style="margin-top:10px;"> <!--*********************** Output ***********************-->
             <div class="col">
                 <div class="card h-100" >
-                    <div class="card-body border border-dark cardborder" style="background-color:#EDEDED;">
+                    <div class="card-body " style="background-color:#EDEDED;">
                         <div class="row">
                             <div class="col-6">
-                                <h2 class="badge bg-warning" style="font-size:120%;">My Code</h2>
+                                <h2 class="badge " style="font-size:120%; background-color: #D8D7E5;">My Code</h2>
                             </div>
                             <div class="col-6 text-right">
                                 
@@ -307,7 +311,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row" style="margin-bottom:30px;"> <!-- Text Area for Code ? -->
                             <div class="col">
                                 <textarea  class="form-control h-100" id="Assignment_Code" style="margin-top: 10px;" rows="8" disabled="true"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Turn_in_Code'];}?></textarea>
-                                <hr style="border: 2px solid #FECA65">
+                                <hr style="border: 2px solid #241D4E">
                             </div>
                         </div>
 
@@ -354,7 +358,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 }
                         ?>
 
-                        <p class="bg-warning rounded-pill rounded-5"><label class="m-2"  for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Hidden Case <?php echo $hiddencase_showcount; ?>  </label><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?></p>
+                        <p class="rounded-pill rounded-5" style="background-color: #D8D7E5;"><label class="m-2"  for="Testcase<?php echo $testcase_count; ?>_Output_ex" style="margin-top: 10px;">Hidden Case <?php echo $hiddencase_showcount; ?>  </label><?php if(!$select_exec_query || mysqli_num_rows($select_exec_query) == 0){}else{if($select_exec_rows['Is_correct']==0){echo '<i class="fas fa-times text-danger float-right mt-2 mr-2" style="font-size: larger;">  Failed</i>';}else{echo '<i class="fas fa-check text-success float-right mt-2">  Passed</i>';}}?></p>
                         
                         
                         <!------------------------------------ PHP Code Looping End ---------------------------------------->
