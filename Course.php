@@ -745,10 +745,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <?php        
                             while($row = mysqli_fetch_array($ShowAssignment)) {
                         ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6" ">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
 
                           <!--------------------- Card Assignment --------------------------------------->
-                          <div class="card"  style="background-color: #EBEBEB; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                          <div class="card"  style="background-color: #D8D7E5; border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
                             <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="text-dark">
                             <div class="card-body">
                                  <!-- link -->
@@ -764,7 +764,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col" style="text-align:center;">
+                                        <div class="col pt-2" style="text-align:center; background-color: #311F2C; border-radius: 0px 0px 10px 0px;">
                                         <?php 
                                              $showstatussubmition = "SELECT * FROM submition
                                              WHERE Assignment_ID = ".$row["Assignment_ID"]." AND User_ID = ".$_SESSION['User_ID']."";
@@ -778,17 +778,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                              $color;
                                              if($status == "waiting for turn in" || $status == "waiting for inspection"){
                                                $color = "-warning";
-                                             }else if( $status == "not passed"){
+                                             }else if( $status == "not passed"|| $status == "not turn in"){
                                                $color = "-danger";
                                              }else if( $status == "passed"){
                                                $color = "-success";
                                              }
 
                                           ?>  
-                                          <label class=" float-left text font-weight-light">
-                                            Status :                                                                            
+                                          <label class=" float-left text font-weight-light text-light">
+                                            Status :                                                                             
                                           </label>
-                                            <label class=" float-left text<?php echo $color;?> font-weight-light">    <!-- color replace on success.  Red = danger , yellow = warning , green = success , blue = info -->                                    
+                                            <label class="pl-1 float-left text<?php echo $color;?> font-weight-light">    <!-- color replace on success.  Red = danger , yellow = warning , green = success , blue = info -->                                    
                                             <!-- <i class="fas fa-check" style="color:black;"></i> -->
                                             <!------------------------ Checking and display Status Here ----------------->
                                             <?php
