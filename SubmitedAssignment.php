@@ -170,7 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
                                     <label for="Comment">Comment</label>
                                     <form action="#">
-                                        <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
+                                        <textarea  class="form-control" id="Assignment_Note" rows="3" disabled></textarea>
                                         <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
                                     </form>
                                 </div>                    
