@@ -39,6 +39,11 @@
                 course.Name ASC";
                 // แสดง Course โดยเรียงจากวันที่ปิดท้ายสุดมาก่อน
                 $show_class_q = mysqli_query($connect,$show_class);
+                if(mysqli_num_rows($show_class_q) == 0){ ?>
+                    <div class="col-sm-12 col-md-12 col-lg-12">  
+                      <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีคอร์สเรียน <label class="text-danger ml-2"> </label></p></a>
+                    </div>
+                <?php }else{
                 $i = 0;
                 while($row = mysqli_fetch_array($show_class_q) AND $i < 4){
                     $i++;
@@ -103,6 +108,6 @@
            
             <!-- /.card -->
             <!--***************************************************************************************-->
-            <?php }?>
+            <?php } } ?>
             <!-- /.col-sm-6 -->
             

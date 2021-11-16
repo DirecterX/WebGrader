@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               ";
               $coun = 0;
               $sqlshowworktodo_q = mysqli_query($connect,$sqlshowworktodo);
-            if(mysqli_num_rows($sqlshowworktodo_q) == NULL){ ?>
+            if(mysqli_num_rows($sqlshowworktodo_q) == NULL || mysqli_num_rows($sqlshowworktodo_q)==0){ ?>
               <div class="col-sm-12 col-md-12 col-lg-12">  
                 <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีงานที่ต้องส่ง <label class="text-danger ml-2"> </label></p></a>
               </div>
@@ -167,12 +167,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
           INNER JOIN course_role ON course.Course_ID = course_role.Course_ID AND course_role.User_ID = ".$_SESSION["User_ID"]."";
           $counq = 0;
           $sqlshowcourse_q = mysqli_query($connect,$sqlshowcourse);
+          if(mysqli_num_rows($sqlshowcourse_q) == NULL || mysqli_num_rows($sqlshowcourse_q)==0){ ?>
+            <div class="col-sm-12 col-md-12 col-lg-12">  
+              <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีงานที่ต้องตรวจ <label class="text-danger ml-2"> </label></p></a>
+            </div>
+           <?php }else{
           while($row = mysqli_fetch_array($sqlshowcourse_q)){
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
                 WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspection' ";
                 $sqlshowworktodoforteach_q = mysqli_query($connect,$sqlshowworktodoforteach);
+                 if(mysqli_num_rows($sqlshowworktodo_q) == NULL || mysqli_num_rows($sqlshowworktodo_q)==0){ ?>
+              <div class="col-sm-12 col-md-12 col-lg-12">  
+                <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีงานที่ต้องตรวจ <label class="text-danger ml-2"> </label></p></a>
+              </div>
+             <?php }else{
                 while($rowq = mysqli_fetch_array($sqlshowworktodoforteach_q)){
                   $counq++;
                   $subid = $rowq["Submit_ID"];
@@ -212,7 +222,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               }
             }
           }
-          
+          }
+        }
           ?>
            
    
