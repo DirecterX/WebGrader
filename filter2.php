@@ -504,7 +504,7 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
               $return_value = proc_close($process);
           }
           ############################# CHECK IF THERE's OUTPUT OR NOT #################################
-          $select_output2 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$testcase2_id' AND User_ID ='$user_id'";
+          $select_output2 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$hiddencase2_id' AND User_ID ='$user_id'";
           $select_output2_query = mysqli_query($connect,$select_output2);
 
           ################ CHECK IF AVAILABLE UPDATE INSTEAD ###############
@@ -560,7 +560,7 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
             $return_value = proc_close($process);
         }
         ############################# CHECK IF THERE's OUTPUT OR NOT #################################
-        $select_output3 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$testcase3_id' AND User_ID ='$user_id'";
+        $select_output3 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$hiddencase3_id' AND User_ID ='$user_id'";
         $select_output3_query = mysqli_query($connect,$select_output3);
 
         ################ CHECK IF AVAILABLE UPDATE INSTEAD ###############
@@ -616,7 +616,7 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
           $return_value = proc_close($process);
       }
       ############################# CHECK IF THERE's OUTPUT OR NOT #################################
-      $select_output4 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$testcase4_id' AND User_ID ='$user_id'";
+      $select_output4 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$hiddencase4_id' AND User_ID ='$user_id'";
       $select_output4_query = mysqli_query($connect,$select_output4);
 
       ################ CHECK IF AVAILABLE UPDATE INSTEAD ###############
@@ -672,7 +672,7 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
         $return_value = proc_close($process);
     }
     ############################# CHECK IF THERE's OUTPUT OR NOT #################################
-    $select_output5 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$testcase5_id' AND User_ID ='$user_id'";
+    $select_output5 = "SELECT Testcase_ID FROM exec_output WHERE Testcase_ID ='$hiddencase5_id' AND User_ID ='$user_id'";
     $select_output5_query = mysqli_query($connect,$select_output5);
 
     ################ CHECK IF AVAILABLE UPDATE INSTEAD ###############
