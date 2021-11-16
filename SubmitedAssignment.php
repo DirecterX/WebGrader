@@ -167,10 +167,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="Comment_Teacher">Comment form Teacher</label>
-                                    <textarea  class="form-control" id="Assignment_Comment_Teacher" rows="3"></textarea>
+                                    <textarea  class="form-control" id="Assignment_Comment_Teacher" rows="3"><?php if($select_submit_rows['Instructor_Comment'] == NULL){}else{echo $select_submit_rows['Instructor_Comment'];}?></textarea>
                                     <label for="Comment">Comment</label>
                                     
-                                        <textarea  class="form-control" id="Assignment_Comment_Student" rows="3" disabled></textarea>
+                                        <textarea  class="form-control" id="Assignment_Comment_Student" rows="3" disabled><?php if($select_submit_rows['Student_Comment'] == NULL){}else{echo $select_submit_rows['Student_Comment'];}?></textarea>
                                         <input type="button" id="submit_Comment" name="submit_Comment" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
                                        
                                 </div>                    
