@@ -213,18 +213,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="Comment_Teacher">Comment form Teacher</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3" disabled><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
+                                    <textarea  class="form-control" id="Assignment_Comment_Teacher" rows="3" disabled><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
                                     <label for="Comment">Comment</label>
-                                    <form action="#">
-                                        <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
+                                    
+                                        <textarea  class="form-control" id="Assignment_Comment_Student" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
                                         <?php
                                         if ($today > $dayendass OR $select_score_rows['Turn_in_Status'] == 'not turn in' OR $select_score_rows['Turn_in_Status'] == 'passed') {
                                         
                                     }else{ 
                                         ?>
-                                        <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                        <input type="button" id="submit_Comment" name="submit_Comment" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
                                     <?php } ?>
-                                    </form>
+                                    <input type="hidden" id="Submit_ID" name="Submit_ID" value="<?php echo $submit_id;?>">
+                                    
                                 </div>                    
                             </div> 
                         </div>
@@ -390,6 +391,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="dist/js/adminlte.min.js"></script>
 
 <script>
+
+    const Comment_Student = document.getElementById('submit_Comment');
+    Comment_Student.onclick = function(){
+        var Comment_student = document.getElementById("Assignment_Comment_Student").value;    
+        var Submit_id = document.getElementById("Submit_ID").value;    
+       // alert("Comment " + Comment_Student + " ID: "+Submit_ID);
+        $.ajax({
+						type: "POST",
+					//	dataType: "json",		
+						url: "send_comment_student.php",
+						data: {Student_Comment:Comment_student,Submit_ID:Submit_id},		
+					//	contentType: "application/json; charset=utf-8",
+						success: function(result){
+                            if(result=="success"){
+                                alert("Send Comment Success");
+                            }else{
+                                alert("Send Comment Failed");
+                            }											                            
+					} });
+   
+    };
     //----------------------Prevent Submit Form Script---------------------------//
 var _validFileExtensions = [".py"];
 
@@ -464,6 +486,29 @@ function Validate() {
     }
 
     })
+
+   
+        
+       // var Comment_Student = document.getElementById("Assignment_Comment_Student").value;
+       
+      //  var Submit_ID = document.getElementById("Submit_ID").value;
+       
+       // alert("Comment " + Comment_Student + " ID: "+Submit_ID);
+        /*$.ajax({
+						type: "POST",
+					//	dataType: "json",		
+						url: "Change_date.php",
+						data: {Assignment_ID:Assignment_ID,End_date:End_Date},		
+					//	contentType: "application/json; charset=utf-8",
+						success: function(result){
+                            if(result=="success"){
+                                alert("Date Update Success");
+                            }else{
+                                alert("Date Update Failed");
+                            }											
+                            
+					} });*/
+    
 
 </script>
 

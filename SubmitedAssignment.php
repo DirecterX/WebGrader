@@ -167,12 +167,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="Comment_Teacher">Comment form Teacher</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"></textarea>
+                                    <textarea  class="form-control" id="Assignment_Comment_Teacher" rows="3"></textarea>
                                     <label for="Comment">Comment</label>
-                                    <form action="#">
-                                        <textarea  class="form-control" id="Assignment_Note" rows="3" disabled></textarea>
-                                        <input type="submit" id="submit" name="submit" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
-                                    </form>
+                                    
+                                        <textarea  class="form-control" id="Assignment_Comment_Student" rows="3" disabled></textarea>
+                                        <input type="button" id="submit_Comment" name="submit_Comment" class="btn btn-warning h-50" style="float:right;margin-top: 5px;" value="Send Comment">
+                                       
                                 </div>                    
                             </div> 
                         </div>
@@ -186,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <input type="submit" id="submit" name="submit" class="btn btn-success" value="Grade - feedback">
                                         <input type="button" class="btn btn-info h-50" id="exit_button" name="exit_button"  value="Exit" onclick="window.history.back()">
                                         <!--------- Non-hidden TESTCASE ID Loop --------------->
-                                        <input type="hidden" name="Submit_ID" value="<?=$submit_id;?>">
+                                        <input type="hidden" name="Submit_ID" id="Submit_ID" value="<?=$submit_id;?>">
                                         <input type="hidden" name="Assignment_ID" value="<?=$assignment_id;?>">
                                         <input type="hidden" name="Course_ID" value="<?=$course_id;?>">
                                     </form>
@@ -281,6 +281,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Upload file button Script -->
 <script>
+    const Comment_Teacher = document.getElementById('submit_Comment');
+    Comment_Teacher.onclick = function(){
+        var Comment_teacher = document.getElementById("Assignment_Comment_Teacher").value;    
+        var Submit_id = document.getElementById("Submit_ID").value;    
+       // alert("Comment " + Comment_teacher + " ID: "+Submit_id);
+        $.ajax({
+						type: "POST",
+					//	dataType: "json",		
+						url: "send_comment_instructior.php",
+						data: {Instructor_Comment:Comment_teacher,Submit_ID:Submit_id},		
+					//	contentType: "application/json; charset=utf-8",
+						success: function(result){
+                            if(result=="success"){
+                                alert("Send Comment Success");
+                            }else{
+                                alert("Send Comment Failed");
+                            }											                            
+					} });
+                    
+    };
+
+
+
     const actualBtn = document.getElementById('Assignment_File');
 
     const fileChosen = document.getElementById('file-chosen');
