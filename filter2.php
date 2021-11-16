@@ -5,6 +5,17 @@ $assignment_id = $_POST['Assignment_ID'];
 $testcase_id = $_POST['Testcase1_ID'];
 $user_id = $_POST['User_ID'];
 
+$pass1 = True;
+$pass2 = True;
+$pass3 = True;
+$pass4 = True;
+$pass5 = True;
+$pass6 = True;
+$pass7 = True;
+$pass8 = True;
+$pass9 = True;
+$pass10 = True;
+
 if(isset($_POST['Testcase2_ID'])){
   $testcase2_id = $_POST['Testcase2_ID'];
 
@@ -144,9 +155,11 @@ if(mysqli_num_rows($testcase_query) >= 1){
               
               if($testcase1_result == 0){  ########### 0 is match  else not match ############
                 $pass = True;
+                $pass1 = True;
                 $is_correct1 = 1;
               }else{
                 $pass = False;
+                $pass1 = False;
                 $is_correct1 = 0;
               }
               
@@ -198,12 +211,15 @@ if(mysqli_num_rows($testcase_query) >= 1){
                 $is_correct2 = 1;
                 if($pass == False){
                     $pass = False;
+                    $pass2 = False;
                 }else{
                     $pass = True;
+                    $pass2 = True;
                 }
               }else{
                 $is_correct2 = 0;
                 $pass = False;
+                $pass2 = False;
               }
               
               fclose($pipes[1]);
@@ -254,12 +270,15 @@ if(mysqli_num_rows($testcase_query) >= 1){
               $is_correct3 = 1;
                 if($pass == False){
                     $pass = False;
+                    $pass3 = False;
                 }else{
                     $pass = True;
+                    $pass3 = True;
                 }
             }else{
               $is_correct3 = 0;
               $pass = False;
+              $pass3 = False;
             }
             
             fclose($pipes[1]);
@@ -310,12 +329,15 @@ if(mysqli_num_rows($testcase_query) >= 1){
             $is_correct4 = 1;
             if($pass == False){
                 $pass = False;
+                $pass4 = False;
             }else{
                 $pass = True;
+                $pass4 = True;
             }
           }else{
             $is_correct4 = 0;
             $pass = False;
+            $pass4 = False;
           }
           
           fclose($pipes[1]);
@@ -366,12 +388,15 @@ if(mysqli_num_rows($testcase_query) >= 1){
           $is_correct5 = 1;
             if($pass == False){
                 $pass = False;
+                $pass5 = False;
             }else{
                 $pass = True;
+                $pass5 = True;
             }
         }else{
           $is_correct5 = 0;
           $pass = False;
+          $pass5 = False;
         }
         
         fclose($pipes[1]);
@@ -438,9 +463,11 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
               
               if($testcase1_result == 0){  ########### 0 is match  else not match ############
                 $pass = True;
+                $pass6 = True;
                 $is_correct1 = 1;
               }else{
                 $pass = False;
+                $pass6 = False;
                 $is_correct1 = 0;
               }
               
@@ -492,12 +519,15 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
                 $is_correct2 = 1;
                 if($pass == False){
                     $pass = False;
+                    $pass7 = False;
                 }else{
                     $pass = True;
+                    $pass7 = True;
                 }
               }else{
                 $is_correct2 = 0;
                 $pass = False;
+                $pass7 = False;
               }
               
               fclose($pipes[1]);
@@ -548,12 +578,15 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
               $is_correct3 = 1;
                 if($pass == False){
                     $pass = False;
+                    $pass8 = False;
                 }else{
                     $pass = True;
+                    $pass8 = True;
                 }
             }else{
               $is_correct3 = 0;
               $pass = False;
+              $pass8 = False;
             }
             
             fclose($pipes[1]);
@@ -604,12 +637,15 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
             $is_correct4 = 1;
             if($pass == False){
                 $pass = False;
+                $pass9 = False;
             }else{
                 $pass = True;
+                $pass9 = True;
             }
           }else{
             $is_correct4 = 0;
             $pass = False;
+            $pass9 = False;
           }
           
           fclose($pipes[1]);
@@ -660,12 +696,15 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
           $is_correct5 = 1;
             if($pass == False){
                 $pass = False;
+                $pass10 = False;
             }else{
                 $pass = True;
+                $pass10 = True;
             }
         }else{
           $is_correct5 = 0;
           $pass = False;
+          $pass10 = False;
         }
         
         fclose($pipes[1]);
@@ -694,7 +733,7 @@ if(mysqli_num_rows($hiddencase_query) >= 1){
     } ##################### END OF WHILE LOOP HERE #############################
 }
 
-if($pass == True){
+if($pass1 == True && $pass2 == True && $pass3 == True && $pass4 == True && $pass5 == True && $pass6 == True && $pass7 == True && $pass8 == True && $pass9 == True && $pass10 == True){
     $status = "waiting for inspection";
   }else{
     $status = "not passed";
