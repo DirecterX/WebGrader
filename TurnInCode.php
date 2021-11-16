@@ -53,9 +53,14 @@
     $dayendass = $assignment_rows['End_date'];
     if($today > $assignment_rows['End_date']){
         $not_turn_in = "not turn in";
+        $status = $select_score_rows['Turn_in_status'];
         $update_not_turn_in_status = $connect->prepare("UPDATE submition SET Turn_in_Status=? WHERE Submit_ID =?");
         $update_not_turn_in_status->bind_param("si", $not_turn_in, $submit_id);
         $update_not_turn_in_status->execute();
+
+        if($status != $not_turn_in){
+            header("Location: TurnInCode.php?Assignment_ID=$assignment_id");
+        }
     }
 
     ############################# GET testcase of assignment ################################
