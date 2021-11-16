@@ -276,7 +276,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.col -->
         </div>
-            <input type="hidden" name="Assignment_ID" value="<?=$_GET['Assignment_ID'];?>">
+            <input type="hidden" name="Assignment_ID" id="Assignment_ID" value="<?=$_GET['Assignment_ID'];?>">
             <input type="hidden" name="Course_ID" value="<?=$select_assignment_rows['Course_ID']?>">
             <input type="hidden" name="Is_edit" value="1">
         </form><!-- End Form Here -->
@@ -522,6 +522,30 @@ function Validate() {
         document.getElementById('submit').disabled = true;       
     }
 
+    })
+
+    const ChangeDate = document.getElementById('Assignment_End_date');
+    ChangeDate.addEventListener('change', function(){
+        
+        var End_Date = document.getElementById("Assignment_End_date").value;
+       
+        var Assignment_ID = document.getElementById("Assignment_ID").value;
+       
+        //alert("Date: " + End_Date + " ID: "+Assignment_ID);
+        $.ajax({
+						type: "POST",
+					//	dataType: "json",		
+						url: "Change_date.php",
+						data: {Assignment_ID:Assignment_ID,End_date:End_Date},		
+					//	contentType: "application/json; charset=utf-8",
+						success: function(result){
+                            if(result=="success"){
+                                alert("Date Update Success");
+                            }else{
+                                alert("Date Update Failed");
+                            }											
+                            
+					} });
     })
 
 </script>
