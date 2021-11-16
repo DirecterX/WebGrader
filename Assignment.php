@@ -94,9 +94,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
              <?php }else{
                     while($row = mysqli_fetch_array($sqlshowworktodo_q)){
-                      if ($row["Turn_in_Status"] == "not turn in" AND $row["Turn_in_Status"] == "passed" ) {
+                      if ($row["Turn_in_Status"] == "not turn in" OR $row["Turn_in_Status"] == "passed" ) {
                         // code...ไม่แสดง
-                      }else if ($row["Turn_in_Status"] == "waiting for turn in") {
+                      }else if ($row["Turn_in_Status"] == "waiting for turn in" OR $row["Turn_in_Status"] == "" OR $row["Turn_in_Status"] == "not passed") {
                         $coun++;
                         $ShownameAssigment = "SELECT * FROM assignment
                         WHERE Assignment_ID =".$row["Assignment_ID"]."";
@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                   <h5 class="card-title" style="font-size:larger;background-color:#FFBFBF; border-radius: 0px 20px 0px 0px;">
                                     <b class="p-3"><?php echo $coun; ?>. <?php echo $showcourseass_result["Name"] ?>  
                                       <label class="text-danger ml-2"> 
-                                        <?php echo "( waiting for turn in )" ?>
+                                        <?php echo $row['Turn_in_Status'] ?>
                                       </label>
                                    </b>
                                   </h5> 
@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             </div>  
                         <?php 
-                      }else if($row["Turn_in_Status"] == "waiting for inspect"){
+                      }else if($row["Turn_in_Status"] == "waiting for inspection"){
                         $coun++;
                         $ShownameAssigment = "SELECT Name FROM assignment
                         WHERE Assignment_ID =".$row["Assignment_ID"]."";
