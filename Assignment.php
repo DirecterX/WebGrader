@@ -211,7 +211,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
            <?php }else{
           while($row = mysqli_fetch_array($sqlshowcourse_q)){
+
             if ($row["Role"] == "Owner" OR $row["Role"] == "Teacher" OR $row["Role"] == "TA") {
+
               //echo "waiting for inspect";
                 $sqlshowworktodoforteach = "SELECT * FROM submition 
                 WHERE Course_ID = ".$row["Course_ID"]." AND Turn_in_Status = 'waiting for inspection' ";
@@ -264,9 +266,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <?php 
               }
             }
+            else{
+
+            ?>
+            <div class="col-sm-12 col-md-12 col-lg-12">  
+              <a style="color: #3D367B;"><p class="pl-3 pt-2 mr-2 border-5 rounded-1 " style="box-shadow: 0.5px 5px;background-color: #FFFFFF;"> ไม่มีงานที่ต้องตรวจ <label class="text-danger ml-2"> </label></p></a>
+            </div>
+            <?php
           
           }
         }
+      }
           ?>
            
    
