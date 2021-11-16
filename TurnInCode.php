@@ -206,14 +206,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="form-group">
 
-                                <textarea  class="form-control h-100" id="Assignment_Note" style="margin-top: 10px;" rows="11"><?=$assignment_rows['Detail']?></textarea>
+                                <textarea  class="form-control h-100" id="Assignment_Note" style="margin-top: 10px;" rows="11" disabled><?=$assignment_rows['Detail']?></textarea>
 
                                 </div>
                             </div> 
                             <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="Comment_Teacher">Comment form Teacher</label>
-                                    <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
+                                    <textarea  class="form-control" id="Assignment_Note" rows="3" disabled><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Instructor_Comment'];}?></textarea>
                                     <label for="Comment">Comment</label>
                                     <form action="#">
                                         <textarea  class="form-control" id="Assignment_Note" rows="3"><?php if(mysqli_num_rows($select_score_query) == 0){}else{echo $select_score_rows['Student_Comment'];}?></textarea>
