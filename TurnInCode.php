@@ -238,7 +238,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     }else{
                                     ?>
                                     <!-------------------------------- PHP Code For Checking Status to change button Here ---------------------------->
-                                    <form action="filter2.php" method="post" enctype="multipart/form-data">
+                                    <form action="filter2.php" method="post" id="form_Turnin" name="form_Turnin" enctype="multipart/form-data">
                                         <span id="file-chosen">No file chosen</span>
                                         <input type="file" id="Assignment_File" name="Assignment_File" hidden required accept=".py">
                                         <label for="Assignment_File"  class="btn btn-dark" style="margin-top:10px;">Add File</label>
@@ -388,6 +388,62 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 
+<script>
+    //----------------------Prevent Submit Form Script---------------------------//
+var _validFileExtensions = [".py"];
+
+var formsubmit = document.getElementById("form_Turnin");
+formsubmit.onsubmit  = function(event) { 
+    if(!Validate()){
+        alert("Sorry, Please Upload " + _validFileExtensions.join(", ") + " File");
+        event.preventDefault();
+    }
+}
+
+var submit = document.getElementById('submit');
+submit.onclick = function() {
+    Validate();
+
+}
+
+function ShowMoadal1(){
+    
+}
+//---------------------Check Upload file is .py Script------------------------------//
+   
+function Validate() {
+    var arrInputs = document.getElementById("Assignment_File");
+        var oInput = arrInputs;
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                
+                if (!blnValid) {
+                    
+                    return false;
+                }
+            }else{
+                alert("Please Upload File.");
+                return false;
+                
+            }
+        }
+    
+    return true;
+}
+
+
+
+</script>
+
 <!-- Upload file button Script -->
 <script>
     const actualBtn = document.getElementById('Assignment_File');
@@ -395,9 +451,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     const fileChosen = document.getElementById('file-chosen');
 
     actualBtn.addEventListener('change', function(){
-    fileChosen.textContent = this.files[0].name
+    
+    const fileSize = this.files[0].size / 1024 / 1024;
+    if (fileSize > 10) {
+        
+        alert('File size exceeds 10 MiB');
+    }else{
+        fileChosen.textContent = this.files[0].name
+        document.getElementById('check').disabled = false;
+        document.getElementById('submit').disabled = true;       
+    }
+
     })
+
 </script>
+
 
 </body>
 </html>
