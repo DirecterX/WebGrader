@@ -295,8 +295,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
            </div><!-- /.row -->
            <div class="row m-3 p-4" style="background-color: #D8D7E5;border-radius:10px ;">
             <?php 
-            $showworkpass = "SELECT  * FROM submition
-            WHERE User_ID = ".$_SESSION['User_ID']." AND Turn_in_Status = 'passed' or Turn_in_Status = 'not turn in'
+            $showworkpass = "SELECT DISTINCT * FROM submition
+            WHERE User_ID = ".$_SESSION['User_ID']." AND (Turn_in_Status = 'passed' or Turn_in_Status = 'not turn in')
             ";
             $showworkpass_q = mysqli_query($connect,$showworkpass);
             if(mysqli_num_rows($showworkpass_q) == 0){ ?>

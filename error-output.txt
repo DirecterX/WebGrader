@@ -480,3 +480,7 @@ Traceback (most recent call last):
   File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 1, in <module>
     n = int(input("Enter Number Between 0-9 :"))
 EOFError: EOF when reading a line
+Traceback (most recent call last):
+  File "S:\xampp\htdocs\WebGrader\temp_file\63015161.py", line 1, in <module>
+    n = int(input("Enter Number Between 0-9 :"))
+EOFError: EOF when reading a line
