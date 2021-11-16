@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row ">
                             <div class="col" style="align-items: center;">
                                 <div class="text-center">
-                                    <button type="button" id="submit" name="submit" class="btn btn-dark w-25" style="margin-right:10px;">ยกเลิก</button>
+                                    <button type="button" id="submit" name="submit" class="btn btn-dark w-25" style="margin-right:10px;" onclick="window.history.back()">ยกเลิก</button>
                                     <button type="submit" id="submit" name="submit" class="btn btn-warning w-25" >ยืนยัน</button>           
                                 </div>
                             </div>
