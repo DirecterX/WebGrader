@@ -31,11 +31,11 @@ body{
 
                                 <form class="form-horizontal" method="post" action="register.php" id="register_form">
                                 <div class="form-group">
-                                        <label for="name" class="cols-sm-2 control-label">รหัสนักศึกษา</label>
+                                        <label for="name" class="cols-sm-2 control-label">ชื่อผู้ใช้งาน</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="กรอกรหัสนักศึกษา" required/>
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="กรอกชื่อผู้ใช้งาน" required/>
                                             </div>
                                             <?php if (isset($name_error)): ?>
                                                     <span style="color:red"><?php echo $name_error; ?></span>
