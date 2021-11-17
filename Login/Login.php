@@ -32,13 +32,13 @@ if(isset($_SESSION['Username']) AND isset($_SESSION["User_ID"])):
 
    
   </head>
-  <body class="text-center b" style="font-family: 'Kanit', sans-serif;">
+  <body class="text-center b" style="font-family: 'Kanit', sans-serif;background-color: #EEEEEE;">
     
     <main class="form-signin">
         <form action = "/WebGrader/Login/login_process.php" method="POST">
         
         <!-- Image Logo -->
-        <img class="mb-2" src="../Pic/Login-Logo.png" alt="" width="100%" height="100%" >
+        <img class="mb-2 "  src="../Pic/Login-Logo2.png" alt="" width="100%" height="100%" >
     
 
         <!-- Login Form Begin -->
@@ -57,7 +57,7 @@ if(isset($_SESSION['Username']) AND isset($_SESSION["User_ID"])):
         <div class="h6 mb-3 fw-normal" style="text-align: right;"><a href="../Register/register.php" style="color: #FD4D82;">สมัครสมาชิก</a></div>
 
         <!-- Login Buttom -->
-        <button class="w-100 btn btn-lg  lgn-btn" style="background-color: #FFC72E;"  type="submit" name="login" value="login"><b>เข้าสู่ระบบ</b></button>
+        <button class="w-100 btn btn-lg  lgn-btn" style="background-color: #252244;color: #D8D7E5;"  type="submit" name="login" value="login"><b>เข้าสู่ระบบ</b></button>
         <?php include('../error.php'); ?>
         <?php if(isset($_SESSION['error'])) :?>
           <div style="color:red">

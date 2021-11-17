@@ -22,7 +22,7 @@ body{
 
 <body >
 
-<div class="container mt-5" style="padding-top:3%;">
+<div class="container mt-5 " style="padding-top:3%;">
 <div class="row justify-content-center">
                     <div class="col-md-8 ">
                         <div class="card">
@@ -101,7 +101,7 @@ body{
                                     </div>
                                     
                                     <div class="form-group ">
-                                        <button type="submit" name="register" class="btn btn-lg btn-block login-button text-light w-50 mx-auto" style="background-color:#30214B;border-radius: 20px;">ลงทะเบียน</button>
+                                        <button type="submit" name="register" class="btn btn-lg btn-block login-button text-light w-50 mx-auto" style="background-color:#30214B;border-radius: 5px;">ลงทะเบียน</button>
                                     </div>
                                     <div class="login-register" style="text-align: center;">
                                         <label>เป็นสมาชิกแล้ว? </label><a href="../Login/Login.php" style="color:#FD4D82;"> เข้าสู่ระบบ</a>
@@ -113,6 +113,7 @@ body{
                     </div>
                 </div>
 </div>
+
 
 
 </body>
