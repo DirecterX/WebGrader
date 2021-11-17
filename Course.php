@@ -533,44 +533,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="row" style="margin-top:10px;">  
 
                         <?php        
-                            while($row = mysqli_fetch_array($ShowAssignment)) {
                         ?>
                         <div class="col-lg-3 col-md-4 col-sm-6">
 
                           <!--------------------- Card Assignment --------------------------------------->
-                          <div class="card bg-light"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
-                            <a href="TurnInCode.php?Assignment_ID=<?php echo $row["Assignment_ID"]; ?>" class="text-dark">
-                            <div class="card-body">
                                  <!-- link -->
-                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3"><?php echo $row["Name"]; ?></b></h5> 
 
                                 <!-------- Assignment Content -->
 
-                                <p class="card-text">
-                                    <div class="row">
-                                        <div class="col" style="text-align:center;">
-                                        <h6 class="float-left font-weight-bold">Due : <?php echo $row["End_date"]; ?> </h6>
-           
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="text-align:center;">
-                                          <!--<label class=" float-left text-success font-weight-light">
-                                            <i class="fas fa-check" style="color:black;"></i> <?php echo "Passed"?>                                      
-                                          </label>-->                                       
-                                        </div>
-                                    </div>               
-                                </p>
                                 
-                            </div>
-                            </a>
-                          </div> 
                         </div><!-- /col --> 
                           <!---------------------End Card Assignment ---------------------------------------->      
 
-                          <?php
-                              }
-                            ?>
                                 
                                    
                       </div><!-- /row -->
@@ -654,10 +628,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /Tab People --> 
 
                     <!------------------------------------------------ Tab Assignment submition ---------------------------------------------->
-                    <div class="tab-pane" id="TabAssignment">    
-                        
+                        <div class="tab-pane" id="TabAssignment">    
+                        <?php
+                        $waiting_for_inspect = "waiting for inspection";
+                        $assignment_Sumit = "SELECT * 
+                        FROM submition
+                        INNER JOIN assignment ON assignment.Assignment_ID = submition.Assignment_ID 
+                        WHERE submition.Course_ID = $Course_ID AND submition.Turn_in_Status ='$waiting_for_inspect'";
+                        $assignment_Sumitq = mysqli_query($connect,$assignment_Sumit);
+                        while ($row = mysqli_fetch_array($assignment_Sumitq)) {
+                          
+                          ?>
+                          <div class="col-12">
+                          <div class="card bg-light w-100"  style=" border:0.5px solid black; border-top-left-radius: 15px;border-top-right-radius: 15px; border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;" >
+                              <div class="card-body">
+                                <a href="SubmitedAssignment.php?Assignment_ID=<?=$row['Assignment_ID'];?>&Submit_ID=<?=$row['Submit_ID'];?>" class="text-dark"> <!-- link -->
+                                <h5 class="card-title" style="font-size:larger;background-color:#FFD56B; border-radius: 0px 20px 0px 0px;"><b class="p-3">Assignment : <?php echo $row['Name']; ?></b></h5> 
+                                  <label class=" float-right font-weight-light" style="margin-left:5px;">
+                                     Point <?php echo $row['Score_Gain']; ?> / <?php echo "1" ?> <!-- Score -->                                      
+                                  </label>
+                                  <label class=" float-right text-danger font-weight-light">
+                                    <i class="fa fa-search" style="color:black;"></i> <?php echo $row['Turn_in_Status'];?>  <!-- Status -->                                     
+                                  </label>
+                                  
+                                <p class="card-text">
+                                    <div class="row">
+                                        <div class="col" style="text-align:center;">
+                                        <?php 
+                                        $showstudentnameinsubmition = "SELECT DISTINCT * FROM user WHERE User_ID = ".$row['User_ID']." ";
+                                        $showstudentnameinsubmitionq = mysqli_query($connect,$showstudentnameinsubmition);
+                                        while ($row = mysqli_fetch_array($showstudentnameinsubmitionq)) { ?>
+                                        
+                                        <h5 class="float-left font-weight-bold">By 
+                                          <?php echo $row['Username'];?> | <?php echo $row['Firstname'];?>  <?php echo $row['Surname']; ?> </h5> 
+                                        <!--  Userinfo who turn in assignment -->
+                                        
+                                        <?php
+                                      }
+                                        ?>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="text-align:right;">
+                                          <a href="#" id="Reject_btn" name="Reject_btn" class="btn btn-danger w-15">Reject-Feedback</a>
+                                          <a href="#" id="Approve_btn" name="Approve_btn" class="btn btn-info w-15">Grade-Feedback</a>
+                                          <a href="SubmitedAssignment.php" id="ViewCode_btn" name="ViewCode_btn" class="btn btn-warning w-15">View Code</a>                                                                               
+                                        </div>
+                                    </div>               
+                                </p>
+                                </a>
+                              </div>
+                          </div>
+                        </div>
+                          <?php
+                        }
+                        ?>
                     
                         <!--- Show Assignmnet for teacher -->
+                        
                       <?php
                           $ShowAssignmentforteacher = mysqli_query($connect,
                           "SELECT *
